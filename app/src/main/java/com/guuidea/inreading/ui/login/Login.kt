@@ -1,4 +1,4 @@
-package com.guuidea.inreading.login
+package com.guuidea.inreading.ui.login
 
 import android.app.Activity
 import android.content.Intent

@@ -146,11 +146,7 @@ public abstract class HorizonPageAnim extends PageAnimation {
                 break;
             case MotionEvent.ACTION_UP:
                 if (!isMove) {
-                    if (x < mScreenWidth / 2) {
-                        isNext = false;
-                    } else {
-                        isNext = true;
-                    }
+                    isNext = x >= mScreenWidth / 2;
 
                     if (isNext) {
                         //判断是否下一页存在

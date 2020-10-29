@@ -86,7 +86,7 @@ public class DownloadService extends BaseService {
                 .toObservable(DownloadTaskBean.class)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        (event) -> {
+                        event -> {
                             //判断任务是否为轮询标志
                             //判断任务是否存在，并修改任务
                             if (TextUtils.isEmpty(event.getBookId()) || !checkAndAlterDownloadTask(event)) {
@@ -101,7 +101,7 @@ public class DownloadService extends BaseService {
                 .toObservable(DeleteTaskEvent.class)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        (event) -> {
+                        event -> {
                             //判断是否该数据存在加载列表中
                             boolean isDelete = true;
                             for (DownloadTaskBean bean : mDownloadTaskQueue) {
@@ -122,7 +122,8 @@ public class DownloadService extends BaseService {
                                 }
                             }
                             //返回状态
-                            RxBus.getInstance().post(new DeleteResponseEvent(isDelete, event.collBook));
+                            RxBus.getInstance().post(new DeleteResponseEvent(isDelete,
+                                    event.collBook));
                         }
                 );
         addDisposable(deleteDisp);
@@ -201,7 +202,7 @@ public class DownloadService extends BaseService {
         }
 
         // 从队列顺序取出第一条下载
-        if (mDownloadTaskQueue.size() > 0 && !isBusy) {
+        if (!mDownloadTaskQueue.isEmpty() && !isBusy) {
             isBusy = true;
             executeTask(mDownloadTaskQueue.get(0));
         }

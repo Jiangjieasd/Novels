@@ -19,7 +19,7 @@ public class CoverPageAnim extends HorizonPageAnim {
         super(w, h, view, listener);
         mSrcRect = new Rect(0, 0, mViewWidth, mViewHeight);
         mDestRect = new Rect(0, 0, mViewWidth, mViewHeight);
-        int[] mBackShadowColors = new int[] { 0x66ff6e00,0x00000000};
+        int[] mBackShadowColors = new int[]{0x66ff6e00, 0x00000000};
         mBackShadowDrawableLR = new GradientDrawable(
                 GradientDrawable.Orientation.LEFT_RIGHT, mBackShadowColors);
         mBackShadowDrawableLR.setGradientType(GradientDrawable.LINEAR_GRADIENT);
@@ -27,10 +27,10 @@ public class CoverPageAnim extends HorizonPageAnim {
 
     @Override
     public void drawStatic(Canvas canvas) {
-        if (isCancel){
+        if (isCancel) {
             mNextBitmap = mCurBitmap.copy(Bitmap.Config.RGB_565, true);
             canvas.drawBitmap(mCurBitmap, 0, 0, null);
-        }else {
+        } else {
             canvas.drawBitmap(mNextBitmap, 0, 0, null);
         }
     }
@@ -38,33 +38,37 @@ public class CoverPageAnim extends HorizonPageAnim {
     @Override
     public void drawMove(Canvas canvas) {
 
-        switch (mDirection){
+        switch (mDirection) {
             case NEXT:
                 int dis = (int) (mViewWidth - mStartX + mTouchX);
-                if (dis > mViewWidth){
+                if (dis > mViewWidth) {
                     dis = mViewWidth;
                 }
+                /**
+                 * 修改srcRect的左边界，用于修改需要绘制的bitmap的左边界，翻下一页时，
+                 * 当前页面bitmap右边界不变，左边界往右移动，绘制到哪里的区域方位左边界不变动，右边界不断变小
+                 */
                 //计算bitmap截取的区域
                 mSrcRect.left = mViewWidth - dis;
                 //计算bitmap在canvas显示的区域
                 mDestRect.right = dis;
-                canvas.drawBitmap(mNextBitmap,0,0,null);
-                canvas.drawBitmap(mCurBitmap,mSrcRect,mDestRect,null);
-                addShadow(dis,canvas);
+                canvas.drawBitmap(mNextBitmap, 0, 0, null);
+                canvas.drawBitmap(mCurBitmap, mSrcRect, mDestRect, null);
+                addShadow(dis, canvas);
                 break;
             default:
                 mSrcRect.left = (int) (mViewWidth - mTouchX);
                 mDestRect.right = (int) mTouchX;
-                canvas.drawBitmap(mCurBitmap,0,0,null);
-                canvas.drawBitmap(mNextBitmap,mSrcRect,mDestRect,null);
-                addShadow((int) mTouchX,canvas);
+                canvas.drawBitmap(mCurBitmap, 0, 0, null);
+                canvas.drawBitmap(mNextBitmap, mSrcRect, mDestRect, null);
+                addShadow((int) mTouchX, canvas);
                 break;
         }
     }
 
     //添加阴影
-    public void addShadow(int left,Canvas canvas) {
-        mBackShadowDrawableLR.setBounds(left, 0, left + 30 , mScreenHeight);
+    public void addShadow(int left, Canvas canvas) {
+        mBackShadowDrawableLR.setBounds(left, 0, left + 30, mScreenHeight);
         mBackShadowDrawableLR.draw(canvas);
     }
 
@@ -72,22 +76,22 @@ public class CoverPageAnim extends HorizonPageAnim {
     public void startAnim() {
         super.startAnim();
         int dx = 0;
-        switch (mDirection){
+        switch (mDirection) {
             case NEXT:
-                if (isCancel){
+                if (isCancel) {
                     int dis = (int) ((mViewWidth - mStartX) + mTouchX);
-                    if (dis > mViewWidth){
+                    if (dis > mViewWidth) {
                         dis = mViewWidth;
                     }
                     dx = mViewWidth - dis;
-                }else{
+                } else {
                     dx = (int) -(mTouchX + (mViewWidth - mStartX));
                 }
                 break;
             default:
-                if (isCancel){
+                if (isCancel) {
                     dx = (int) -mTouchX;
-                }else{
+                } else {
                     dx = (int) (mViewWidth - mTouchX);
                 }
                 break;

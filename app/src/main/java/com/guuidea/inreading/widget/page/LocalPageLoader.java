@@ -76,6 +76,7 @@ public class LocalPageLoader extends PageLoader {
             chapter.title = bean.getTitle();
             chapter.start = bean.getStart();
             chapter.end = bean.getEnd();
+            chapter.isReadable=bean.getUnreadble();
             txtChapters.add(chapter);
         }
         return txtChapters;

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="final_benefit">Final Benefit</string>
+    <string name="really_want_to_close_it">Really want to close it?</string>
+    <string name="continue_to_pay">Continue to pay</string>
+    <string name="yes_reading_is_boring">Yes,reading is boring</string>
+    <string name="desc_for_vip">1500+ novels for free.\n Only $4.2 per month</string>
+    <string name="setting">Setting</string>
+    <string name="recharge_history">Recharge History</string>
+    <string name="log_out">Log Out</string>
+</resources>

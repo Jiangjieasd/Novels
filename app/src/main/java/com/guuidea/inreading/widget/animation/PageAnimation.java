@@ -63,7 +63,10 @@ public abstract class PageAnimation {
     protected float mLastX;
     protected float mLastY;
 
-    public PageAnimation(int w, int h, View view, OnPageChangeListener listener) {
+    public PageAnimation(int w,
+                         int h,
+                         View view,
+                         OnPageChangeListener listener) {
         this(w, h, 0, 0, view, listener);
     }
 

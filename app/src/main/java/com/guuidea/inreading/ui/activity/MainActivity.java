@@ -4,29 +4,37 @@ import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.guuidea.inreading.R;
-import com.guuidea.inreading.login.Login;
+import com.guuidea.inreading.SingleItem;
+import com.guuidea.inreading.ui.dialog.VipRenewDialog;
 import com.guuidea.inreading.ui.base.BaseTabActivity;
 import com.guuidea.inreading.ui.fragment.BookShelfFragment;
 import com.guuidea.inreading.ui.fragment.CommunityFragment;
 import com.guuidea.inreading.ui.fragment.FindFragment;
+import com.guuidea.inreading.ui.record.RecordActivity;
 import com.guuidea.inreading.utils.Constant;
 import com.guuidea.inreading.utils.PermissionsChecker;
 import com.guuidea.inreading.utils.SharedPreUtils;
 import com.guuidea.inreading.ui.dialog.SexChooseDialog;
 import com.guuidea.inreading.utils.ToastUtils;
+import com.guuidea.inreading.widget.CustomActionbar;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -87,13 +95,84 @@ public class MainActivity extends BaseTabActivity {
     protected void initWidget() {
         super.initWidget();
         //性别选择框
-        showSexChooseDialog();
-        findViewById(R.id.test).setOnClickListener(new View.OnClickListener() {
+//        showSexChooseDialog();
+//        findViewById(R.id.test).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Login.class)));
+//        BookBanner<String> bookBanner = findViewById(R.id.book_banner);
+//        ArrayList<String> datas = new ArrayList<>();
+//        datas.add("233");
+//        datas.add("23e3");
+//        datas.add("23d3");
+//        datas.add("23f3");
+//        datas.add("23g3");
+//        bookBanner.setAdapter(new PagerAdapter() {
+//            @Override
+//            public int getCount() {
+//                return datas.size();
+//            }
+//
+//            @Override
+//            public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+//                return view == object;
+//            }
+//
+//            @Override
+//            public Object instantiateItem(ViewGroup container, int position) {
+//                View view = LayoutInflater.from(container.getContext())
+//                        .inflate(R.layout.layout_test, null);
+//                container.addView(view);
+//                TextView tvText = view.findViewById(R.id.tv_text);
+//                int select = position < datas.size() ? position : (position % datas.size());
+//                tvText.setText(datas.get(select));
+//                return view;
+//            }
+//
+//            @Override
+//            public void destroyItem(ViewGroup container, int position, Object object) {
+//                container.removeView((View) object);
+//            }
+//
+//
+//        });
+
+//        showDialog();
+
+        VipRenewDialog dialog = new VipRenewDialog(this,
+                view -> {
+                    ToastUtils.Companion.show("vip");
+                },
+                view -> {
+                    ToastUtils.Companion.show("exit");
+                });
+        dialog.show();
+        ((SingleItem) findViewById(R.id.one)).setClicker(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Login.class));
+                ToastUtils.Companion.show("4444");
             }
         });
+
+        ((CustomActionbar) findViewById(R.id.action_bar)).setImgClicker(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, RecordActivity.class));
+            }
+        });
+        ((CustomActionbar) findViewById(R.id.action_bar)).setTitle("3333");
+
+    }
+
+    private void showDialog() {
+        Dialog dialog = new Dialog(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_renew, null);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setContentView(view, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT));
+        dialog.show();
+        Window window = dialog.getWindow();
+        if (window != null) {
+            window.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        }
     }
 
     private void showSexChooseDialog() {
@@ -116,6 +195,7 @@ public class MainActivity extends BaseTabActivity {
 
     /**
      * 顶部工具条功能跳转
+     *
      * @param item
      * @return
      */

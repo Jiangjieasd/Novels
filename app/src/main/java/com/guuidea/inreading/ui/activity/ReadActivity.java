@@ -15,11 +15,15 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
 import android.provider.Settings;
+
 import com.google.android.material.appbar.AppBarLayout;
+
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
+
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -122,6 +126,9 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
     /***************left slide*******************************/
     @BindView(R.id.read_iv_category)
     ListView mLvCategory;
+    @BindView(R.id.no_vip_mask)
+    View noVipMask;
+
     /*****************view******************/
     private ReadSettingDialog mSettingDialog;
     private PageLoader mPageLoader;
@@ -138,7 +145,6 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-
             switch (msg.what) {
                 case WHAT_CATEGORY:
                     mLvCategory.setSelection(mPageLoader.getChapterPos());
@@ -375,6 +381,10 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
                     public void onChapterChange(int pos) {
                         //用于更新侧边章节列表当前章节字体颜色
                         mCategoryAdapter.setChapter(pos);
+                        //章节切换完成后，当前章节是否可读用以控制非vip用户mask遮挡
+                        if (mPageLoader.getCurChapterReadable()) {
+
+                        }
                     }
 
                     @Override
@@ -472,7 +482,7 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
         //侧边目录item点击跳转
         mLvCategory.setOnItemClickListener(
                 (parent, view, position, id) -> {
-                    mDlSlide.closeDrawer(Gravity.START);
+                    mDlSlide.closeDrawer(GravityCompat.START);
                     mPageLoader.skipToChapter(position);
                 }
         );
@@ -487,7 +497,7 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
                     //切换菜单
                     toggleMenu(true);
                     //打开侧滑动栏
-                    mDlSlide.openDrawer(Gravity.START);
+                    mDlSlide.openDrawer(GravityCompat.START);
                 }
         );
         //底部设置弹窗中的设置选项
@@ -655,9 +665,15 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
 
     }
 
+    /**
+     * 于此处接收章节列表数据
+     *
+     * @param bookChapters
+     */
     @Override
     public void showCategory(List<BookChapterBean> bookChapters) {
         mPageLoader.getCollBook().setBookChapters(bookChapters);
+        //会去绘制当前界面需要显示的内容
         mPageLoader.refreshChapterList();
 
         // 如果是目录更新的情况，那么就需要存储更新数据
@@ -694,8 +710,8 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
         } else if (mSettingDialog.isShowing()) {
             mSettingDialog.dismiss();
             return;
-        } else if (mDlSlide.isDrawerOpen(Gravity.START)) {
-            mDlSlide.closeDrawer(Gravity.START);
+        } else if (mDlSlide.isDrawerOpen(GravityCompat.START)) {
+            mDlSlide.closeDrawer(GravityCompat.START);
             return;
         }
 

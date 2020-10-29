@@ -8,7 +8,9 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
+
 import androidx.core.content.ContextCompat;
+
 import android.text.TextPaint;
 
 import com.guuidea.inreading.model.bean.BookRecordBean;
@@ -64,6 +66,7 @@ public abstract class PageLoader {
     private Context mContext;
     // 页面显示类
     private PageView mPageView;
+    //每一章都有多页数据
     // 当前显示的页
     private TxtPage mCurPage;
     // 上一章的页面列表缓存
@@ -72,6 +75,7 @@ public abstract class PageLoader {
     private List<TxtPage> mCurPageList;
     // 下一章的页面列表缓存
     private List<TxtPage> mNextPageList;
+
 
     // 绘制电池的画笔
     private Paint mBatteryPaint;
@@ -83,6 +87,8 @@ public abstract class PageLoader {
     private Paint mBgPaint;
     // 绘制小说内容的画笔
     private TextPaint mTextPaint;
+
+
     // 阅读器的配置选项
     private ReadSettingManager mSettingManager;
     // 被遮盖的页，或者认为被取消显示的页
@@ -102,6 +108,8 @@ public abstract class PageLoader {
     private boolean isChapterOpen;
     private boolean isFirstOpen = true;
     private boolean isClose;
+
+
     // 页面的翻页效果模式
     private PageMode mPageMode;
     // 加载器的颜色主题
@@ -991,15 +999,12 @@ public abstract class PageLoader {
         } else {
             dealLoadPageList(prevChapter);
         }
-        return mCurPageList != null ? true : false;
+        return mCurPageList != null;
     }
 
     private boolean hasPrevChapter() {
         //判断是否上一章节为空
-        if (mCurChapterPos - 1 < 0) {
-            return false;
-        }
-        return true;
+        return mCurChapterPos - 1 >= 0;
     }
 
     /**
@@ -1053,6 +1058,12 @@ public abstract class PageLoader {
         // 预加载下一页面
         preLoadNextChapter();
         return mCurPageList != null ? true : false;
+    }
+
+    public boolean getCurChapterReadable() {
+        //当前即将展示的章节类容
+        TxtChapter curTxtChapter = mChapterList.get(mCurChapterPos);
+        return curTxtChapter.isReadable;
     }
 
     /**
@@ -1361,7 +1372,7 @@ public abstract class PageLoader {
     }
 
     /**
-     * @return:获取下一的页面
+     * @return:获取下一页的页面
      */
     private TxtPage getNextPage() {
         int pos = mCurPage.position + 1;

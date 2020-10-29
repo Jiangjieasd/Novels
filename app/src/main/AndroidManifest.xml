@@ -24,6 +24,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+
         <activity
             android:name=".ui.activity.SplashActivity"
             android:theme="@style/SplashTheme" />
@@ -50,7 +51,9 @@
         <activity android:name=".ui.activity.FileSystemActivity" />
         <activity android:name=".ui.activity.CommunityActivity" />
         <activity android:name=".ui.activity.MoreSettingActivity" />
-        <activity android:name=".login.Login" />
+        <activity android:name="com.guuidea.inreading.ui.login.Login" />
+        <activity android:name=".ui.activity.MainPageActivity" />
+        <activity android:name=".ui.record.RecordActivity" />
 
         <service android:name=".service.DownloadService" />
     </application>

@@ -19,6 +19,13 @@
             android:clickable="true"
             tools:visibility="gone" />
 
+        <View
+            android:id="@+id/no_vip_mask"
+            android:background="@color/translucent"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"/>
+
         <!--切换页面提示-->
         <TextView
             android:id="@+id/read_tv_page_tip"

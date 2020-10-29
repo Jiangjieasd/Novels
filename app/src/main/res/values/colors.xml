@@ -21,7 +21,7 @@
     <color name="light_blue">#039BE5</color>
     <color name="light_translucent">#23000000</color>
     <color name="common_gray">#EEEEEE</color>
-    
+
     <!--list-->
     <color name="nb.divider.common">#727272</color>
     <color name="nb.divider.dash">@color/light_white</color>
@@ -29,8 +29,8 @@
     <color name="nb.divider.narrow">#E3E3E3</color>
     <!--通用分割线粗-->
     <color name="nb.divider.wide">@color/light_white</color>
-    
-    
+
+
     <!--text-->
 
     <color name="nb.text.default">@color/black</color>
@@ -64,7 +64,7 @@
     <color name="nb.download.wait">#afafad</color>
     <color name="nb.download.error">#e33a35</color>
     <color name="nb.download.finish">#8bd715</color>
-    
+
     <!--read-->
     <color name="nb.read.bg_1">#CEC29C</color>
     <color name="nb.read.bg_2">#CCEBCC</color>
@@ -72,18 +72,22 @@
     <color name="nb.read.bg_4">#D1CEC5</color>
     <color name="nb.read.bg_5">#001C27</color>
     <color name="nb.read.bg_6">#DDCEC29C</color>
-    
-    
+
+
     <color name="nb.read.font_1">#2C2C2C</color>
     <color name="nb.read.font_2">#2F332D</color>
     <color name="nb.read.font_3">#92918C</color>
     <color name="nb.read.font_4">#383429</color>
     <color name="nb.read.font_5">#627176</color>
-    
+
     <color name="nb.read.bg.night">#000000</color>
     <color name="nb.read.font_night">#99ffffff</color>
-    
+
     <color name="nb.read.menu.bg">#191919</color>
     <color name="nb.read.menu.text">#CBCBCB</color>
     <color name="nb.read.bar.translucent">#88000000</color>
+    <color name="light_blue_400">#FF29B6F6</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="gray_400">#FFBDBDBD</color>
+    <color name="gray_600">#FF757575</color>
 </resources>

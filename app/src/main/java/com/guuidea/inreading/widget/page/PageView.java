@@ -100,6 +100,13 @@ public class PageView extends View {
         super(context, attrs, defStyleAttr);
     }
 
+    /**
+     * 控件测量完成，开始具体绘制流程
+     * @param w
+     * @param h
+     * @param oldw
+     * @param oldh
+     */
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--后续布局文件中使用的dp尺寸于此处统一管理，命名格式：DP+尺寸-->
+    <dimen name="DP1">1dp</dimen>
+    <dimen name="DP6">6dp</dimen>
+    <dimen name="DP7">7dp</dimen>
+    <dimen name="DP8">8dp</dimen>
+    <dimen name="DP9">9dp</dimen>
+    <dimen name="DP10">10dp</dimen>
+    <dimen name="DP11">11dp</dimen>
+    <dimen name="DP12">12dp</dimen>
+    <dimen name="DP13">13dp</dimen>
+    <dimen name="DP15">15dp</dimen>
+    <dimen name="DP50">50dp</dimen>
+    <dimen name="DP60">60dp</dimen>
+
+    <!--后续布局文件中使用的sp尺寸于此处统一管理，命名格式：DP+尺寸-->
+    <dimen name="SP12">12sp</dimen>
+    <dimen name="SP13">13sp</dimen>
+    <dimen name="SP14">14sp</dimen>
+    <dimen name="SP15">15sp</dimen>
+    <dimen name="SP16">16sp</dimen>
+    <dimen name="SP17">17sp</dimen>
+    <dimen name="SP18">18sp</dimen>
+    <dimen name="SP19">19sp</dimen>
+    <dimen name="SP20">20sp</dimen>
+    <dimen name="DP36">36dp</dimen>
+    <dimen name="DP17">17dp</dimen>
+    <dimen name="DP5">5dp</dimen>
+    <dimen name="DP25">25dp</dimen>
+    <dimen name="SP21">21sp</dimen>
+    <dimen name="DP18">18dp</dimen>
+    <dimen name="DP70">70dp</dimen>
+    <dimen name="DP33">33dp</dimen>
+    <dimen name="DP48">48dp</dimen>
+    <dimen name="DP45">45dp</dimen>
+    <dimen name="DP16">16dp</dimen>
+    <dimen name="DP40">40dp</dimen>
+    <dimen name="DP62">62dp</dimen>
+    <dimen name="DP3">3dp</dimen>
+    <dimen name="DP29">29dp</dimen>
+
+</resources>

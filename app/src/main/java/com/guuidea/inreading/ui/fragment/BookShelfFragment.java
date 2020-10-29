@@ -4,20 +4,27 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.guuidea.inreading.R;;
 import com.guuidea.inreading.RxBus;
 import com.guuidea.inreading.event.DeleteResponseEvent;
 import com.guuidea.inreading.event.DeleteTaskEvent;
 import com.guuidea.inreading.event.DownloadMessage;
 import com.guuidea.inreading.event.RecommendBookEvent;
+import com.guuidea.inreading.model.bean.BookOperateDescBean;
 import com.guuidea.inreading.model.bean.CollBookBean;
 import com.guuidea.inreading.model.local.BookRepository;
 import com.guuidea.inreading.presenter.BookShelfPresenter;
@@ -25,13 +32,18 @@ import com.guuidea.inreading.presenter.contract.BookShelfContract;
 import com.guuidea.inreading.ui.activity.ReadActivity;
 import com.guuidea.inreading.ui.adapter.CollBookAdapter;
 import com.guuidea.inreading.ui.base.BaseMVPFragment;
+import com.guuidea.inreading.ui.base.adapter.UniversalBaseAdapter;
+import com.guuidea.inreading.ui.base.adapter.UniversalViewHolder;
 import com.guuidea.inreading.utils.RxUtils;
 import com.guuidea.inreading.utils.ToastUtils;
 import com.guuidea.inreading.widget.adapter.WholeAdapter;
 import com.guuidea.inreading.widget.itemdecoration.DividerItemDecoration;
 import com.guuidea.inreading.widget.refresh.ScrollRefreshRecyclerView;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -75,7 +87,8 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
     private void setUpAdapter() {
         //添加Footer
         mCollBookAdapter = new CollBookAdapter();
-        mRvContent.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRvContent.setLayoutManager(new GridLayoutManager(this.getContext(),
+                3, RecyclerView.HORIZONTAL, false));
         mRvContent.addItemDecoration(new DividerItemDecoration(getContext()));
         mRvContent.setAdapter(mCollBookAdapter);
     }
@@ -165,7 +178,7 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
                                     .show();
                         }
                     } else {
-                        ReadActivity.startActivity(Objects.requireNonNull(getContext()),
+                        ReadActivity.startActivity(getContext(),
                                 mCollBookAdapter.getItem(pos), true);
                     }
                 }
@@ -187,22 +200,83 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
     }
 
     private void openItemDialog(CollBookBean collBook) {
-        String[] menus;
-        if (collBook.isLocal()) {
-            menus = getResources().getStringArray(R.array.nb_menu_local_book);
-        } else {
-            menus = getResources().getStringArray(R.array.nb_menu_net_book);
-        }
-        AlertDialog collBookDialog = new AlertDialog.Builder(getContext())
-                .setTitle(collBook.getTitle())
-                .setAdapter(new ArrayAdapter<String>(getContext(),
-                                android.R.layout.simple_list_item_1, menus),
-                        (dialog, which) -> onItemMenuClick(menus[which], collBook))
-                .setNegativeButton(null, null)
-                .setPositiveButton(null, null)
-                .create();
+//        String[] menus;
+//        if (collBook.isLocal()) {
+//            menus = getResources().getStringArray(R.array.nb_menu_local_book);
+//        } else {
+//            menus = getResources().getStringArray(R.array.nb_menu_net_book);
+//        }
+//        AlertDialog collBookDialog = new AlertDialog.Builder(getContext())
+//                .setTitle(collBook.getTitle())
+//                .setAdapter(new ArrayAdapter<String>(getContext(),
+//                                android.R.layout.simple_list_item_1, menus),
+//                        (dialog, which) -> onItemMenuClick(menus[which], collBook))
+//                .setNegativeButton(null, null)
+//                .setPositiveButton(null, null)
+//                .create();
+//
+//        collBookDialog.show();
+        showBookOperateDialog(collBook);
+    }
 
-        collBookDialog.show();
+    /**
+     * 显示底部弹窗操作
+     * @param collBook
+     */
+    private void showBookOperateDialog(CollBookBean collBook) {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getContext());
+        bottomSheetDialog.setCanceledOnTouchOutside(true);
+        bottomSheetDialog.setContentView(R.layout.dialog_book_operate);
+        RecyclerView rvOperates = bottomSheetDialog.getDelegate().findViewById(R.id.rv_operates);
+        assert rvOperates != null;
+        rvOperates.setAdapter(new UniversalBaseAdapter<BookOperateDescBean>(getContext(), productData()) {
+
+            @Override
+            public void bindData(@NotNull UniversalViewHolder holder, BookOperateDescBean item, int position) {
+                holder.setText(R.id.tv_operate_desc, item.getOperateDesc());
+                holder.setImageRes(R.id.img_operate, item.getOperateImgId());
+                holder.itemView.setOnClickListener(v -> {
+                    switch (item.getType()) {
+                        case BookOperateDescBean.VIEW_DETAIL:
+                            break;
+                        case BookOperateDescBean.SHARE_NOVEL:
+                            break;
+                        case BookOperateDescBean.REMOVE_NOVEL:
+                            deleteBook(collBook);
+                            break;
+                        default:
+                            break;
+                    }
+                });
+            }
+
+            @Override
+            public int getItemLayoutId() {
+                return R.layout.item_book_operate;
+            }
+        });
+        bottomSheetDialog.show();
+    }
+
+    /**
+     * 创建底部弹窗显示数据集
+     * @return
+     */
+    private ArrayList<BookOperateDescBean> productData() {
+        ArrayList<BookOperateDescBean> datas = new ArrayList<>();
+        datas.add(new BookOperateDescBean(
+                "View novel details",
+                R.drawable.more,
+                BookOperateDescBean.VIEW_DETAIL));
+        datas.add(new BookOperateDescBean(
+                "share the novel",
+                R.drawable.more,
+                BookOperateDescBean.SHARE_NOVEL));
+        datas.add(new BookOperateDescBean(
+                "remove from books",
+                R.drawable.more,
+                BookOperateDescBean.REMOVE_NOVEL));
+        return datas;
     }
 
     private void onItemMenuClick(String which, CollBookBean collBook) {

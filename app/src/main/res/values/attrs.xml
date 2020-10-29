@@ -1,26 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="ScrollRefreshLayout">
-        <attr name="layout_scroll_empty" format="reference"/>
-        <attr name="text_error_tip" format="string"/>
+        <attr name="layout_scroll_empty" format="reference" />
+        <attr name="text_error_tip" format="string" />
     </declare-styleable>
 
     <declare-styleable name="RefreshLayout">
-        <attr name="layout_refresh_empty" format="reference"/>
-        <attr name="layout_refresh_error" format="reference"/>
-        <attr name="layout_refresh_loading" format="reference"/>
+        <attr name="layout_refresh_empty" format="reference" />
+        <attr name="layout_refresh_error" format="reference" />
+        <attr name="layout_refresh_loading" format="reference" />
     </declare-styleable>
-    
+
     <declare-styleable name="BookTextView">
-        <attr name="bookColor" format="reference"/>
+        <attr name="bookColor" format="reference" />
     </declare-styleable>
-    
+
     <declare-styleable name="EasyRatingBar">
-        <attr name="rateNum" format="integer"/>
-        <attr name="rating" format="integer"/>
-        <attr name="rateNormal" format="reference"/>
-        <attr name="rateSelect" format="reference"/>
-        <attr name="rateInterval" format="dimension"/>
-        <attr name="isIndicator" format="boolean"/>
+        <attr name="rateNum" format="integer" />
+        <attr name="rating" format="integer" />
+        <attr name="rateNormal" format="reference" />
+        <attr name="rateSelect" format="reference" />
+        <attr name="rateInterval" format="dimension" />
+        <attr name="isIndicator" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomActionbar">
+        <attr name="titile" format="reference|string" />
+    </declare-styleable>
+
+    <declare-styleable name="SingleItem">
+        <attr name="img" format="reference" />
+        <attr name="content_str" format="reference|string" />
+        <attr name="sub_content_str" format="reference|string" />
+    </declare-styleable>
+
+    <declare-styleable name="LinesEditText">
+        <attr name="lev_maxCount" format="integer" />
+        <attr name="lev_ignoreCnOrEn" format="boolean" />
+        <attr name="lev_hintText" format="string|reference" />
+        <attr name="lev_hintTextColor" format="color|reference" />
+        <attr name="lev_contentText" format="string|reference" />
+        <attr name="lev_contentTextSize" format="dimension|reference" />
+        <attr name="lev_contentTextColor" format="color|reference" />
+        <attr name="lev_contentViewHeight" format="dimension|reference" />
+        <attr name="lev_desc" format="string" />
+        <attr name="lev_decs_sub" format="string" />
+        <attr name="lev_calculate_visibility" format="boolean" />
     </declare-styleable>
 </resources>

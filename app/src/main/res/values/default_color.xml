@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+     后续项目使用色值在该文件中定义，除特殊色值外，统一命名规则：颜色值大写
+     例：#eeeeee标准命名为color_EEEEEE
+    -->
+    <color name="COLOR_666666">#666666</color>
+    <color name="color_252525">#252525</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_deb16d">#deb16d</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_FFEFEFEF">#ffefefef</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_C5C5C5">#c5c5c5</color>
+    <color name="color_FF979797">#ff979797</color>
+    <color name="color_323649">#323649</color>
+
+</resources>
