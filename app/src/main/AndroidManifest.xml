@@ -28,7 +28,7 @@
         <activity
             android:name=".ui.activity.SplashActivity"
             android:theme="@style/SplashTheme" />
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".TransitionDemo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -54,6 +54,7 @@
         <activity android:name="com.guuidea.inreading.ui.login.Login" />
         <activity android:name=".ui.activity.MainPageActivity" />
         <activity android:name=".ui.record.RecordActivity" />
+        <activity android:name=".ui.activity.MainActivity" />
 
         <service android:name=".service.DownloadService" />
     </application>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/DP16"
+        android:layout_marginTop="@dimen/DP36"
+        android:layout_marginEnd="@dimen/DP16"
+        android:background="@drawable/dialog_background"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/info_area"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/DP66"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/sign_in"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/SP20"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/DP13"
+                    android:text="@string/vip"
+                    android:textSize="@dimen/SP16" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/DP13"
+                android:layout_marginBottom="@dimen/DP25"
+                android:text="@string/sign_desc" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.guuidea.inreading.widget.CircleImageView
+        android:layout_width="78dp"
+        android:layout_height="78dp"
+        app:civ_border_width="2dp"
+        android:id="@+id/user_profile"
+        app:civ_border_color="#FF000000"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/desc_for_vip_background" />
+
+</FrameLayout>

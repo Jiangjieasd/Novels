@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#eeeeee"
     tools:context="com.guuidea.inreading.ui.activity.MainActivity">
 
     <include layout="@layout/toolbar" />
@@ -16,7 +17,7 @@
         android:background="@color/colorPrimary"
         app:tabIndicatorColor="@color/white"
         app:tabSelectedTextColor="@color/white"
-        app:tabTextColor="@color/translucent_text"/>
+        app:tabTextColor="@color/translucent_text" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/tab_vp"
@@ -27,42 +28,52 @@
 
     <com.guuidea.inreading.widget.banner.BookBanner
         android:id="@+id/book_banner"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
     <com.guuidea.inreading.widget.CustomActionbar
         android:id="@+id/action_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/DP45"/>
+        android:layout_height="@dimen/DP45" />
 
     <com.guuidea.inreading.SingleItem
         android:id="@+id/one"
-        app:img="@drawable/shelf"
-        app:content_str="123"
-        app:sub_content_str="456"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:content_str="123"
+        app:img="@drawable/shelf"
+        app:sub_content_str="456" />
+
     <com.guuidea.inreading.SingleItem
         android:id="@+id/two"
-        app:img="@drawable/shelf"
-        app:content_str="123"
-        app:sub_content_str="456"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:content_str="123"
+        app:img="@drawable/shelf"
+        app:sub_content_str="456" />
 
     <com.guuidea.inreading.widget.LinesEditText
         android:id="@+id/edit"
-        app:lev_maxCount="500"
-        app:lev_hintText="Please input some text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:lev_hintText="Please input some text"
+        app:lev_maxCount="500" />
+
+    <com.guuidea.inreading.widget.CircleImageView
+        android:id="@+id/img"
+        android:src="@drawable/shelf"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="78dp"
+        android:layout_height="78dp"
+        app:civ_border_color="@android:color/white"
+        app:civ_border_width="3dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/test"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:visibility="gone"
         android:layout_gravity="bottom|end"
-        android:src="@drawable/btn_sex_choose_boy" />
+        android:src="@drawable/btn_sex_choose_boy"
+        android:visibility="gone" />
 </LinearLayout>

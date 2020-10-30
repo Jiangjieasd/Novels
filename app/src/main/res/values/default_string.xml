@@ -9,4 +9,8 @@
     <string name="setting">Setting</string>
     <string name="recharge_history">Recharge History</string>
     <string name="log_out">Log Out</string>
+    <string name="feedback">Feedback</string>
+    <string name="sign_in">Sign in</string>
+    <string name="vip">VIP</string>
+    <string name="sign_desc">Sign in for better reading experience.</string>
 </resources>

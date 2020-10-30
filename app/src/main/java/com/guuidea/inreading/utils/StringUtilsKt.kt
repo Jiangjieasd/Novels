@@ -9,7 +9,6 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.abs
-
 /**
  * @file      StringUtilsKt
  * @description    TODO

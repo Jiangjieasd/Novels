@@ -40,5 +40,6 @@
     <dimen name="DP62">62dp</dimen>
     <dimen name="DP3">3dp</dimen>
     <dimen name="DP29">29dp</dimen>
+    <dimen name="DP66">66dp</dimen>
 
 </resources>

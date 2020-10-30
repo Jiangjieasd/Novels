@@ -47,4 +47,17 @@
         <attr name="lev_decs_sub" format="string" />
         <attr name="lev_calculate_visibility" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="SingleFunctionItem">
+        <attr name="func_left" format="reference" />
+        <attr name="func_center" format="string|reference" />
+        <attr name="func_right" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_circle_background_color" format="color" />
+    </declare-styleable>
 </resources>

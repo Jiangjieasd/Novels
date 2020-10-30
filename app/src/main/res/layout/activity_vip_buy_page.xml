@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.guuidea.inreading.widget.CustomActionbar
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titile="Pay for VIP" />
+
+    <com.guuidea.inreading.widget.CircleImageView
+        android:id="@+id/user_profile"
+        android:layout_width="78dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="@dimen/DP16"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/action_bar" />
+
+    <TextView
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/user_profile"
+        app:layout_constraintTop_toTopOf="@id/user_profile"
+        android:id="@+id/user_name"
+        app:layout_constraintBottom_toTopOf="@id/user_vip_date"
+        android:layout_marginStart="@dimen/DP16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_333333"
+        android:textStyle="bold"
+        android:textSize="@dimen/SP20"
+        tools:text="Barack Obama" />
+
+    <TextView
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/user_name"
+        app:layout_constraintTop_toBottomOf="@id/user_name"
+        app:layout_constraintBottom_toBottomOf="@id/user_profile"
+        tools:text="VIP Expire Date:2020-10-19"
+        android:id="@+id/user_vip_date"
+        android:textSize="@dimen/SP12"
+        android:textColor="#eab56a"
+        android:layout_marginTop="@dimen/DP12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--头像幕后背景，可替换-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@color/color_333333" />
+
+    <FrameLayout
+        android:id="@+id/login_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/DP16"
+        android:layout_marginTop="-92dp"
+        android:layout_marginEnd="@dimen/DP16"
+        android:layout_marginBottom="32dp">
+
+        <include layout="@layout/no_login_head_info" />
+
+    </FrameLayout>
+
+    <include layout="@layout/mine_vip_right" />
+
+    <include layout="@layout/mine_function_area" />
+
+</LinearLayout>
