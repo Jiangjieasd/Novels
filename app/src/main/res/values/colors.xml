@@ -65,11 +65,11 @@
     <color name="nb.download.error">#e33a35</color>
     <color name="nb.download.finish">#8bd715</color>
 
-    <!--read-->
-    <color name="nb.read.bg_1">#CEC29C</color>
-    <color name="nb.read.bg_2">#CCEBCC</color>
-    <color name="nb.read.bg_3">#AAAAAA</color>
-    <color name="nb.read.bg_4">#D1CEC5</color>
+    <!--read 背景色设置-->
+    <color name="nb.read.bg_1">#FFFFFF</color>
+    <color name="nb.read.bg_2">#FFF4EDDF</color>
+    <color name="nb.read.bg_3">#FFD9EDDB</color>
+    <color name="nb.read.bg_4">#FFE6E6E6</color>
     <color name="nb.read.bg_5">#001C27</color>
     <color name="nb.read.bg_6">#DDCEC29C</color>
 
@@ -83,7 +83,7 @@
     <color name="nb.read.bg.night">#000000</color>
     <color name="nb.read.font_night">#99ffffff</color>
 
-    <color name="nb.read.menu.bg">#191919</color>
+    <color name="nb.read.menu.bg">#fff9fafb</color>
     <color name="nb.read.menu.text">#CBCBCB</color>
     <color name="nb.read.bar.translucent">#88000000</color>
     <color name="light_blue_400">#FF29B6F6</color>

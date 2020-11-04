@@ -31,6 +31,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SeekBar;
@@ -116,13 +117,11 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
     @BindView(R.id.read_tv_next_chapter)
     TextView mTvNextChapter;
     @BindView(R.id.read_tv_category)
-    TextView mTvCategory;
+    ImageView mTvCategory;
     @BindView(R.id.read_tv_night_mode)
-    TextView mTvNightMode;
-    /*    @BindView(R.id.read_tv_download)
-        TextView mTvDownload;*/
+    ImageView mTvNightMode;
     @BindView(R.id.read_tv_setting)
-    TextView mTvSetting;
+    ImageView mTvSetting;
     /***************left slide*******************************/
     @BindView(R.id.read_iv_category)
     ListView mLvCategory;
@@ -322,13 +321,10 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
 
     private void toggleNightMode() {
         if (isNightMode) {
-            mTvNightMode.setText(StringUtils.getString(R.string.nb_mode_morning));
-            Drawable drawable = ContextCompat.getDrawable(this, R.drawable.ic_read_menu_morning);
-            mTvNightMode.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null);
+
+
         } else {
-            mTvNightMode.setText(StringUtils.getString(R.string.nb_mode_night));
-            Drawable drawable = ContextCompat.getDrawable(this, R.drawable.ic_read_menu_night);
-            mTvNightMode.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null);
+
         }
     }
 
@@ -489,7 +485,7 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
 
         //底部设置弹窗中的目录选项
         mTvCategory.setOnClickListener(
-                (v) -> {
+                v -> {
                     //移动到指定位置
                     if (mCategoryAdapter.getCount() > 0) {
                         mLvCategory.setSelection(mPageLoader.getChapterPos());
@@ -502,7 +498,7 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
         );
         //底部设置弹窗中的设置选项
         mTvSetting.setOnClickListener(
-                (v) -> {
+                v -> {
                     toggleMenu(false);
                     mSettingDialog.show();
                 }
@@ -510,7 +506,7 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
 
         //底部设置弹窗中的上一章选项
         mTvPreChapter.setOnClickListener(
-                (v) -> {
+                v -> {
                     if (mPageLoader.skipPreChapter()) {
                         mCategoryAdapter.setChapter(mPageLoader.getChapterPos());
                     }
@@ -518,7 +514,7 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
         );
         //底部设置弹窗中的下一章选项
         mTvNextChapter.setOnClickListener(
-                (v) -> {
+                v -> {
                     if (mPageLoader.skipNextChapter()) {
                         mCategoryAdapter.setChapter(mPageLoader.getChapterPos());
                     }
@@ -527,7 +523,7 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
 
         //底部设置弹窗中的日间/夜间选项
         mTvNightMode.setOnClickListener(
-                (v) -> {
+                v -> {
                     isNightMode = !isNightMode;
                     mPageLoader.setNightMode(isNightMode);
                     toggleNightMode();
@@ -535,11 +531,11 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
         );
         //顶部设置弹窗中的简介选项
         mTvBrief.setOnClickListener(
-                (v) -> BookDetailActivity.startActivity(this, mBookId)
+                v -> BookDetailActivity.startActivity(this, mBookId)
         );
         //顶部设置弹窗中的社区选项
         mTvCommunity.setOnClickListener(
-                (v) -> {
+                v -> {
                     Intent intent = new Intent(this, CommunityActivity.class);
                     startActivity(intent);
                 }

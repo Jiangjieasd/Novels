@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.guuidea.inreading.R;
 import com.guuidea.inreading.SingleItem;
+import com.guuidea.inreading.ui.dialog.DoubleBtnDialog;
 import com.guuidea.inreading.ui.dialog.VipRenewDialog;
 import com.guuidea.inreading.ui.base.BaseTabActivity;
 import com.guuidea.inreading.ui.fragment.BookShelfFragment;
@@ -38,6 +39,8 @@ import com.guuidea.inreading.utils.StringUtils;
 import com.guuidea.inreading.utils.ToastUtils;
 import com.guuidea.inreading.widget.CustomActionbar;
 import com.guuidea.inreading.widget.ShadowDrawable;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -162,6 +165,11 @@ public class MainActivity extends BaseTabActivity {
         });
         ((CustomActionbar) findViewById(R.id.action_bar)).setTitle("3333");
         ShadowDrawable.setShadowDrawable(findViewById(R.id.img), ShadowDrawable.TypeEnum.ALL);
+
+        DoubleBtnDialog doubleBtnDialog = new DoubleBtnDialog(this,
+                Dialog::dismiss,
+                Dialog::dismiss);
+        doubleBtnDialog.show();
     }
 
     private void showDialog() {

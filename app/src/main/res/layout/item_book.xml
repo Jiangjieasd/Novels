@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/DP16"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/img_book_cover"
+        android:layout_width="65dp"
+        android:layout_height="86dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_book_name"
+        app:layout_constraintTop_toTopOf="@id/img_book_cover"
+        app:layout_constraintStart_toEndOf="@id/img_book_cover"
+        android:maxLines="2"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/SP16"
+        android:textStyle="bold"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="@dimen/DP6"
+        tools:text="Love of hahaha Fight to \n Fight to break the sky"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_book_desc"
+        app:layout_constraintStart_toStartOf="@id/tv_book_name"
+        app:layout_constraintBottom_toBottomOf="@id/img_book_cover"
+        app:layout_constraintTop_toBottomOf="@id/tv_book_name"
+        android:layout_width="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="@dimen/DP8"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:textSize="@dimen/SP12"
+        android:textColor="@color/color_999999"
+        tools:text="dfwdfewsdvsdvdsvsdvdsvsdvsdvsdvdvdsvdsvsdvdsvsd"
+        android:layout_height="0dp"/>
+
+    <TextView
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="1"
+        android:textStyle="bold"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toTopOf="@id/tv_book_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

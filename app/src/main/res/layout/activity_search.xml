@@ -9,11 +9,11 @@
 	<!--搜索框-->
 	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="?attr/actionBarSize"
-		android:background="@color/colorPrimary"
+		android:layout_height="wrap_content"
 		android:orientation="horizontal"
 		android:gravity="center_vertical"
 		android:paddingTop="10dp"
+		android:layout_marginStart="@dimen/DP16"
 		android:paddingBottom="10dp"
 		android:elevation="5dp">
 		
@@ -23,16 +23,26 @@
 			android:layout_height="match_parent"
 			android:src="@drawable/ic_search_back_normal"
 			android:padding="6dp"
+			android:visibility="gone"
 			android:scaleType="centerInside"/>
 		
 		<LinearLayout
 			android:layout_width="0dp"
-			android:layout_height="match_parent"
+			android:layout_height="40dp"
 			android:layout_weight="1"
 			android:orientation="horizontal"
 			android:gravity="center_vertical"
 			android:padding="8dp"
 			android:background="@drawable/shape_common_gray_corner">
+
+			<ImageView
+				android:id="@+id/search_iv_search"
+				android:layout_width="40dp"
+				android:layout_height="match_parent"
+				android:src="@drawable/ic_search_normal"
+				android:layout_marginLeft="8dp"
+				android:padding="6dp"
+				android:scaleType="centerInside"/>
 			
 			<EditText
 				android:id="@+id/search_et_input"
@@ -45,7 +55,7 @@
 				android:singleLine="true"
 				android:maxLines="1"
 				android:imeOptions="actionSearch"
-				android:background="@color/common_gray"/>
+				android:background="#fff5f5f5"/>
 			
 			<ImageView
 				android:id="@+id/search_iv_delete"
@@ -56,15 +66,15 @@
 				android:visibility="invisible"
 				tools:visibility="visible"/>
 		</LinearLayout>
-		
-		<ImageView
-			android:id="@+id/search_iv_search"
-			android:layout_width="40dp"
-			android:layout_height="match_parent"
-			android:src="@drawable/ic_search_normal"
-			android:layout_marginLeft="8dp"
-			android:padding="6dp"
-			android:scaleType="centerInside"/>
+
+		<TextView
+			android:text="Cancel"
+			android:textSize="@dimen/SP16"
+			android:textColor="@color/color_252525"
+			android:layout_marginEnd="@dimen/DP16"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"/>
+
 	</LinearLayout>
 	
 	<View
@@ -79,6 +89,7 @@
 		
 		<!--搜索显示界面-->
 		<LinearLayout
+			android:visibility="gone"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:paddingLeft="10dp"

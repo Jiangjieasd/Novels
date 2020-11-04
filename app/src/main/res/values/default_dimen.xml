@@ -41,5 +41,9 @@
     <dimen name="DP3">3dp</dimen>
     <dimen name="DP29">29dp</dimen>
     <dimen name="DP66">66dp</dimen>
+    <dimen name="SP10">10sp</dimen>
+    <dimen name="DP30">30dp</dimen>
+    <dimen name="DP280">280dp</dimen>
+    <dimen name="DP35">35dp</dimen>
 
 </resources>

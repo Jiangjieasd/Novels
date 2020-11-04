@@ -97,10 +97,14 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-auth:6.3.0'
     implementation 'com.google.android.gms:play-services-auth:18.1.0'
 
-    def nav_version="2.3.0"
+
+    def nav_version = "2.3.0"
     // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
+    //Google 官方流式布局实现
+    implementation 'com.google.android:flexbox:2.0.1'
+    //banner库
     implementation 'com.youth.banner:banner:2.1.0'
 }

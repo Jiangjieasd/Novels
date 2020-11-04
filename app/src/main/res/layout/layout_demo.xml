@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    android:orientation="vertical">
+
+    <com.youth.banner.Banner
+        android:id="@+id/banner1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:visibility="gone"
+        app:banner_indicator_gravity="center"
+        app:banner_indicator_margin="@dimen/DP8"
+        app:banner_indicator_normal_color="#e0e0e0"
+        app:banner_indicator_radius="3dp"
+        app:banner_indicator_selected_color="@color/color_333333" />
+
+    <com.guuidea.inreading.widget.banner.IndicatorBanner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:indicator_img="@drawable/shelf"
+        app:indicator_selected_img="@drawable/search" />
+
+    <com.guuidea.inreading.widget.CustomView
+        android:layout_width="300dp"
+        android:layout_height="50dp" />
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:splitTrack="false"
+        android:duplicateParentState="true"
+        style="@style/CustomSeekBarStyle"
+        android:progress="20"/>
+
+</LinearLayout>

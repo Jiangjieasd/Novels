@@ -8,6 +8,7 @@
         android:src="@drawable/action_bar_back"
         android:contentDescription="@string/app_name"
         android:id="@+id/img_back"
+        android:layout_marginStart="@dimen/DP15"
         android:layout_gravity="center_vertical"
         android:layout_width="32dp"
         android:layout_height="32dp"/>
@@ -21,5 +22,16 @@
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/right_tv"
+        android:text="Skip"
+        android:textStyle="bold"
+        android:textSize="@dimen/SP16"
+        android:layout_marginEnd="@dimen/DP16"
+        android:textColor="@color/color_252525"
+        android:layout_gravity="end|center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </FrameLayout>

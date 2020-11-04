@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:clipChildren="false"
+        android:layerType="software"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vg"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:clipChildren="false"
+            android:overScrollMode="never" />
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:id="@+id/indicators"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/DP12"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" />
+
+</LinearLayout>

@@ -1,13 +1,17 @@
 package com.guuidea.inreading
 
+import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
+import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.transition.ChangeBounds
 import androidx.transition.Scene
 import androidx.transition.TransitionManager
-import com.guuidea.inreading.widget.CircleImageView
+import com.guuidea.inreading.utils.ToastUtils
+import com.guuidea.inreading.widget.banner.IndicatorBanner
+import com.guuidea.inreading.widget.banner.IndicatorBanner.IndicatorAdapter
 
 
 /**
@@ -24,11 +28,36 @@ class TransitionDemo : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_mine)
-        initTransition()
-        findViewById<CircleImageView>(R.id.user_profile).setOnClickListener {
-            TransitionManager.go(scene2!!, ChangeBounds())
-        }
+        setContentView(R.layout.layout_demo)
+//        initTransition()
+//        findViewById<CircleImageView>(R.id.user_profile).setOnClickListener {
+//            TransitionManager.go(scene2!!, ChangeBounds())
+//        }
+
+        findViewById<IndicatorBanner>(R.id.banner).setAdapter(object : IndicatorAdapter() {
+            override fun initPage(container: ViewGroup, position: Int): View {
+                val tc = TextView(container.context)
+                tc.text = "Position:$position"
+                tc.setTextColor(Color.WHITE)
+                tc.textSize = 10F
+                tc.gravity = Gravity.CENTER
+                tc.setBackgroundResource(R.drawable.button_black_5_background)
+                return tc
+            }
+
+            override fun getCount(): Int {
+                return 3
+            }
+
+        })
+        findViewById<IndicatorBanner>(R.id.banner).setOnPageChange(object : IndicatorBanner.OnPageChange {
+            override fun onPageChange(position: Int) {
+                ToastUtils.show("Position:$position")
+            }
+
+        })
+
+
     }
 
     private fun initTransition() {
