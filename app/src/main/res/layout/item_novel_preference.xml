@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="158dp"
+    android:layout_height="87dp">
+
+    <ImageView
+        android:id="@+id/img_preference_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/app_name"
+        tools:src="@color/color_252525" />
+
+    <TextView
+        android:id="@+id/tv_preference"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/SP20"
+        android:textStyle="bold"
+        tools:text="Fantasy \n (300+)" />
+
+    <ImageView
+        android:id="@+id/img_check"
+        android:layout_width="@dimen/DP16"
+        android:layout_height="@dimen/DP16"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/DP10"
+        android:layout_marginBottom="@dimen/DP7"
+        android:contentDescription="@string/app_name" />
+
+</FrameLayout>

@@ -1,76 +1,146 @@
 package com.guuidea.inreading.ui.login
 
-import android.app.Activity
 import android.content.Intent
-import android.widget.Button
-import com.firebase.ui.auth.AuthUI
-import com.firebase.ui.auth.AuthUI.IdpConfig
-import com.firebase.ui.auth.AuthUI.IdpConfig.EmailBuilder
-import com.firebase.ui.auth.AuthUI.IdpConfig.FacebookBuilder
-import com.firebase.ui.auth.AuthUI.IdpConfig.GoogleBuilder
-import com.firebase.ui.auth.AuthUI.IdpConfig.PhoneBuilder
-import com.firebase.ui.auth.AuthUI.IdpConfig.TwitterBuilder
-import com.firebase.ui.auth.IdpResponse
-import com.google.firebase.auth.FirebaseAuth
+import android.os.Bundle
+import android.view.View
+import com.facebook.AccessToken
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginResult
+import com.facebook.login.widget.LoginButton
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.*
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.guuidea.inreading.R
 import com.guuidea.inreading.ui.base.BaseActivity
-import java.util.*
+import com.guuidea.inreading.utils.ToastUtils
 
 
 /**
  * @file      Login
- * @description    登录界面
+ * @description    登录界面(google、facebook)
  * @author         江 杰
  * @createDate     2020/10/22 11:31
  */
-class Login : BaseActivity() {
+class Login : BaseActivity(), View.OnClickListener {
 
+
+    private lateinit var mAuth: FirebaseAuth
+
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
+
+    private lateinit var callbackManager: CallbackManager
+
+    private lateinit var btnLoginFacebook: LoginButton
+
+    override fun initData(savedInstanceState: Bundle?) {
+        super.initData(savedInstanceState)
+        //Google init
+        val gso: GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken("")
+                .requestEmail()
+                .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+        mAuth = Firebase.auth
+
+        //Facebook init
+        callbackManager = CallbackManager.Factory.create()
+        btnLoginFacebook = findViewById(R.id.btn_login_facebook)
+        btnLoginFacebook.setReadPermissions("email", "public_profile")
+        btnLoginFacebook.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+            override fun onSuccess(result: LoginResult) {
+                handleFacebookAccessToken(result.accessToken)
+            }
+
+            override fun onCancel() {
+                updateUI(null)
+            }
+
+            override fun onError(error: FacebookException?) {
+                updateUI(null)
+            }
+
+        })
+    }
 
     override fun getContentId(): Int {
         return R.layout.layout_login
     }
 
-    override fun initWidget() {
-        super.initWidget()
-        findViewById<Button>(R.id.btn_login).setOnClickListener {
-            createSignInIntent()
-        }
-    }
-
-    private fun createSignInIntent(): Unit {
-        // Choose authentication providers
-
-        // Choose authentication providers
-        val providers: List<IdpConfig> = Arrays.asList(
-                EmailBuilder().build(),
-                PhoneBuilder().build(),
-                GoogleBuilder().build(),
-                FacebookBuilder().build(),
-                TwitterBuilder().build()
-                )
-
-        startActivityForResult(AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setAvailableProviders(providers)
-                .build(), RC_SIGN_IN)
+    override fun onStart() {
+        super.onStart()
+        val currentUser = mAuth.currentUser
+        updateUI(currentUser)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == RC_SIGN_IN) {
-            val response = IdpResponse.fromResultIntent(data)
-            if (resultCode == Activity.RESULT_OK) {
-                // Successfully signed in
-                val user = FirebaseAuth.getInstance().currentUser
-            } else {
-                // Sign in failed. If response is null the user canceled the
-                // sign-in flow using the back button. Otherwise check
-                // response.getError().getErrorCode() and handle the error.
-
+        if (RC_SIGN_IN == requestCode) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                firebaseAuthWithGoogle(account?.idToken)
+            } catch (e: ApiException) {
+                updateUI(null)
             }
+        } else {
+            callbackManager.onActivityResult(requestCode, resultCode, data)
         }
     }
+
+    private fun handleFacebookAccessToken(token: AccessToken) {
+        val crential = FacebookAuthProvider.getCredential(token.token)
+        mAuth.signInWithCredential(crential)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        updateUI(mAuth.currentUser)
+                    } else {
+                        updateUI(null)
+                    }
+                }
+    }
+
+    private fun firebaseAuthWithGoogle(idToken: String?) {
+        val credential: AuthCredential = GoogleAuthProvider.getCredential(idToken, null)
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, object : OnCompleteListener<AuthResult> {
+                    override fun onComplete(task: Task<AuthResult>) {
+                        if (task.isSuccessful) {
+                            updateUI(mAuth.currentUser)
+                        } else {
+                            updateUI(null)
+                        }
+                    }
+                })
+    }
+
+    // [START signin]
+    private fun signIn() = startActivityForResult(mGoogleSignInClient.signInIntent, RC_SIGN_IN)
+
+    private fun updateUI(user: FirebaseUser?) = if (null != user) {
+        //登录成功后页面ui变化
+        ToastUtils.show("111")
+    } else {
+        //登陆失败后页面ui变化
+        ToastUtils.show("1331")
+    }
+
+    override fun onClick(v: View?) = when (v?.id) {
+        R.id.btn_login_google -> {
+            signIn()
+        }
+        else -> {
+            ToastUtils.show("111")
+        }
+    }
+
 
     companion object {
         private const val RC_SIGN_IN = 123

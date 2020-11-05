@@ -90,12 +90,16 @@ dependencies {
     implementation 'me.gujun.android.taggroup:library:1.4@aar'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-
+    //Firebase dependency
     implementation platform('com.google.firebase:firebase-bom:25.12.0')
-    implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth'
-    implementation 'com.firebaseui:firebase-ui-auth:6.3.0'
     implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    // Facebook Android SDK (only required for Facebook Login)
+    // Used in FacebookLoginActivity.
+    implementation 'com.facebook.android:facebook-login:4.42.0'
+    implementation 'androidx.browser:browser:1.2.0'
+    implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
 
 
     def nav_version = "2.3.0"
@@ -105,6 +109,7 @@ dependencies {
 
     //Google 官方流式布局实现
     implementation 'com.google.android:flexbox:2.0.1'
+
     //banner库
     implementation 'com.youth.banner:banner:2.1.0'
 }

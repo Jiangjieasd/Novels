@@ -28,7 +28,7 @@
         <activity
             android:name=".ui.activity.SplashActivity"
             android:theme="@style/SplashTheme" />
-        <activity android:name=".TransitionDemo">
+        <activity android:name=".ui.activity.ChooseNovelPreferenceActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

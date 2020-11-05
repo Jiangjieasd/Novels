@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.guuidea.inreading.widget.CustomActionbar
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DP23"
+        android:gravity="center_horizontal"
+        android:text="@string/novel_chhose"
+        android:textColor="@color/color_252525"
+        android:textSize="@dimen/SP20"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_class"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/DP16"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="@dimen/DP16" />
+
+    <TextView
+        android:id="@+id/tv_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DP45"
+        android:layout_marginStart="@dimen/DP16"
+        android:layout_marginTop="@dimen/DP24"
+        android:layout_marginEnd="@dimen/DP16"
+        android:background="@drawable/backg_sol_d0d0d0_cor_5"
+        android:gravity="center"
+        android:text="Confirm(0)"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/SP16"
+        android:textStyle="bold" />
+
+</LinearLayout>

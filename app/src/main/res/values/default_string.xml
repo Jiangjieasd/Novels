@@ -14,4 +14,8 @@
     <string name="vip">VIP</string>
     <string name="sign_desc">Sign in for better reading experience.</string>
     <string name="system">系统</string>
+    <string name="login_desc">1500+ novels,have fun reading</string>
+    <string name="novel_chhose">Choose your novel preference</string>
+
+    <string name="init_value">00</string>
 </resources>

@@ -1,14 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:text="LOGIN" />
+    <ImageView
+        android:layout_marginTop="63dp"
+        android:layout_width="@dimen/DP114"
+        android:layout_height="@dimen/DP114"
+        android:layout_gravity="center_horizontal"
+        android:src="@color/color_252525"
+        android:contentDescription="@string/app_name" />
 
-</FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:text="@string/app_name"
+        android:textColor="@color/color_252525"
+        android:textSize="@dimen/SP20"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/DP17"
+        android:text="@string/login_desc"
+        android:textColor="@color/color_252525"
+        android:textSize="@dimen/SP16" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/btn_login_google"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="@dimen/DP40"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="@dimen/DP40" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/btn_login_facebook"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="@dimen/DP40"
+        android:layout_marginTop="@dimen/DP12"
+        android:layout_marginEnd="@dimen/DP40" />
+
+</LinearLayout>
