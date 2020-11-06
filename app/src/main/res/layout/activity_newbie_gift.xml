@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffefefef"
+    android:orientation="vertical">
+
+    <com.guuidea.inreading.widget.CustomActionbar
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DP48"
+        app:titile="@string/newbie_gifts_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DP34"
+                android:gravity="center"
+                android:text="@string/newbie_gift_desc"
+                android:textColor="@color/color_252525"
+                android:textSize="@dimen/SP18"
+                android:textStyle="bold" />
+            <!--倒计时区域-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DP67"
+                android:layout_marginStart="@dimen/DP16"
+                android:layout_marginTop="@dimen/DP19"
+                android:layout_marginEnd="@dimen/DP16"
+                android:background="@drawable/dialog_background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/DP47"
+                android:paddingTop="@dimen/DP15"
+                android:paddingEnd="@dimen/DP20"
+                android:paddingBottom="@dimen/DP15">
+
+                <com.guuidea.inreading.widget.time.TimeViewComm
+                    android:layout_width="@dimen/DP0"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    app:tvc_backgroundColor="#E4B979"
+                    app:tvc_radius="@dimen/DP2"
+                    app:tvc_spaceColor="@color/color_333333"
+                    app:tvc_textPaddingHorizantal="@dimen/DP10"
+                    app:tvc_textPaddingVertical="@dimen/DP10"
+                    app:tvc_textSize="@dimen/SP14" />
+
+                <TextView
+                    android:layout_width="@dimen/DP0"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/color_252525"
+                    android:textSize="@dimen/SP14"
+                    android:textStyle="bold"
+                    tools:text="59" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DP26"
+                android:gravity="center"
+                android:text="@string/desc_for_vip"
+                android:textColor="@color/color_252525"
+                android:textSize="@dimen/SP20"
+                android:textStyle="bold" />
+
+            <include layout="@layout/include_vip_info" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DP28"
+                android:gravity="center"
+                android:text="@string/newbie_gift_tip"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/SP12" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/DP16"
+                android:layout_marginTop="@dimen/DP44"
+                android:text="@string/vip_rights"
+                android:textColor="@color/color_252525"
+                android:textSize="@dimen/SP18"
+                android:textStyle="bold" />
+
+            <include layout="@layout/include_vip_rights" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DP12"
+                android:gravity="center"
+                android:text="@string/newbie_gifts_promise"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/SP10" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/DP16"
+                android:layout_marginTop="@dimen/DP32"
+                android:layout_marginEnd="@dimen/DP16"
+                android:layout_marginBottom="@dimen/DP16"
+                android:background="@drawable/dialog_background"
+                android:orientation="vertical">
+
+                <com.guuidea.inreading.widget.SingleFunctionItem
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:func_center="Details" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/DP1"
+                    android:background="@color/color_C5C5C5"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DP45"
+        android:layout_marginStart="@dimen/DP16"
+        android:layout_marginTop="@dimen/DP16"
+        android:layout_marginEnd="@dimen/DP16"
+        android:layout_marginBottom="@dimen/DP40"
+        android:background="@drawable/desc_for_vip_background"
+        android:gravity="center"
+        android:text="@string/pay_for_vip"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/SP16" />
+
+</LinearLayout>

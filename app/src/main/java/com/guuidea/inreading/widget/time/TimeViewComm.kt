@@ -100,18 +100,21 @@ class TimeViewComm : LinearLayout {
         spaceOne.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize.toFloat())
         spaceOne.setTextColor(mSpaceColor)
         spaceOne.text = "h"
+        spaceOne.setPadding(mPaddingHorizontal, mPaddingVertical, mPaddingHorizontal, mPaddingVertical)
 
         val spaceTwo = TextView(context)
         spaceTwo.layoutParams = layoutParams
         spaceTwo.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize.toFloat())
         spaceTwo.setTextColor(mSpaceColor)
         spaceTwo.text = "m"
+        spaceTwo.setPadding(mPaddingHorizontal, mPaddingVertical, mPaddingHorizontal, mPaddingVertical)
 
         val spaceThree = TextView(context)
-        spaceTwo.layoutParams = layoutParams
-        spaceTwo.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize.toFloat())
-        spaceTwo.setTextColor(mSpaceColor)
-        spaceTwo.text = "s"
+        spaceThree.layoutParams = layoutParams
+        spaceThree.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize.toFloat())
+        spaceThree.setTextColor(mSpaceColor)
+        spaceThree.text = "s"
+        spaceThree.setPadding(mPaddingHorizontal, mPaddingVertical, mPaddingHorizontal, mPaddingVertical)
 
         addView(mHours)
         addView(spaceOne)
@@ -123,16 +126,14 @@ class TimeViewComm : LinearLayout {
         startTime(11, 12, 13)
     }
 
-    fun startTime(hour: Int, minutes: Int, second: Int) {
-        if (null == mTimeoutManager) {
-            mTimeoutManager = TimeManager(hour, minutes, second, object : TimeManager.OnTimeRunListener {
-                override fun onTimeRun(hour: Int, minute: Int, second: Int) {
-                    setTime(df.format(hour.toLong()), df.format(minute.toLong()), df.format(second.toLong()))
-                }
-            })
-        } else {
-            mTimeoutManager!!.resetTime(hour, minutes, second)
-        }
+    fun startTime(hour: Int, minutes: Int, second: Int) = if (null == mTimeoutManager) {
+        mTimeoutManager = TimeManager(hour, minutes, second, object : TimeManager.OnTimeRunListener {
+            override fun onTimeRun(hour: Int, minute: Int, second: Int) {
+                setTime(df.format(hour.toLong()), df.format(minute.toLong()), df.format(second.toLong()))
+            }
+        })
+    } else {
+        mTimeoutManager!!.resetTime(hour, minutes, second)
     }
 
 

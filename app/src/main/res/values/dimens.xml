@@ -43,6 +43,7 @@
     <!--read setting-->
     <dimen name="nb.read_setting.divider">20dp</dimen>
     <dimen name="nb.read_setting.btn_height">35dp</dimen>
+    <dimen name="DP44">44dp</dimen>
 
 
 </resources>

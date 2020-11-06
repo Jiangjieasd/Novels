@@ -7,6 +7,6 @@
     <com.guuidea.inreading.widget.CustomActionbar
         android:layout_width="match_parent"
         app:titile="Terms of use"
-        android:layout_height="wrap_content" />
+        android:layout_height="@dimen/DP48" />
 
 </LinearLayout>

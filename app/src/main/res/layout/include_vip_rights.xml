@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/DP16"
+    android:layout_marginEnd="@dimen/DP16"
+    android:layout_marginTop="@dimen/DP16"
+    android:background="@drawable/dialog_background"
+    android:orientation="vertical">
+
+    <com.guuidea.inreading.SingleItem
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:content_str="All novels for free (1500+)" />
+
+    <com.guuidea.inreading.SingleItem
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:content_str="Unlock chapters in advance" />
+
+    <com.guuidea.inreading.SingleItem
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:content_str="Read without ads" />
+
+    <com.guuidea.inreading.SingleItem
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:content_str="More privileges you can explore" />
+
+</LinearLayout>

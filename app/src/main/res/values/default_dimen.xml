@@ -48,5 +48,15 @@
     <dimen name="DP114">114dp</dimen>
     <dimen name="DP23">23dp</dimen>
     <dimen name="DP24">24dp</dimen>
+    <dimen name="DP32">32dp</dimen>
+    <dimen name="DP28">28dp</dimen>
+    <dimen name="DP26">26dp</dimen>
+    <dimen name="DP0">0dp</dimen>
+    <dimen name="DP2">2dp</dimen>
+    <dimen name="DP34">34dp</dimen>
+    <dimen name="DP67">67dp</dimen>
+    <dimen name="DP19">19dp</dimen>
+    <dimen name="DP47">47dp</dimen>
+    <dimen name="DP20">20dp</dimen>
 
 </resources>

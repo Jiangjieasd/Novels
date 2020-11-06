@@ -8,7 +8,7 @@
     <com.guuidea.inreading.widget.CustomActionbar
         android:id="@+id/action_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/DP48"
         app:layout_constraintTop_toTopOf="parent"
         app:titile="Pay for VIP" />
 

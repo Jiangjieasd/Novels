@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="@dimen/DP10"
+    android:layout_marginEnd="@dimen/DP16"
+    android:background="@drawable/dialog_background"
+    android:paddingStart="28dp"
+    android:paddingTop="@dimen/DP11"
+    android:paddingEnd="@dimen/DP30"
+    android:paddingBottom="@dimen/DP13">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VIP for reading"
+        android:textColor="#E4B979"
+        android:textSize="@dimen/SP20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DP29"
+        android:text="3 month"
+        android:textColor="#E4B979"
+        android:textSize="@dimen/SP14"
+        app:layout_constraintStart_toStartOf="@id/title"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="quartely"
+        android:textColor="#E4B979"
+        android:textSize="9sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/current_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$12.9"
+        android:textColor="#B0741A"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/old_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="$19.9"
+        android:textColor="#B0741A"
+        android:textSize="@dimen/SP12"
+        app:layout_constraintBottom_toTopOf="@id/current_price"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

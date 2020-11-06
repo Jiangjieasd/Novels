@@ -5,7 +5,7 @@
     <string name="really_want_to_close_it">Really want to close it?</string>
     <string name="continue_to_pay">Continue to pay</string>
     <string name="yes_reading_is_boring">Yes,reading is boring</string>
-    <string name="desc_for_vip">1500+ novels for free.\n Only $4.2 per month</string>
+    <string name="desc_for_vip">1500+ novels for free. \n  Only $4.2 per month</string>
     <string name="setting">Setting</string>
     <string name="recharge_history">Recharge History</string>
     <string name="log_out">Log Out</string>
@@ -18,4 +18,10 @@
     <string name="novel_chhose">Choose your novel preference</string>
 
     <string name="init_value">00</string>
+    <string name="newbie_gift_desc">Look, exclusive benefits for you</string>
+    <string name="newbie_gifts_title">Newbie Gifts</string>
+    <string name="newbie_gift_tip">Tips: Single novel costs $6 in other Reading apps.</string>
+    <string name="vip_rights">VIP Rights</string>
+    <string name="newbie_gifts_promise">Deducted periodically.Cancel anytime.</string>
+    <string name="pay_for_vip">Pay for VIP</string>
 </resources>

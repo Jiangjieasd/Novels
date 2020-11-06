@@ -35,7 +35,7 @@
     <com.guuidea.inreading.widget.CustomActionbar
         android:id="@+id/action_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/DP45" />
+        android:layout_height="@dimen/DP48" />
 
     <com.guuidea.inreading.SingleItem
         android:id="@+id/one"
