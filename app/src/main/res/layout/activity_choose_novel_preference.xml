@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/DP16"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="@dimen/DP32"
         android:layout_marginEnd="@dimen/DP16" />
 
     <TextView

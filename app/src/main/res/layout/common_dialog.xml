@@ -22,10 +22,10 @@
         android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="@dimen/DP38"
         android:gravity="center_horizontal"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
+        android:paddingStart="@dimen/DP30"
+        android:paddingEnd="@dimen/DP30"
         android:textColor="@color/color_666666"
         android:textSize="@dimen/SP14"
         tools:text="Tips" />
@@ -33,7 +33,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/DP40"
         android:layout_marginBottom="@dimen/DP36"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
@@ -50,7 +50,7 @@
 
         <TextView
             android:id="@+id/btn_right"
-            android:layout_width="108dp"
+            android:layout_width="@dimen/DP108"
             android:layout_height="@dimen/DP36"
             android:layout_marginStart="@dimen/DP8"
             android:background="@drawable/backg_sol_ff333333_cor_5dp"

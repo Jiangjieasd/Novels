@@ -16,7 +16,7 @@
         app:tabIndicatorColor="@color/color_333333"
         android:layout_width="match_parent"
         android:layout_height="@dimen/DP29"
-        android:layout_marginTop="28dp" />
+        android:layout_marginTop="@dimen/DP28" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vg_fragments"

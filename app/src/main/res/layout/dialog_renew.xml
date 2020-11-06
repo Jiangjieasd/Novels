@@ -2,14 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="23dp"
-    android:layout_marginEnd="23dp"
+    android:layout_marginStart="@dimen/DP23"
+    android:layout_marginEnd="@dimen/DP23"
     android:background="@android:color/transparent">
 
     <LinearLayout
        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_width="280dp"
+        android:layout_width="@dimen/DP280"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/DP17"
         android:layout_marginEnd="@dimen/DP17"
@@ -51,9 +51,9 @@
             android:textColor="@android:color/white"
             android:layout_width="match_parent"
             android:gravity="center"
-            android:layout_marginStart="26dp"
-            android:layout_marginEnd="26dp"
-            android:layout_height="36dp"/>
+            android:layout_marginStart="@dimen/DP26"
+            android:layout_marginEnd="@dimen/DP26"
+            android:layout_height="@dimen/DP36"/>
 
         <TextView
             android:layout_gravity="center_horizontal"
@@ -63,10 +63,10 @@
             android:layout_marginTop="@dimen/DP12"
             android:layout_width="match_parent"
             android:gravity="center"
-            android:layout_height="36dp"
-            android:layout_marginStart="26dp"
-            android:layout_marginEnd="26dp"
-            android:layout_marginBottom="36dp"/>
+            android:layout_height="@dimen/DP36"
+            android:layout_marginStart="@dimen/DP26"
+            android:layout_marginEnd="@dimen/DP26"
+            android:layout_marginBottom="@dimen/DP36"/>
 
     </LinearLayout>
 

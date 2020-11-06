@@ -7,7 +7,7 @@
     <!--头像幕后背景，可替换-->
     <View
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="@dimen/DP140"
         android:background="@color/color_333333" />
 
     <FrameLayout
@@ -17,7 +17,7 @@
         android:layout_marginStart="@dimen/DP16"
         android:layout_marginTop="-92dp"
         android:layout_marginEnd="@dimen/DP16"
-        android:layout_marginBottom="32dp">
+        android:layout_marginBottom="@dimen/DP32">
 
         <include layout="@layout/no_login_head_info" />
 

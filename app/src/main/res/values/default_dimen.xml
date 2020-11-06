@@ -58,5 +58,12 @@
     <dimen name="DP19">19dp</dimen>
     <dimen name="DP47">47dp</dimen>
     <dimen name="DP20">20dp</dimen>
+    <dimen name="DP78">78dp</dimen>
+    <dimen name="DP80">80dp</dimen>
+    <dimen name="PX1">1px</dimen>
+    <dimen name="DP100">100dp</dimen>
+    <dimen name="DP38">38dp</dimen>
+    <dimen name="DP108">108dp</dimen>
+    <dimen name="DP140">140dp</dimen>
 
 </resources>

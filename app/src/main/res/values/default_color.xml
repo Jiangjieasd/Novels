@@ -7,12 +7,14 @@
     <color name="COLOR_666666">#666666</color>
     <color name="color_252525">#252525</color>
     <color name="color_666666">#666666</color>
-    <color name="color_deb16d">#deb16d</color>
+    <color name="color_DEB16D">#deb16d</color>
     <color name="color_333333">#333333</color>
     <color name="color_FFEFEFEF">#ffefefef</color>
     <color name="color_999999">#999999</color>
     <color name="color_C5C5C5">#c5c5c5</color>
     <color name="color_FF979797">#ff979797</color>
     <color name="color_323649">#323649</color>
+    <color name="color_EAB56A">#eab56a</color>
+    <color name="color_EEEEEE">#eeeeee</color>
 
 </resources>

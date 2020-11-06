@@ -10,14 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/DP48"
         app:layout_constraintTop_toTopOf="parent"
-        app:titile="Pay for VIP" />
+        app:titile="@string/pay_for_vip" />
 
     <com.guuidea.inreading.widget.CircleImageView
         android:id="@+id/user_profile"
-        android:layout_width="78dp"
-        android:layout_height="78dp"
+        android:layout_width="@dimen/DP78"
+        android:layout_height="@dimen/DP78"
         android:layout_marginStart="@dimen/DP16"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="@dimen/DP32"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/action_bar" />
 
@@ -43,7 +43,7 @@
         tools:text="VIP Expire Date:2020-10-19"
         android:id="@+id/user_vip_date"
         android:textSize="@dimen/SP12"
-        android:textColor="#eab56a"
+        android:textColor="@color/color_EAB56A"
         android:layout_marginTop="@dimen/DP12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
