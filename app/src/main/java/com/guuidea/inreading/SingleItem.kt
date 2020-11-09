@@ -16,7 +16,7 @@ import android.widget.TextView
 class SingleItem : FrameLayout {
 
     private var content: String? = null
-    private var subContent: String? = null
+    var subContent: String? = null
     private var img: Drawable? = null
     var clicker: OnClickListener? = null
 

@@ -30,11 +30,26 @@
         android:layout_height="50dp" />
 
     <SeekBar
+        style="@style/CustomSeekBarStyle"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:splitTrack="false"
         android:duplicateParentState="true"
-        style="@style/CustomSeekBarStyle"
-        android:progress="20"/>
+        android:progress="20"
+        android:splitTrack="false" />
+
+    <com.guuidea.inreading.widget.BubbleView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:padding="6dp"
+        android:text="向上向上"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:bubbleColor="#ffffff"
+        app:bubbleStrokeColor="#000000"
+        app:bubbleStrokeWidth="2dp"
+        app:triangleDirection="bottom_right"
+        app:triangleHeight="10dp"
+        app:offset_value="15dp"/>
 
 </LinearLayout>

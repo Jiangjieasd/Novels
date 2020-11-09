@@ -86,9 +86,7 @@ public class RemoteRepository {
 
     /***********************************************************************************/
 
-
     public Single<List<BookCommentBean>> getBookComment(String block, String sort, int start, int limit, String distillate){
-
         return mBookApi.getBookCommentList(block,"all",sort,"all",start+"",limit+"",distillate)
                 .map((listBean)-> listBean.getPosts());
     }

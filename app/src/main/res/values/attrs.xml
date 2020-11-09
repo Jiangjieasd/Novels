@@ -68,12 +68,29 @@
     </declare-styleable>
 
     <declare-styleable name="TimeViewComm">
-        <attr name="tvc_backgroundColor" format="color"/>
-        <attr name="tvc_textColor" format="color"/>
-        <attr name="tvc_spaceColor" format="color"/>
-        <attr name="tvc_textSize" format="dimension"/>
-        <attr name="tvc_radius" format="dimension"/>
-        <attr name="tvc_textPaddingHorizantal" format="dimension"/>
-        <attr name="tvc_textPaddingVertical" format="dimension"/>
+        <attr name="tvc_backgroundColor" format="color" />
+        <attr name="tvc_textColor" format="color" />
+        <attr name="tvc_spaceColor" format="color" />
+        <attr name="tvc_textSize" format="dimension" />
+        <attr name="tvc_radius" format="dimension" />
+        <attr name="tvc_textPaddingHorizantal" format="dimension" />
+        <attr name="tvc_textPaddingVertical" format="dimension" />
+    </declare-styleable>
+
+    <!--气泡-->
+    <declare-styleable name="BubbleView">
+        <attr name="bubbleColor" format="reference|color" />
+        <attr name="bubbleStrokeColor" format="reference|color" />
+        <attr name="bubbleStrokeWidth" format="dimension" />
+        <attr name="triangleHeight" format="dimension" />
+        <attr name="triangleDirection">
+            <flag name="top" value="1" />
+            <flag name="bottom" value="2" />
+            <flag name="top_left" value="3"/>
+            <flag name="top_right" value="4"/>
+            <flag name="bottom_left" value="5"/>
+            <flag name="bottom_right" value="6"/>
+        </attr>
+        <attr name="offset_value" format="dimension" />
     </declare-styleable>
 </resources>

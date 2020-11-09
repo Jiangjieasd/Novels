@@ -23,6 +23,9 @@
 
     </FrameLayout>
 
+    <include layout="@layout/include_vip_right_bubble"
+        android:visibility="gone"/>
+
     <include layout="@layout/mine_vip_right" />
 
     <include layout="@layout/mine_function_area" />
