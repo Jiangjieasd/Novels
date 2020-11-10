@@ -47,10 +47,11 @@
         android:id="@+id/et_input"
         android:layout_width="match_parent"
         android:layout_height="@dimen/DP62"
-        android:background="@drawable/dialog_background"
+        android:background="@drawable/backg_feedback"
         android:gravity="top"
         android:inputType="textMultiLine"
         android:padding="@dimen/DP10"
+        android:hint="Please describe the problem."
         android:selectAllOnFocus="true"
         android:textColor="@color/color_999999"
         android:textSize="@dimen/SP15" />

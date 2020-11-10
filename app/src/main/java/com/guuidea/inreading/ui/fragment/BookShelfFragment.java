@@ -65,7 +65,9 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
     private CollBookAdapter mCollBookAdapter;
     private FooterItemView mFooterItem;
 
-    //是否是第一次进入
+    /**
+     * 是否是第一次进入
+     */
     private boolean isInit = true;
 
     @Override
@@ -132,7 +134,7 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
                                 BookRepository.getInstance().deleteCollBookInRx(event.collBook)
                                         .compose(RxUtils::toSimpleSingle)
                                         .subscribe(
-                                                (Void) -> {
+                                                Void -> {
                                                     mCollBookAdapter.removeItem(event.collBook);
                                                     progressDialog.dismiss();
                                                 }
@@ -200,27 +202,12 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
     }
 
     private void openItemDialog(CollBookBean collBook) {
-//        String[] menus;
-//        if (collBook.isLocal()) {
-//            menus = getResources().getStringArray(R.array.nb_menu_local_book);
-//        } else {
-//            menus = getResources().getStringArray(R.array.nb_menu_net_book);
-//        }
-//        AlertDialog collBookDialog = new AlertDialog.Builder(getContext())
-//                .setTitle(collBook.getTitle())
-//                .setAdapter(new ArrayAdapter<String>(getContext(),
-//                                android.R.layout.simple_list_item_1, menus),
-//                        (dialog, which) -> onItemMenuClick(menus[which], collBook))
-//                .setNegativeButton(null, null)
-//                .setPositiveButton(null, null)
-//                .create();
-//
-//        collBookDialog.show();
         showBookOperateDialog(collBook);
     }
 
     /**
      * 显示底部弹窗操作
+     *
      * @param collBook
      */
     private void showBookOperateDialog(CollBookBean collBook) {
@@ -260,6 +247,7 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
 
     /**
      * 创建底部弹窗显示数据集
+     *
      * @return
      */
     private ArrayList<BookOperateDescBean> productData() {
@@ -277,30 +265,6 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
                 R.drawable.more,
                 BookOperateDescBean.REMOVE_NOVEL));
         return datas;
-    }
-
-    private void onItemMenuClick(String which, CollBookBean collBook) {
-        switch (which) {
-            //置顶
-            case "置顶":
-                break;
-            //缓存
-            case "缓存":
-                //2. 进行判断，如果CollBean中状态为未更新。那么就创建Task，加入到Service中去。
-                //3. 如果状态为finish，并且isUpdate为true，那么就根据chapter创建状态
-                //4. 如果状态为finish，并且isUpdate为false。
-                downloadBook(collBook);
-                break;
-            //删除
-            case "删除":
-                deleteBook(collBook);
-                break;
-            //批量管理
-            case "批量管理":
-                break;
-            default:
-                break;
-        }
     }
 
     private void downloadBook(CollBookBean collBook) {
@@ -331,7 +295,9 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
                                 progressDialog.show();
                                 //删除
                                 File file = new File(collBook.getCover());
-                                if (file.exists()) file.delete();
+                                if (file.exists()) {
+                                    file.delete();
+                                }
                                 BookRepository.getInstance().deleteCollBook(collBook);
                                 BookRepository.getInstance().deleteBookRecord(collBook.get_id());
 
@@ -397,6 +363,12 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
         mRvContent.showTip();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.refreshCollBooks();
+    }
+
     /*****************************************************************/
     class FooterItemView implements WholeAdapter.ItemView {
         @Override
@@ -416,9 +388,4 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        mPresenter.refreshCollBooks();
-    }
 }

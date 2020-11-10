@@ -24,23 +24,19 @@ import android.widget.Toast;
 import com.guuidea.inreading.R;
 import com.guuidea.inreading.SingleItem;
 import com.guuidea.inreading.ui.dialog.DoubleBtnDialog;
-import com.guuidea.inreading.ui.dialog.VipRenewDialog;
+import com.guuidea.inreading.ui.dialog.VipKeepDialog;
 import com.guuidea.inreading.ui.base.BaseTabActivity;
 import com.guuidea.inreading.ui.fragment.BookShelfFragment;
 import com.guuidea.inreading.ui.fragment.CommunityFragment;
 import com.guuidea.inreading.ui.fragment.FindFragment;
 import com.guuidea.inreading.ui.record.RecordActivity;
 import com.guuidea.inreading.utils.Constant;
-import com.guuidea.inreading.utils.ExtensionsKt;
 import com.guuidea.inreading.utils.PermissionsChecker;
 import com.guuidea.inreading.utils.SharedPreUtils;
 import com.guuidea.inreading.ui.dialog.SexChooseDialog;
-import com.guuidea.inreading.utils.StringUtils;
 import com.guuidea.inreading.utils.ToastUtils;
 import com.guuidea.inreading.widget.CustomActionbar;
 import com.guuidea.inreading.widget.ShadowDrawable;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -142,7 +138,7 @@ public class MainActivity extends BaseTabActivity {
 
 //        showDialog();
 
-        VipRenewDialog dialog = new VipRenewDialog(this,
+        VipKeepDialog dialog = new VipKeepDialog(this,
                 view -> {
                     ToastUtils.Companion.show("vip");
                 },

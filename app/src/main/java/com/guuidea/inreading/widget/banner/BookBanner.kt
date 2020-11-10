@@ -7,16 +7,14 @@ import android.view.View.OnClickListener
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
 import com.guuidea.inreading.R
-import com.guuidea.inreading.ui.base.adapter.UniversalBaseAdapter
 
 /**
  * TODO: document your custom view class.
  */
 class BookBanner<T> : FrameLayout {
 
-    private lateinit var rvBanner: ViewPager
+    private lateinit var rvBanner: BannerViewPager
     private lateinit var leftIndicator: ImageView
     private lateinit var rightIndicator: ImageView
     private lateinit var adapter: PagerAdapter

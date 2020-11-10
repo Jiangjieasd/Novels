@@ -6,7 +6,7 @@
 
     <include layout="@layout/include_head_search" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.guuidea.inreading.widget.BetterGesturesRecyclerView
         android:id="@+id/rv_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

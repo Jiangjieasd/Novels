@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <View
@@ -11,26 +11,26 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:clipChildren="false"
         android:layerType="software">
 
-        <androidx.viewpager.widget.ViewPager
+        <com.guuidea.inreading.widget.banner.BannerViewPager
             android:id="@+id/rv_banner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/DP100"
             android:layout_marginRight="@dimen/DP100"
             android:clipChildren="false"
             android:overScrollMode="never" />
 
         <ImageView
-            android:contentDescription="@string/app_name"
             android:id="@+id/img_left"
             android:layout_width="@dimen/DP30"
             android:layout_height="@dimen/DP30"
             android:layout_gravity="center_vertical|start"
             android:layout_marginStart="@dimen/DP80"
+            android:contentDescription="@string/app_name"
             android:src="@drawable/left" />
 
         <ImageView

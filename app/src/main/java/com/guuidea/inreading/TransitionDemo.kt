@@ -12,6 +12,11 @@ import androidx.transition.TransitionManager
 import com.guuidea.inreading.utils.ToastUtils
 import com.guuidea.inreading.widget.banner.IndicatorBanner
 import com.guuidea.inreading.widget.banner.IndicatorBanner.IndicatorAdapter
+import io.reactivex.Observable
+import io.reactivex.ObservableEmitter
+import io.reactivex.ObservableOnSubscribe
+import io.reactivex.Observer
+import io.reactivex.disposables.Disposable
 
 
 /**
@@ -66,4 +71,32 @@ class TransitionDemo : AppCompatActivity() {
         scene2 = Scene.getSceneForLayout(sceneRoot, R.layout.login_head_info, this)
         TransitionManager.go(scene1!!)
     }
+
+    private fun test() {
+        Observable.create(object : ObservableOnSubscribe<Int> {
+            override fun subscribe(emitter: ObservableEmitter<Int>) {
+                TODO("Not yet implemented")
+            }
+
+        }).subscribe(object : Observer<Int> {
+
+            override fun onSubscribe(d: Disposable) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onNext(t: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onComplete() {
+                TODO("Not yet implemented")
+            }
+
+            override fun onError(e: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
 }

@@ -135,7 +135,7 @@ class LinesEditText : LinearLayout {
          * 不给et_input 焦点
          */
         mInputTv!!.requestFocus()
-        mInputEt!!.visibility = if (calculateVisibility) View.VISIBLE else View.GONE
+        mInputTv!!.visibility = if (calculateVisibility) View.VISIBLE else View.GONE
         configCount()
         mInputEt!!.setSelection(mInputEt!!.length()) // 将光标移动最后一个字符后面
         /**

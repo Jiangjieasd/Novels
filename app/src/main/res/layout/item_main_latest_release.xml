@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginBottom="@dimen/DP32">
+
+    <LinearLayout
+        android:layout_marginStart="@dimen/DP16"
+        android:layout_marginEnd="@dimen/DP16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Latest release"
+            android:textColor="@color/color_252525"
+            android:textSize="@dimen/SP18"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_more_last_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="more"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/SP12" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginStart="@dimen/DP16"
+        android:layout_marginTop="@dimen/DP8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Release 4 new books weekly, never stop."
+        android:textColor="@color/color_999999"
+        android:textSize="@dimen/SP12" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginStart="@dimen/DP16"
+        android:layout_marginTop="@dimen/DP16"
+        android:id="@+id/latest_release_books"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

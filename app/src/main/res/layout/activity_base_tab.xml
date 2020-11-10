@@ -30,7 +30,7 @@
         android:id="@+id/book_banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <com.guuidea.inreading.widget.CustomActionbar
         android:id="@+id/action_bar"

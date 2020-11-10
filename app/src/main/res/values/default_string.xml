@@ -28,4 +28,6 @@
     <string name="monthly">Monthly</string>
     <string name="dollar_symbol">$</string>
     <string name="quarterly">Quarterly</string>
+    <string name="feedback_hint">If you can\'t find the book you want here, let us know. We will update for you soon, VIP priority.</string>
+    <string name="submit">Submit</string>
 </resources>

@@ -12,11 +12,11 @@ import com.guuidea.inreading.R
 
 /**
  * @file      VipRenewDialog
- * @description    VIP 续费弹窗
+ * @description    VIP新人挽留弹窗
  * @author         江 杰
  * @createDate     2020/10/28 11:07
  */
-class VipRenewDialog constructor(
+class VipKeepDialog constructor(
         ctx: Context,
         private val payClicker: OnClicker,
         private val exitClicker: OnClicker) : Dialog(ctx) {
