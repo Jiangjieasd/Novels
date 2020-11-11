@@ -3,10 +3,15 @@ package com.guuidea.inreading.ui.activity
 import android.view.View
 import android.widget.TextView
 import com.guuidea.inreading.R
+import com.guuidea.inreading.model.bean.BaseResponseBean
+import com.guuidea.inreading.model.remote.RemoteRepository
 import com.guuidea.inreading.ui.base.BaseActivity
 import com.guuidea.inreading.utils.RegexUtil
+import com.guuidea.inreading.utils.RxUtils
 import com.guuidea.inreading.utils.ToastUtils
 import com.guuidea.inreading.widget.LinesEditText
+import io.reactivex.disposables.Disposable
+import io.reactivex.functions.Consumer
 
 /**
  * @file      FeedbackActivity
@@ -33,7 +38,7 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
 
     override fun initClick() {
         super.initClick()
-        submit
+        submit.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) = when (v?.id) {
@@ -48,7 +53,10 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun submit() {
-        TODO("DAISHIXIAN")
+        val feedback = RemoteRepository.getInstance().feedback(descEd.getContentText())
+                .compose(RxUtils::toSimpleSingle)
+                .subscribe(Consumer<BaseResponseBean> { ToastUtils.show("Success") })
+        addDisposable(feedback)
     }
 
     private fun checkDesc(desc: String?): Boolean = desc.isNullOrBlank()

@@ -1,13 +1,13 @@
 package com.guuidea.inreading.ui.activity
 
-import android.widget.TextView
+import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.guuidea.inreading.R
 import com.guuidea.inreading.model.bean.NovelPreferenceBean
 import com.guuidea.inreading.ui.base.BaseActivity
 import com.guuidea.inreading.ui.base.adapter.UniversalBaseAdapter
 import com.guuidea.inreading.ui.base.adapter.UniversalViewHolder
+import kotlinx.android.synthetic.main.activity_choose_novel_preference.*
 
 /**
  * @file      ChooseNovelPreferenceActivity
@@ -17,13 +17,6 @@ import com.guuidea.inreading.ui.base.adapter.UniversalViewHolder
  */
 class ChooseNovelPreferenceActivity : BaseActivity() {
 
-    private val rvClass: RecyclerView by lazy {
-        findViewById<RecyclerView>(R.id.rv_class)
-    }
-    private val tvConfirm: TextView by lazy {
-        findViewById<TextView>(R.id.tv_confirm)
-    }
-
     private var confirmCount: Int = 0
 
     override fun getContentId(): Int {
@@ -32,7 +25,7 @@ class ChooseNovelPreferenceActivity : BaseActivity() {
 
     override fun initWidget() {
         super.initWidget()
-        rvClass.adapter = object : UniversalBaseAdapter<NovelPreferenceBean>(this, testData()) {
+        rv_class.adapter = object : UniversalBaseAdapter<NovelPreferenceBean>(this, testData()) {
             override fun getItemLayoutId(): Int {
                 return R.layout.item_novel_preference
             }
@@ -52,30 +45,36 @@ class ChooseNovelPreferenceActivity : BaseActivity() {
                 }
             }
         }
-        rvClass.layoutManager = GridLayoutManager(this, 2)
-        tvConfirm.setOnClickListener {
+        rv_class.layoutManager = GridLayoutManager(this, 2)
+        tv_confirm.setOnClickListener {
             if (0 == confirmCount) return@setOnClickListener
-            nextStep()
+            nextStep(false)
         }
     }
 
+    override fun initClick() {
+        super.initClick()
+        action_bar.imgClicker = View.OnClickListener { finish() }
+        action_bar.rightClicker = View.OnClickListener { nextStep(true) }
+    }
+
     private fun refreshCount() {
-        tvConfirm.text = "Confirm($confirmCount)"
-        tvConfirm.setBackgroundResource(if (confirmCount > 0)
+        tv_confirm.text = "Confirm($confirmCount)"
+        tv_confirm.setBackgroundResource(if (confirmCount > 0)
             R.drawable.backg_sol_ff333333_cor_5dp else R.drawable.backg_sol_d0d0d0_cor_5)
     }
 
     /**
-     * 当选中偏好不为0时的逻辑处理
+     * 当选中偏好不为0时的逻辑处理(根据是否skip来区分用户点击actionbar还是点击confirm按钮)
      */
-    private fun nextStep() {
+    private fun nextStep(skip: Boolean) {
         TODO("待实现 ")
     }
 
     private fun testData(): ArrayList<NovelPreferenceBean> {
         val result: ArrayList<NovelPreferenceBean> = ArrayList()
         for (index in 1..16) {
-            val novel: NovelPreferenceBean = NovelPreferenceBean("WuXia",
+            val novel = NovelPreferenceBean("WuXia",
                     "100+", R.drawable.shelf, false)
             result.add(novel)
         }

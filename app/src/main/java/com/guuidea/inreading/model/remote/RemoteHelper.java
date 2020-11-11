@@ -23,6 +23,7 @@ public class RemoteHelper {
 
     private RemoteHelper() {
         mOkHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(new RequestHeaderInterceptor())
                 .addNetworkInterceptor(
                         chain -> {
                             Request request = chain.request();

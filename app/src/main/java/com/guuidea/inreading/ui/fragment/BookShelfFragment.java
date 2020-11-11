@@ -58,8 +58,11 @@ import io.reactivex.disposables.Disposable;
 public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Presenter>
         implements BookShelfContract.View {
     private static final String TAG = "BookShelfFragment";
-    @BindView(R.id.book_shelf_rv_content)
-    ScrollRefreshRecyclerView mRvContent;
+
+//    @BindView(R.id.book_shelf_rv_content)
+//    ScrollRefreshRecyclerView mRvContent;
+
+    private ScrollRefreshRecyclerView mRvContent;
 
     /************************************/
     private CollBookAdapter mCollBookAdapter;
@@ -83,6 +86,7 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
     @Override
     protected void initWidget(Bundle savedInstanceState) {
         super.initWidget(savedInstanceState);
+        mRvContent = getActivity().findViewById(R.id.book_shelf_rv_content);
         setUpAdapter();
     }
 
@@ -120,7 +124,7 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
                 );
         addDisposable(donwloadDisp);
 
-        //删除书籍
+        //删除书籍(此处并非删除书籍的操作，而是对于删除书籍操作事件的界面显示)
         @SuppressLint("CheckResult")
         Disposable deleteDisp = RxBus.getInstance()
                 .toObservable(DeleteResponseEvent.class)
@@ -131,6 +135,7 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
                                 ProgressDialog progressDialog = new ProgressDialog(getContext());
                                 progressDialog.setMessage("正在删除中");
                                 progressDialog.show();
+                                //开始删除书籍的具体操作
                                 BookRepository.getInstance().deleteCollBookInRx(event.collBook)
                                         .compose(RxUtils::toSimpleSingle)
                                         .subscribe(

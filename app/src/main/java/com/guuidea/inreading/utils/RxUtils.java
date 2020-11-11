@@ -14,10 +14,12 @@ import io.reactivex.functions.Function3;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Created by guuidea on 17-4-29.
+ *
+ * @author guuidea
  */
-
 public class RxUtils {
+
+    private RxUtils(){}
 
     public static <T> SingleSource<T> toSimpleSingle(Single<T> upstream){
         return upstream.subscribeOn(Schedulers.io())
@@ -30,7 +32,7 @@ public class RxUtils {
     }
 
     public static <T,R> TwoTuple<T,R> twoTuple(T first,R second){
-        return new TwoTuple<T, R>(first, second);
+        return new TwoTuple<>(first, second);
     }
 
     public static <T> Single<DetailBean<T>> toCommentDetail(Single<T> detailSingle,

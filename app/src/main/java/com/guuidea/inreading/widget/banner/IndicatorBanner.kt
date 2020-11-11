@@ -92,8 +92,8 @@ class IndicatorBanner : FrameLayout {
     private fun bindEvent() {
         vg.adapter = adapter
         vg.currentItem = 0
-        vg.offscreenPageLimit=3
-        vg.pageMargin=40
+        vg.offscreenPageLimit = 3
+        vg.pageMargin = 40
         productIndicator(vg.adapter?.count!!)
         vg.setPageTransformer(false, ScalePageTransform())
         vg.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -136,6 +136,10 @@ class IndicatorBanner : FrameLayout {
         }
     }
 
+    fun haveScrollToLast(): Boolean {
+        return vg.currentItem == vg.adapter?.count
+    }
+
     interface OnPageChange {
         fun onPageChange(position: Int)
     }
@@ -143,10 +147,6 @@ class IndicatorBanner : FrameLayout {
     abstract class IndicatorAdapter : PagerAdapter() {
 
         abstract fun initPage(container: ViewGroup, position: Int): View
-
-//        override fun getPageWidth(position: Int): Float {
-//            return 0.8F
-//        }
 
         override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
             container.removeView(`object` as View)

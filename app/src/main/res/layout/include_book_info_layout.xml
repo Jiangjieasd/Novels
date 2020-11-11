@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_book_name"
+        android:id="@+id/tvBookName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -19,7 +19,7 @@
         tools:text="Fight to break the s" />
 
     <TextView
-        android:id="@+id/tv_book_view"
+        android:id="@+id/tvBookView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/DP16"
@@ -30,7 +30,7 @@
         tools:text="Fight to break the s" />
 
     <TextView
-        android:id="@+id/tv_book_introduction"
+        android:id="@+id/tvBookIntroduction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/DP16"
@@ -57,6 +57,7 @@
         android:paddingEnd="@dimen/DP16">
 
         <TextView
+            android:id="@+id/tvAdd"
             android:layout_width="86dp"
             android:layout_height="44dp"
             android:gravity="center"
@@ -66,6 +67,7 @@
             android:textSize="@dimen/SP16" />
 
         <TextView
+            android:id="@+id/tvReadNow"
             android:layout_width="0dp"
             android:layout_height="44dp"
             android:layout_marginStart="@dimen/DP12"
