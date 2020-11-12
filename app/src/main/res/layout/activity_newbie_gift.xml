@@ -78,7 +78,9 @@
                 android:text="@string/desc_for_vip"
                 android:textColor="@color/color_252525"
                 android:textSize="@dimen/SP20"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:drawablePadding="@dimen/DP10"
+                android:drawableBottom="@drawable/zhixiang"/>
 
             <include layout="@layout/include_vip_info" />
 
@@ -92,6 +94,8 @@
                 android:textSize="@dimen/SP12" />
 
             <TextView
+                android:drawablePadding="@dimen/DP5"
+                android:drawableStart="@drawable/vip_inreading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/DP16"
@@ -112,13 +116,16 @@
                 android:textColor="@color/color_999999"
                 android:textSize="@dimen/SP10" />
 
-            <include layout="@layout/include_vip_detail" />
+            <include
+                android:id="@+id/vipDetail"
+                layout="@layout/include_vip_detail" />
 
         </LinearLayout>
 
     </ScrollView>
 
     <TextView
+        android:id="@+id/tvPayForVip"
         android:layout_width="match_parent"
         android:layout_height="@dimen/DP45"
         android:layout_marginStart="@dimen/DP16"

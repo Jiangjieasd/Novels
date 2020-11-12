@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.google.android.flexbox.*
@@ -12,6 +11,7 @@ import com.google.android.material.tabs.TabLayout
 import com.guuidea.inreading.R
 import com.guuidea.inreading.ui.adapter.BookClassPagerAdapter
 import com.guuidea.inreading.ui.base.BaseActivity
+import com.guuidea.inreading.ui.base.BaseFragment
 import com.guuidea.inreading.ui.fragment.LastReleaseFragment
 import com.guuidea.inreading.ui.fragment.MostViewedFragment
 import com.guuidea.inreading.widget.CustomActionbar
@@ -41,6 +41,8 @@ class RankingActivity : BaseActivity() {
         findViewById<ViewPager>(R.id.vg_books)
     }
 
+    private val fragments: ArrayList<BaseFragment> = ArrayList()
+
     /**
      * 书籍类别
      */
@@ -63,7 +65,7 @@ class RankingActivity : BaseActivity() {
     }
 
     private fun setupAdapter() {
-        val flexLayoutManager: FlexboxLayoutManager = FlexboxLayoutManager(this)
+        val flexLayoutManager = FlexboxLayoutManager(this)
         flexLayoutManager.flexWrap = FlexWrap.WRAP
         flexLayoutManager.flexDirection = FlexDirection.ROW
         flexLayoutManager.alignItems = AlignItems.STRETCH
@@ -76,19 +78,20 @@ class RankingActivity : BaseActivity() {
         })
     }
 
-    /**
-     * 顶部书籍类别item点击相应
-     */
-    private fun onBookClassClickEvent(positon: Int) {
-        TODO("Not yet implemented")
-    }
-
     private fun setupViewPager() {
-        val fragments: ArrayList<Fragment> = ArrayList()
         fragments.add(MostViewedFragment())
         fragments.add(LastReleaseFragment())
         vgBooks.adapter = BookClassPagerAdapter(supportFragmentManager, fragments, titles)
         tabs.setupWithViewPager(vgBooks)
+    }
+
+    /**
+     * 顶部书籍类别item点击相应
+     */
+    private fun onBookClassClickEvent(positon: Int) {
+        fragments.forEach {
+            it.refreshData(positon)
+        }
     }
 
     class BookClassAdapter(private val datas: Array<String>,

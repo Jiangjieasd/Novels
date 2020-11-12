@@ -11,7 +11,7 @@ import android.widget.TextView
  * @file      CustomClickSapn
  * @description     String str = "想要设置成不同颜色或者有点击事件的字符串"
                     SpannableString   span = new SpannableString(str);
-                    ClickableSpan clickSpan = new MyClickableSpan(str, this);
+                    ClickableSpan clickSpan = new CustomClickSpan(str, this);
                     span.setSpan(clickSpan, 0, str.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
                     //在这里通过ForegroundColorSpan来给部分字体设置颜色。可以设置成功
                     span.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.XXX)), 0, str.length(),Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
@@ -22,7 +22,7 @@ import android.widget.TextView
  * @createDate     2020/11/3 9:44
  */
 
-class CustomClickSapn : ClickableSpan() {
+class CustomClickSpan : ClickableSpan() {
 
     private lateinit var target: Class<*>
 

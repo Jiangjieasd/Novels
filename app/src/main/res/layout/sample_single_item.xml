@@ -7,9 +7,10 @@
     android:paddingEnd="@dimen/DP16">
 
     <ImageView
+        android:layout_gravity="center_vertical"
         android:id="@+id/img"
-        android:layout_width="@dimen/DP45"
-        android:layout_height="@dimen/DP45" />
+        android:layout_width="@dimen/DP20"
+        android:layout_height="@dimen/DP20" />
 
     <TextView
         android:id="@+id/content"

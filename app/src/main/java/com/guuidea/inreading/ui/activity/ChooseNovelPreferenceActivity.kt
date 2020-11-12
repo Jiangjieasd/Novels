@@ -1,6 +1,7 @@
 package com.guuidea.inreading.ui.activity
 
 import android.view.View
+import android.widget.ImageView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.guuidea.inreading.R
 import com.guuidea.inreading.model.bean.NovelPreferenceBean
@@ -18,6 +19,12 @@ import kotlinx.android.synthetic.main.activity_choose_novel_preference.*
 class ChooseNovelPreferenceActivity : BaseActivity() {
 
     private var confirmCount: Int = 0
+    private val backgroundRes: Array<Int> = arrayOf(
+            R.drawable.fantasy, R.drawable.xianxia,
+            R.drawable.wuxia, R.drawable.science,
+            R.drawable.modern, R.drawable.romance,
+            R.drawable.mystery
+    )
 
     override fun getContentId(): Int {
         return R.layout.activity_choose_novel_preference
@@ -31,7 +38,7 @@ class ChooseNovelPreferenceActivity : BaseActivity() {
             }
 
             override fun bindData(holder: UniversalViewHolder, item: NovelPreferenceBean, position: Int) {
-                holder.setText(R.id.tv_preference, "${item.preference} \n (${item.count})")
+//                holder.setText(R.id.tv_preference, "${item.preference} \n (${item.count})")
                 holder.setImageRes(R.id.img_preference_background, item.backgroundRes)
                 holder.itemView.setOnClickListener {
                     if (item.checked) {
@@ -43,6 +50,7 @@ class ChooseNovelPreferenceActivity : BaseActivity() {
                     }
                     refreshCount()
                 }
+                holder.getView<ImageView>(R.id.img_check).visibility = if (item.checked) View.VISIBLE else View.INVISIBLE
             }
         }
         rv_class.layoutManager = GridLayoutManager(this, 2)
@@ -69,6 +77,16 @@ class ChooseNovelPreferenceActivity : BaseActivity() {
      */
     private fun nextStep(skip: Boolean) {
         TODO("待实现 ")
+    }
+
+    private fun productData(): ArrayList<NovelPreferenceBean> {
+        val result: ArrayList<NovelPreferenceBean> = ArrayList()
+        for (element in backgroundRes) {
+            val novel = NovelPreferenceBean("",
+                    "", element, false)
+            result.add(novel)
+        }
+        return result
     }
 
     private fun testData(): ArrayList<NovelPreferenceBean> {

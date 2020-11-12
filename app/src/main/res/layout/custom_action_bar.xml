@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/color_FFEFEFEF"
     android:layout_height="@dimen/DP48">
 
     <ImageView
         android:padding="@dimen/DP5"
-        android:src="@drawable/action_bar_back"
+        android:src="@drawable/fanhui"
         android:contentDescription="@string/app_name"
         android:id="@+id/img_back"
         android:layout_marginStart="@dimen/DP15"
@@ -33,5 +34,13 @@
         android:layout_gravity="end|center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/more_op"
+        android:src="@drawable/more_dot"
+        android:layout_marginEnd="@dimen/DP16"
+        android:layout_gravity="end|center_vertical"
+        android:layout_width="21dp"
+        android:layout_height="21dp"/>
 
 </FrameLayout>

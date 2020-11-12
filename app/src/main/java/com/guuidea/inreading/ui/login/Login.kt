@@ -1,7 +1,12 @@
 package com.guuidea.inreading.ui.login
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.style.ClickableSpan
 import android.view.View
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
@@ -19,6 +24,7 @@ import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.guuidea.inreading.R
+import com.guuidea.inreading.ui.activity.AgreementAndPolicyActivity
 import com.guuidea.inreading.ui.base.BaseActivity
 import com.guuidea.inreading.utils.ToastUtils
 
@@ -39,6 +45,10 @@ class Login : BaseActivity(), View.OnClickListener {
     private lateinit var callbackManager: CallbackManager
 
     private lateinit var btnLoginFacebook: LoginButton
+
+    override fun getContentId(): Int {
+        return R.layout.layout_login
+    }
 
     override fun initData(savedInstanceState: Bundle?) {
         super.initData(savedInstanceState)
@@ -70,8 +80,36 @@ class Login : BaseActivity(), View.OnClickListener {
         })
     }
 
-    override fun getContentId(): Int {
-        return R.layout.layout_login
+    override fun initWidget() {
+        super.initWidget()
+        val desc = "If you continue,you agree the Services Agreement & Privacy Policy"
+        val spannableDesc = SpannableString(desc)
+        spannableDesc.setSpan(object : ClickableSpan() {
+
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.color = Color.parseColor("#999999")
+                ds.isUnderlineText = false
+            }
+
+            override fun onClick(widget: View) {
+                AgreementAndPolicyActivity.startAgreementOrPrivacy(this@Login, 0)
+            }
+
+        }, 31, 48, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+        spannableDesc.setSpan(object : ClickableSpan() {
+
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.color = Color.parseColor("#999999")
+                ds.isUnderlineText = false
+            }
+
+            override fun onClick(widget: View) {
+                AgreementAndPolicyActivity.startAgreementOrPrivacy(this@Login, 1)
+            }
+
+        }, 52, 65, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
     }
 
     override fun onStart() {
@@ -140,7 +178,6 @@ class Login : BaseActivity(), View.OnClickListener {
             ToastUtils.show("111")
         }
     }
-
 
     companion object {
         private const val RC_SIGN_IN = 123

@@ -11,22 +11,26 @@
     android:orientation="vertical">
 
     <com.guuidea.inreading.widget.SingleFunctionItem
+        android:id="@+id/rechargeHistory"
         app:func_center="@string/recharge_history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <com.guuidea.inreading.widget.SingleFunctionItem
+        android:id="@+id/rating"
         app:func_center="@string/rating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <com.guuidea.inreading.widget.SingleFunctionItem
+        android:id="@+id/feedback"
         app:func_center="@string/feedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <com.guuidea.inreading.widget.SingleFunctionItem
-        app:func_center="@string/rating"
+        android:id="@+id/setting"
+        app:func_center="@string/setting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

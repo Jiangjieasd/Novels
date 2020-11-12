@@ -39,7 +39,7 @@
 				android:id="@+id/search_iv_search"
 				android:layout_width="40dp"
 				android:layout_height="match_parent"
-				android:src="@drawable/ic_search_normal"
+				android:src="@drawable/sousuo"
 				android:layout_marginLeft="8dp"
 				android:padding="6dp"
 				android:scaleType="centerInside"/>

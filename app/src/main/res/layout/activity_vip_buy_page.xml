@@ -11,7 +11,9 @@
         android:id="@+id/action_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/DP48"
+        app:is_show_more_oop="true"
         app:layout_constraintTop_toTopOf="parent"
+        app:right_visibility="true"
         app:titile="@string/pay_for_vip" />
 
     <ScrollView
@@ -73,6 +75,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/DP16"
+                android:drawableStart="@drawable/vip_inreading"
+                android:drawablePadding="@dimen/DP5"
                 android:text="@string/vip_rights"
                 android:textColor="@color/color_252525"
                 android:textSize="@dimen/SP18"
@@ -89,7 +93,9 @@
                 android:textColor="@color/color_999999"
                 android:textSize="@dimen/SP10" />
 
-            <include layout="@layout/include_vip_detail" />
+            <include
+                android:id="@+id/vipDetails"
+                layout="@layout/include_vip_detail" />
 
         </LinearLayout>
 
@@ -97,6 +103,7 @@
     </ScrollView>
 
     <TextView
+        android:id="@+id/payForVip"
         android:layout_width="match_parent"
         android:layout_height="@dimen/DP45"
         android:layout_marginStart="@dimen/DP16"

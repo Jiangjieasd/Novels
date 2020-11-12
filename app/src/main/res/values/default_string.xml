@@ -30,4 +30,6 @@
     <string name="quarterly">Quarterly</string>
     <string name="feedback_hint">If you can\'t find the book you want here, let us know. We will update for you soon, VIP priority.</string>
     <string name="submit">Submit</string>
+    <string name="vip_detail">Your VIP Membership will become effective in 24 hours after your purchase. · Payment: The purchase will be charged through your GooglePlay account. · Renewal: Your subscription will renew automatically. Youmay be charged no more than 24 hours before the beginningof each VIP Membership period until you cancel your subscription. · Cancellation: You can cancel a subscription at any time and atleast 24 hours beforet our renewal date on Google Play Store-> Subscriptions ->Flying Lines. · Subscribers of VIP Membership can claim the VIP DailyBonus by visiting Flying Lines APP every day during the subscription period. · Advance Chapter Privilege: Only VIP users are given early access to subscriptions of a selection of VIP novels. · VIP Membership\'s actual deduction is decided by Google.Monthly VIP Membership is effective for 30 days.</string>
+    <string name="agreement_policy_str"><![CDATA[If you continue,you agree the Services Agreement & Privacy Policy]]></string>
 </resources>

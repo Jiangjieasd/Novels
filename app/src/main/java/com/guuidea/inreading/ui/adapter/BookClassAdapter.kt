@@ -3,6 +3,7 @@ package com.guuidea.inreading.ui.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.guuidea.inreading.ui.base.BaseFragment
 import java.lang.RuntimeException
 
 /**
@@ -13,7 +14,7 @@ import java.lang.RuntimeException
  */
 
 class BookClassPagerAdapter(val fragmentManager: FragmentManager,
-                            val fragments: ArrayList<Fragment>, val titles: Array<String>)
+                            val fragments: ArrayList<BaseFragment>, val titles: Array<String>)
     : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     init {

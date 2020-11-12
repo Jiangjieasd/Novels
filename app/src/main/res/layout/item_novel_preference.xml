@@ -19,6 +19,7 @@
         android:textColor="@android:color/white"
         android:textSize="@dimen/SP20"
         android:textStyle="bold"
+        android:visibility="gone"
         tools:text="Fantasy \n (300+)" />
 
     <ImageView
@@ -28,6 +29,8 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/DP10"
         android:layout_marginBottom="@dimen/DP7"
-        android:contentDescription="@string/app_name" />
+        android:contentDescription="@string/app_name"
+        android:visibility="invisible"
+        android:src="@drawable/xuanzhong" />
 
 </FrameLayout>

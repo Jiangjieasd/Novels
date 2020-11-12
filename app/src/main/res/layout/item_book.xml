@@ -24,7 +24,15 @@
         android:textStyle="bold"
         android:layout_marginStart="24dp"
         android:layout_marginTop="@dimen/DP6"
-        tools:text="Love of hahaha Fight to \n Fight to break the sky"
+        tools:text="Love of hahaha Fight to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/tv_book_name"
+        app:layout_constraintStart_toStartOf="@id/tv_book_name"
+        android:id="@+id/tvClassify"
+        tools:text="fantasy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -32,7 +40,7 @@
         android:id="@+id/tv_book_desc"
         app:layout_constraintStart_toStartOf="@id/tv_book_name"
         app:layout_constraintBottom_toBottomOf="@id/img_book_cover"
-        app:layout_constraintTop_toBottomOf="@id/tv_book_name"
+        app:layout_constraintTop_toBottomOf="@id/tvClassify"
         android:layout_width="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="28dp"
@@ -41,10 +49,11 @@
         android:ellipsize="marquee"
         android:textSize="@dimen/SP12"
         android:textColor="@color/color_999999"
-        tools:text="dfwdfewsdvsdvdsvsdvdsvsdvsdvsdvdvdsvdsvsdvdsvsd"
+        tools:text="dfwdfewsdvsdvdsvsdvdsvsdvsdvsdvdvdsvssssssssvsdvdsvsd"
         android:layout_height="0dp"/>
 
     <TextView
+        android:id="@+id/tv_book_rank"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="1"
         android:textStyle="bold"

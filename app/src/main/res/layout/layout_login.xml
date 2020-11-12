@@ -49,4 +49,20 @@
         android:layout_marginTop="@dimen/DP12"
         android:layout_marginEnd="@dimen/DP40" />
 
+    <View
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/agreement_privacy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="@string/agreement_policy_str"
+        android:textColor="@color/color_D7D7D7"
+        android:textSize="@dimen/SP10"
+        android:layout_marginBottom="@dimen/DP20"
+        />
+
 </LinearLayout>

@@ -9,24 +9,27 @@
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="0dp"
+        android:textColor="@color/color_252525"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="20sp"
         android:textStyle="bold"
         tools:text="1500+ novels" />
 
-    <EditText
+    <ImageView
         android:id="@+id/edit_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="search" />
+        android:layout_width="@dimen/DP16"
+        android:layout_height="@dimen/DP16"
+       android:src="@drawable/sousuo" />
 
     <ImageView
         android:id="@+id/img_class"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/DP16"
+        android:layout_width="@dimen/DP16"
+        android:layout_height="@dimen/DP16"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="@dimen/DP16"
         android:layout_marginBottom="5dp"
-        android:src="@drawable/shelf" />
+        android:src="@drawable/fenlei" />
 
 </LinearLayout>

@@ -24,8 +24,12 @@ class CustomActionbar : FrameLayout {
     private var tvTitle: TextView? = null
     private lateinit var imgBack: ImageView
     private lateinit var rightTv: TextView
+    private lateinit var moreOop: ImageView
     var imgClicker: OnClickListener? = null
     var rightClicker: OnClickListener? = null
+    var moreClicker: OnClickListener? = null
+    private var isShowMoreOop = false
+    private var rightVisibility = true
 
     constructor(context: Context) : super(context) {
         init(null, 0)
@@ -50,6 +54,8 @@ class CustomActionbar : FrameLayout {
         title = if (!a.getString(R.styleable.CustomActionbar_titile).isNullOrEmpty())
             a.getString(R.styleable.CustomActionbar_titile) else ""
         rightTitle = a.getString(R.styleable.CustomActionbar_rigth_content)
+        isShowMoreOop = a.getBoolean(R.styleable.CustomActionbar_is_show_more_oop, false)
+        rightVisibility = a.getBoolean(R.styleable.CustomActionbar_right_visibility, true)
         a.recycle()
     }
 
@@ -58,13 +64,13 @@ class CustomActionbar : FrameLayout {
                 LayoutInflater.from(context).inflate(R.layout.custom_action_bar, null)
         tvTitle = view.findViewById(R.id.tv_center_title)
         imgBack = view.findViewById(R.id.img_back)
-        imgBack.setOnClickListener {
-            imgClicker?.onClick(it)
-        }
+        imgBack.setOnClickListener(imgClicker)
         rightTv = view.findViewById(R.id.right_tv)
-        rightTv.setOnClickListener {
-            rightClicker?.onClick(it)
-        }
+        rightTv.setOnClickListener(rightClicker)
+        rightTv.visibility = if (rightVisibility && !isShowMoreOop) View.VISIBLE else View.GONE
+        moreOop = view.findViewById(R.id.more_op)
+        moreOop.visibility = if (rightVisibility && isShowMoreOop) View.VISIBLE else View.GONE
+        moreOop.setOnClickListener(moreClicker)
         addView(view)
     }
 
