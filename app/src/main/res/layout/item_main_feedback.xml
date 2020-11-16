@@ -16,7 +16,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="What you want"
+            android:text="@string/what_you_want"
             android:textColor="@color/color_252525"
             android:textSize="@dimen/SP18"
             android:textStyle="bold" />
@@ -25,7 +25,9 @@
             android:id="@+id/beVIP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Be VIP"
+            android:drawableEnd="@drawable/little_arrow_right"
+            android:drawablePadding="@dimen/DP5"
+            android:text="@string/be_vip_Uppercase"
             android:textColor="@color/color_999999"
             android:textSize="@dimen/SP12" />
 

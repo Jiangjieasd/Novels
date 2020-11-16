@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/color_FFEFEFEF"
-    android:layout_height="@dimen/DP48">
+    android:layout_height="@dimen/DP48"
+    android:background="@color/color_FFEFEFEF">
 
     <ImageView
-        android:padding="@dimen/DP5"
-        android:src="@drawable/fanhui"
-        android:contentDescription="@string/app_name"
         android:id="@+id/img_back"
-        android:layout_marginStart="@dimen/DP15"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
         android:layout_gravity="center_vertical"
-        android:layout_width="@dimen/DP32"
-        android:layout_height="@dimen/DP32"/>
+        android:layout_marginStart="@dimen/DP15"
+        android:contentDescription="@string/app_name"
+        android:padding="@dimen/DP5"
+        android:src="@drawable/fanhui" />
 
     <TextView
         android:id="@+id/tv_center_title"
-        android:text="@string/setting"
-        android:gravity="center"
-        android:textSize="@dimen/SP20"
-        android:textColor="@color/color_252525"
-        android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:text="@string/setting"
+        android:textColor="@color/color_252525"
+        android:textSize="@dimen/SP20" />
 
     <TextView
         android:id="@+id/right_tv"
-        android:text="@string/skip"
-        android:textStyle="bold"
-        android:textSize="@dimen/SP16"
-        android:layout_marginEnd="@dimen/DP16"
-        android:textColor="@color/color_252525"
-        android:layout_gravity="end|center_vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="@dimen/DP16"
+        android:text="@string/skip"
+        android:textColor="@color/color_252525"
+        android:textSize="@dimen/SP16"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/more_op"
-        android:src="@drawable/more_dot"
-        android:layout_marginEnd="@dimen/DP16"
-        android:layout_gravity="end|center_vertical"
         android:layout_width="21dp"
-        android:layout_height="21dp"/>
+        android:layout_height="21dp"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="@dimen/DP16"
+        android:src="@drawable/more_dot" />
 
 </FrameLayout>

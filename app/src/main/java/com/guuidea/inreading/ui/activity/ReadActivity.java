@@ -8,35 +8,30 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.ContentObserver;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
 import android.provider.Settings;
-
-import com.google.android.material.appbar.AppBarLayout;
-
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.Toolbar;
-
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.appbar.AppBarLayout;
 import com.guuidea.inreading.R;
 import com.guuidea.inreading.model.bean.BookChapterBean;
 import com.guuidea.inreading.model.bean.CollBookBean;
@@ -63,7 +58,6 @@ import java.util.List;
 import butterknife.BindView;
 import io.reactivex.disposables.Disposable;
 
-import static androidx.core.view.ViewCompat.LAYER_TYPE_SOFTWARE;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
@@ -107,7 +101,6 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
     /***************bottom_menu_view***************************/
     @BindView(R.id.read_tv_page_tip)
     TextView mTvPageTip;
-
     @BindView(R.id.read_ll_bottom_menu)
     LinearLayout mLlBottomMenu;
     @BindView(R.id.read_tv_pre_chapter)
@@ -117,11 +110,11 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
     @BindView(R.id.read_tv_next_chapter)
     TextView mTvNextChapter;
     @BindView(R.id.read_tv_category)
-    ImageView mTvCategory;
+    FrameLayout mTvCategory;
     @BindView(R.id.read_tv_night_mode)
-    ImageView mTvNightMode;
+    FrameLayout mTvNightMode;
     @BindView(R.id.read_tv_setting)
-    ImageView mTvSetting;
+    FrameLayout mTvSetting;
     /***************left slide*******************************/
     @BindView(R.id.read_iv_category)
     ListView mLvCategory;
@@ -160,7 +153,7 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
     /**
      * 接收电池信息和时间更新的广播
      */
-    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Intent.ACTION_BATTERY_CHANGED)) {
@@ -175,8 +168,10 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
     };
 
     // 亮度调节监听
-    // 由于亮度调节没有 Broadcast 而是直接修改 ContentProvider 的。所以需要创建一个 Observer 来监听 ContentProvider 的变化情况。
-    private ContentObserver mBrightObserver = new ContentObserver(new Handler()) {
+    /**
+     * 由于亮度调节没有 Broadcast 而是直接修改 ContentProvider 的。所以需要创建一个 Observer 来监听 ContentProvider 的变化情况。
+     */
+    private final ContentObserver mBrightObserver = new ContentObserver(new Handler()) {
         @Override
         public void onChange(boolean selfChange) {
             onChange(selfChange, null);
@@ -194,10 +189,13 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
             // 如果系统亮度改变，则修改当前 Activity 亮度
             if (BRIGHTNESS_MODE_URI.equals(uri)) {
                 Log.d(TAG, "亮度模式改变");
-            } else if (BRIGHTNESS_URI.equals(uri) && !BrightnessUtils.isAutoBrightness(ReadActivity.this)) {
+            } else if (BRIGHTNESS_URI.equals(uri)
+                    && !BrightnessUtils.isAutoBrightness(ReadActivity.this)) {
                 Log.d(TAG, "亮度模式为手动模式 值改变");
-                BrightnessUtils.setBrightness(ReadActivity.this, BrightnessUtils.getScreenBrightness(ReadActivity.this));
-            } else if (BRIGHTNESS_ADJ_URI.equals(uri) && BrightnessUtils.isAutoBrightness(ReadActivity.this)) {
+                BrightnessUtils.setBrightness(ReadActivity.this,
+                        BrightnessUtils.getScreenBrightness(ReadActivity.this));
+            } else if (BRIGHTNESS_ADJ_URI.equals(uri)
+                    && BrightnessUtils.isAutoBrightness(ReadActivity.this)) {
                 Log.d(TAG, "亮度模式为自动模式 值改变");
                 BrightnessUtils.setDefaultBrightness(ReadActivity.this);
             } else {
@@ -211,7 +209,6 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
     private boolean isNightMode = false;
     private boolean isFullScreen = false;
     private boolean isRegistered = false;
-
     private String mBookId;
 
     public static void startActivity(Context context, CollBookBean collBook, boolean isCollected) {
@@ -313,12 +310,9 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
         }
     }
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        Log.d(TAG, "onWindowFocusChanged: " + mAblTopMenu.getMeasuredHeight());
-    }
-
+    /**
+     * 于此处进行日夜间切换按钮的显示效果
+     */
     private void toggleNightMode() {
         if (isNightMode) {
 
@@ -334,10 +328,12 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
         mLvCategory.setFastScrollEnabled(true);
     }
 
-    // 注册亮度观察者
+    /**
+     * 注册亮度观察者
+     */
     private void registerBrightObserver() {
         try {
-            if (mBrightObserver != null) {
+            if (null != mBrightObserver) {
                 if (!isRegistered) {
                     final ContentResolver cr = getContentResolver();
                     cr.unregisterContentObserver(mBrightObserver);

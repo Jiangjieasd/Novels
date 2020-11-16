@@ -19,6 +19,8 @@
         tools:text="Fight to break the s" />
 
     <TextView
+        android:drawableStart="@drawable/yanjing_kai"
+        android:drawablePadding="@dimen/DP5"
         android:id="@+id/tvBookView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,7 +48,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/DP16"
         app:func_center="365"
-        app:func_left="@drawable/search" />
+        app:func_right="@drawable/zhankai"
+        app:func_left="@drawable/caidan" />
 
     <LinearLayout
         android:layout_marginTop="@dimen/DP16"

@@ -12,26 +12,34 @@
 
     <com.guuidea.inreading.widget.SingleFunctionItem
         android:id="@+id/rechargeHistory"
-        app:func_center="@string/recharge_history"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:func_center="@string/recharge_history"
+        app:func_left="@drawable/clock"
+        app:func_right="@drawable/zhankai" />
 
     <com.guuidea.inreading.widget.SingleFunctionItem
         android:id="@+id/rating"
-        app:func_center="@string/rating"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:func_center="@string/rating"
+        app:func_left="@drawable/star"
+        app:func_right="@drawable/zhankai" />
 
     <com.guuidea.inreading.widget.SingleFunctionItem
         android:id="@+id/feedback"
-        app:func_center="@string/feedback"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:func_center="@string/feedback"
+        app:func_left="@drawable/fankui"
+        app:func_right="@drawable/zhankai" />
 
     <com.guuidea.inreading.widget.SingleFunctionItem
         android:id="@+id/setting"
-        app:func_center="@string/setting"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:func_center="@string/setting"
+        app:func_left="@drawable/shezhi_bold"
+        app:func_right="@drawable/zhankai" />
 
 </LinearLayout>

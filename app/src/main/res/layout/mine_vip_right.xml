@@ -2,17 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginStart="@dimen/DP16"
-    android:layout_marginEnd="@dimen/DP16">
+    android:orientation="vertical">
 
     <FrameLayout
+        android:layout_marginStart="@dimen/DP16"
+        android:layout_marginEnd="@dimen/DP16"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/vip_grey"
+            android:drawablePadding="@dimen/DP5"
             android:text="VIP Rights"
             android:textColor="@color/color_252525"
             android:textSize="@dimen/SP18"
@@ -22,6 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|center_vertical"
+            android:drawableEnd="@drawable/little_arrow_right"
+            android:drawablePadding="@dimen/DP5"
             android:text="BeVIP"
             android:textColor="@color/color_999999"
             android:textSize="9sp" />
@@ -30,8 +34,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/vip_rights"
-        android:layout_marginTop="@dimen/DP16"
+        android:layout_marginStart="@dimen/DP10"
+        android:layout_marginEnd="@dimen/DP10"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/DP48" />
+        android:layout_height="@dimen/DP48"
+        android:layout_marginTop="@dimen/DP16" />
 
 </LinearLayout>

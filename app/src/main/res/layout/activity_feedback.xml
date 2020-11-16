@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <com.guuidea.inreading.widget.CustomActionbar
         android:layout_width="match_parent"
-        android:layout_height="@dimen/DP48" />
+        android:layout_height="@dimen/DP48"
+        app:right_visibility="false"
+        app:titile="Feedback" />
 
     <com.guuidea.inreading.widget.LinesEditText
         android:id="@+id/desc"
-        app:lev_desc="Description"
-        app:lev_decs_sub="(Required)"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/DP16"
-        android:layout_marginEnd="@dimen/DP16" />
+        android:layout_marginEnd="@dimen/DP16"
+        app:lev_decs_sub="(Required)"
+        app:lev_desc="Description" />
 
     <com.guuidea.inreading.widget.LinesEditText
         android:id="@+id/email"
-        app:lev_desc="Email Address"
-        app:lev_decs_sub="(Required)"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/DP16"
         android:layout_marginTop="@dimen/DP28"
         android:layout_marginEnd="@dimen/DP16"
-        app:lev_calculate_visibility="false"/>
+        app:lev_calculate_visibility="false"
+        app:lev_decs_sub="(Required)"
+        app:lev_desc="Email Address" />
 
     <View
         android:layout_width="match_parent"

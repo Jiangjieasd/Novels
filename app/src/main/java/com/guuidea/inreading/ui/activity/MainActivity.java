@@ -146,12 +146,12 @@ public class MainActivity extends BaseTabActivity {
                     ToastUtils.Companion.show("exit");
                 });
         dialog.show();
-        ((SingleItem) findViewById(R.id.one)).setClicker(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastUtils.Companion.show("4444");
-            }
-        });
+//        ((SingleItem) findViewById(R.id.one)).setClicker(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ToastUtils.Companion.show("4444");
+//            }
+//        });
 
         ((CustomActionbar) findViewById(R.id.action_bar)).setImgClicker(new View.OnClickListener() {
             @Override

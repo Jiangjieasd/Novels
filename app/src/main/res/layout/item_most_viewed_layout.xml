@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/DP8">
+
+    <!--单页排名第一位-->
+    <TextView
+        android:textStyle="bold"
+        android:textSize="@dimen/SP16"
+        android:textColor="@color/color_252525"
+        android:id="@+id/tv_first_rank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/DP28"
+        android:drawableTop="@drawable/huangguan"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/img_first_rank_cover"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/img_first_rank_cover"
+        tools:text="1" />
+
+    <ImageView
+        android:id="@+id/img_first_rank_cover"
+        android:layout_width="65dp"
+        android:layout_height="86dp"
+        android:layout_marginStart="@dimen/DP25"
+        android:background="@android:color/black"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintStart_toEndOf="@id/tv_first_rank"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_first_rank_bookName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/DP12"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/SP12"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/tv_first_rank_class"
+        app:layout_constraintStart_toEndOf="@id/img_first_rank_cover"
+        app:layout_constraintTop_toTopOf="@id/img_first_rank_cover"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Fight to break the sky break the sky" />
+
+    <TextView
+        android:id="@+id/tv_first_rank_class"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DP12"
+        android:textColor="#898989"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_first_rank_viewed"
+        app:layout_constraintStart_toStartOf="@id/tv_first_rank_bookName"
+        app:layout_constraintTop_toBottomOf="@id/tv_first_rank_bookName"
+        tools:text="Fantasy" />
+
+    <TextView
+        android:id="@+id/tv_first_rank_viewed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DP12"
+        android:drawableStart="@drawable/yanjing_kai"
+        android:drawablePadding="@dimen/DP5"
+        android:textAlignment="textEnd"
+        android:textColor="@color/color_333333"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toBottomOf="@id/img_first_rank_cover"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_first_rank_class"
+        tools:text="5.1K viewed" />
+
+    <!--单页排名第二位-->
+    <TextView
+        android:textStyle="bold"
+        android:textSize="@dimen/SP16"
+        android:textColor="@color/color_252525"
+        android:id="@+id/tv_second_rank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/DP28"
+        android:drawableTop="@drawable/huangguan2"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/img_second_rank_cover"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/img_second_rank_cover"
+        tools:text="2" />
+
+    <ImageView
+        android:id="@+id/img_second_rank_cover"
+        android:layout_width="65dp"
+        android:layout_height="86dp"
+        android:layout_marginStart="@dimen/DP25"
+        android:layout_marginTop="@dimen/DP16"
+        android:background="@android:color/black"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintStart_toEndOf="@id/tv_second_rank"
+        app:layout_constraintTop_toBottomOf="@id/img_first_rank_cover" />
+
+    <TextView
+        android:id="@+id/tv_second_rank_bookName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/DP12"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/SP12"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/tv_second_rank_class"
+        app:layout_constraintStart_toEndOf="@id/img_second_rank_cover"
+        app:layout_constraintTop_toTopOf="@id/img_second_rank_cover"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Fight to break the sky break the sky" />
+
+    <TextView
+        android:id="@+id/tv_second_rank_class"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DP12"
+        android:textColor="#898989"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_second_rank_viewed"
+        app:layout_constraintStart_toStartOf="@id/tv_second_rank_bookName"
+        app:layout_constraintTop_toBottomOf="@id/tv_second_rank_bookName"
+        tools:text="Fantasy" />
+
+    <TextView
+        android:id="@+id/tv_second_rank_viewed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DP12"
+        android:drawableStart="@drawable/yanjing_kai"
+        android:drawablePadding="@dimen/DP5"
+        android:textAlignment="textEnd"
+        android:textColor="@color/color_333333"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toBottomOf="@id/img_second_rank_cover"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_second_rank_class"
+        tools:text="5.1K viewed" />
+
+    <!--单页排名第三位-->
+    <TextView
+        android:textStyle="bold"
+        android:textSize="@dimen/SP16"
+        android:textColor="@color/color_252525"
+        android:id="@+id/tv_third_rank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/DP28"
+        android:drawableTop="@drawable/huangguan3"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/img_third_rank_cover"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/img_third_rank_cover"
+        tools:text="3" />
+
+    <ImageView
+        android:id="@+id/img_third_rank_cover"
+        android:layout_width="65dp"
+        android:layout_height="86dp"
+        android:layout_marginStart="@dimen/DP25"
+        android:layout_marginTop="@dimen/DP16"
+        android:background="@android:color/black"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintStart_toEndOf="@id/tv_third_rank"
+        app:layout_constraintTop_toBottomOf="@id/img_second_rank_cover" />
+
+    <TextView
+        android:id="@+id/tv_third_rank_bookName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/DP12"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/SP12"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/tv_third_rank_class"
+        app:layout_constraintStart_toEndOf="@id/img_third_rank_cover"
+        app:layout_constraintTop_toTopOf="@id/img_third_rank_cover"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Fight to break the sky break the sky" />
+
+    <TextView
+        android:id="@+id/tv_third_rank_class"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DP12"
+        android:textColor="#898989"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_third_rank_viewed"
+        app:layout_constraintStart_toStartOf="@id/tv_third_rank_bookName"
+        app:layout_constraintTop_toBottomOf="@id/tv_third_rank_bookName"
+        tools:text="Fantasy" />
+
+    <TextView
+        android:id="@+id/tv_third_rank_viewed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DP12"
+        android:drawableStart="@drawable/yanjing_kai"
+        android:drawablePadding="@dimen/DP5"
+        android:textAlignment="textEnd"
+        android:textColor="@color/color_333333"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toBottomOf="@id/img_third_rank_cover"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_third_rank_class"
+        tools:text="5.1K viewed" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

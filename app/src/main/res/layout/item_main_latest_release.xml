@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_marginBottom="@dimen/DP32">
 
@@ -25,7 +25,9 @@
             android:id="@+id/tv_more_last_release"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="more"
+            android:text="@string/more"
+            android:drawableEnd="@drawable/little_arrow_right"
+            android:drawablePadding="@dimen/DP5"
             android:textColor="@color/color_999999"
             android:textSize="@dimen/SP12" />
 
@@ -41,7 +43,7 @@
         android:textSize="@dimen/SP12" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginStart="@dimen/DP16"
+        android:layout_marginStart="@dimen/DP10"
         android:layout_marginTop="@dimen/DP16"
         android:id="@+id/latest_release_books"
         android:layout_width="match_parent"

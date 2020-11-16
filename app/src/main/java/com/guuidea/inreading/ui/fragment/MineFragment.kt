@@ -1,9 +1,13 @@
 package com.guuidea.inreading.ui.fragment
 
 import android.content.Intent
+import android.graphics.Outline
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewOutlineProvider
+import android.widget.ImageView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.ChangeBounds
 import androidx.transition.Scene
 import androidx.transition.TransitionManager
@@ -12,8 +16,11 @@ import com.guuidea.inreading.UserInfoManager
 import com.guuidea.inreading.ui.activity.FeedbackActivity
 import com.guuidea.inreading.ui.activity.SettingActivity
 import com.guuidea.inreading.ui.base.BaseFragment
+import com.guuidea.inreading.ui.base.adapter.UniversalBaseAdapter
+import com.guuidea.inreading.ui.base.adapter.UniversalViewHolder
 import kotlinx.android.synthetic.main.fragment_mine.*
 import kotlinx.android.synthetic.main.mine_function_area.*
+import kotlinx.android.synthetic.main.mine_vip_right.*
 
 /**
  * @file      MineFragment
@@ -25,6 +32,7 @@ class MineFragment : BaseFragment() {
 
     private var scene1: Scene? = null
     private var scene2: Scene? = null
+    private val vipRightsRes = ArrayList<Int>()
 
     override fun getContentId(): Int {
         return R.layout.fragment_mine
@@ -33,6 +41,31 @@ class MineFragment : BaseFragment() {
     override fun initData(savedInstanceState: Bundle?) {
         super.initData(savedInstanceState)
         initTransition()
+        initVipRightsRes()
+    }
+
+    private fun initVipRightsRes() {
+        vipRightsRes.add(R.drawable.vip_right_1)
+        vipRightsRes.add(R.drawable.vip_right_2)
+    }
+
+    override fun initWidget(savedInstanceState: Bundle?) {
+        super.initWidget(savedInstanceState)
+        setupAdapter()
+    }
+
+    private fun setupAdapter() {
+        vip_rights.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        vip_rights.adapter = object : UniversalBaseAdapter<Int>(context, vipRightsRes) {
+            override fun getItemLayoutId(): Int {
+                return R.layout.item_vip_right_desc
+            }
+
+            override fun bindData(holder: UniversalViewHolder, item: Int, position: Int) {
+                holder.setImageRes(R.id.img_vip_right_desc, item)
+            }
+
+        }
     }
 
     override fun initClick() {
@@ -47,14 +80,14 @@ class MineFragment : BaseFragment() {
                 reactClick()
             }
         }
-        rechargeHistory.itemClicker = View.OnClickListener { }
-        rating.itemClicker = View.OnClickListener { }
-        feedback.itemClicker = View.OnClickListener {
+        rechargeHistory.setItemClicker(View.OnClickListener { TODO("Not yet implemented") })
+        rating.setItemClicker(View.OnClickListener { })
+        feedback.setItemClicker(View.OnClickListener {
             startActivity(Intent(context, FeedbackActivity::class.java))
-        }
-        setting.itemClicker = View.OnClickListener {
+        })
+        setting.setItemClicker(View.OnClickListener {
             startActivity(Intent(context, SettingActivity::class.java))
-        }
+        })
     }
 
     private fun loginIn() {

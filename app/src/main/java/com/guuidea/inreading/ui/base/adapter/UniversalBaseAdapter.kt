@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
  * @author         江 杰
  * @createDate     2020/10/23 9:56
  */
-abstract class UniversalBaseAdapter<T>(val ctx: Context, var dataList: ArrayList<T>)
+abstract class UniversalBaseAdapter<T>(val ctx: Context?, var dataList: ArrayList<T>)
     : RecyclerView.Adapter<UniversalViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UniversalViewHolder {

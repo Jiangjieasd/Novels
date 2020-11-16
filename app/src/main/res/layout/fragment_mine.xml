@@ -8,7 +8,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/DP140"
-        android:background="@color/color_333333" />
+        android:background="@drawable/mine_background" />
 
     <FrameLayout
         android:id="@+id/login_area"

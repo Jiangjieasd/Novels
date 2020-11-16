@@ -1,90 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/DP32"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_marginStart="@dimen/DP16"
-    android:layout_marginEnd="@dimen/DP16">
+    android:layout_marginEnd="@dimen/DP16"
+    android:layout_marginBottom="@dimen/DP32"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <TextView
-            android:textStyle="bold"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/newbie_gifts_title"
             android:textColor="@color/color_252525"
             android:textSize="@dimen/SP18"
-            />
+            android:textStyle="bold" />
 
         <com.guuidea.inreading.widget.time.TimeViewComm
             android:layout_width="wrap_content"
-            app:tvc_textSize="@dimen/SP12"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            app:tvc_textSize="@dimen/SP12" />
 
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:paddingStart="@dimen/DP16"
-        android:paddingEnd="@dimen/DP16"
+    <ImageView
         android:layout_width="match_parent"
+        android:layout_height="90dp"
         android:layout_marginTop="@dimen/DP17"
-        android:background="@drawable/desc_for_vip_background"
-        android:layout_height="wrap_content">
-
-       <TextView
-           android:layout_marginTop="@dimen/DP13"
-           android:text="Only $4.2 per month"
-           android:textColor="@android:color/white"
-           android:textSize="@dimen/SP14"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toTopOf="parent"
-           android:id="@+id/tv_current_price_desc"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"/>
-
-        <TextView
-            android:text="(US $9.9)"
-            android:layout_marginStart="@dimen/DP10"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/SP12"
-            app:layout_constraintStart_toEndOf="@id/tv_current_price_desc"
-            app:layout_constraintTop_toTopOf="@id/tv_current_price_desc"
-            android:id="@+id/tv_old_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            app:layout_constraintStart_toStartOf="@id/tv_current_price_desc"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/SP14"
-            android:text="All novels for free(1500+)"
-            app:layout_constraintTop_toBottomOf="@id/tv_current_price_desc"
-            android:id="@+id/tv_sub_desc"
-            android:layout_width="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="@dimen/DP10"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/beVip"
-            android:text="bevip"
-            android:layout_marginEnd="6dp"
-            android:layout_marginTop="@dimen/DP10"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textColor="#9A6F2C"
-            android:textSize="@dimen/SP12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY"
+        android:src="@drawable/newbie_kapian" />
 
 </LinearLayout>

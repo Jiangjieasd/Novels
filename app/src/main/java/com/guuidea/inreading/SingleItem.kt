@@ -16,19 +16,15 @@ import android.widget.TextView
 class SingleItem : FrameLayout {
 
     private var content: String? = null
-    var subContent: String? = null
+    private var subContent: String? = null
     private var img: Drawable? = null
-    var clicker: OnClickListener? = null
+    private lateinit var subContentTv: TextView
 
-    constructor(context: Context) : super(context) {
-        init(null, 0)
-    }
+    constructor(context: Context) : this(context, null)
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        init(attrs, 0)
-    }
+    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
+    constructor(context: Context, attrs: AttributeSet?, defStyle: Int) : super(context, attrs, defStyle) {
         init(attrs, defStyle)
     }
 
@@ -42,12 +38,13 @@ class SingleItem : FrameLayout {
         a.recycle()
         val view: View = LayoutInflater.from(context).inflate(R.layout.sample_single_item, null)
         view.findViewById<TextView>(R.id.content).text = content
-        view.findViewById<TextView>(R.id.sub_content).text = subContent
+        subContentTv = view.findViewById(R.id.sub_content)
+        subContentTv.text = subContent
         view.findViewById<ImageView>(R.id.img).setImageDrawable(img)
-        view.setOnClickListener {
-            clicker?.onClick(it)
-        }
         addView(view)
     }
 
+    fun setSubContent(sub: String) {
+        subContentTv.text = sub
+    }
 }

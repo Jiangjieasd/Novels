@@ -28,8 +28,12 @@ class SettingActivity : BaseActivity(), View.OnClickListener {
         findViewById<TextView>(R.id.btn_log_out)
     }
 
-    private val file1: File = File("/sdcard/Android/data/{pkg}/cache".replace("{pkg}", packageName))
-    private val file2: File = File("/data/data/{pkg}/cache".replace("{pkg}", packageName))
+    private val file1: File by lazy {
+        File("/sdcard/Android/data/{pkg}/cache".replace("{pkg}", packageName))
+    }
+    private val file2: File by lazy {
+        File("/data/data/{pkg}/cache".replace("{pkg}", packageName))
+    }
 
     override fun getContentId(): Int {
         return R.layout.layout_setting
@@ -37,9 +41,10 @@ class SettingActivity : BaseActivity(), View.OnClickListener {
 
     override fun initData(savedInstanceState: Bundle?) {
         super.initData(savedInstanceState)
-        version.subContent = getAppVersion()
-        cache.subContent = CacheUtil.byte2FitSize(CacheUtil.getTotalSizeOfFilesInDir(file1)
-                + CacheUtil.getTotalSizeOfFilesInDir(file2))
+        version.setSubContent("V${getAppVersion()}")
+        CacheUtil.getFormatSize((CacheUtil.getFolderSize(file1) + CacheUtil.getFolderSize(file2)).toDouble())?.let {
+            cache.setSubContent(it)
+        }
     }
 
     override fun initClick() {
@@ -56,7 +61,7 @@ class SettingActivity : BaseActivity(), View.OnClickListener {
             }
             R.id.cache -> {
                 clearCache()
-                cache.subContent = "0 MB"
+                cache.setSubContent("0 MB")
                 ToastUtils.show("Cleared")
             }
             R.id.btn_log_out -> {

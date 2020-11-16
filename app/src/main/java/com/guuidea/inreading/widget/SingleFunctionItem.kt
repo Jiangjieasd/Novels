@@ -29,7 +29,7 @@ class SingleFunctionItem : FrameLayout {
     private val rightImageView: ImageView by lazy {
         root.findViewById<ImageView>(R.id.img_right)
     }
-    var itemClicker: OnClickListener? = null
+    private var itemClicker: OnClickListener? = null
 
     private val root: View by lazy {
         LayoutInflater.from(context).inflate(R.layout.item_mine_function, this)
@@ -49,14 +49,22 @@ class SingleFunctionItem : FrameLayout {
         centerText = typeArray.getString(R.styleable.SingleFunctionItem_func_center) ?: ""
         rightImageRes = typeArray.getResourceId(R.styleable.SingleFunctionItem_func_right, 0)
         typeArray.recycle()
-        bindData(root)
+        bindData()
     }
 
-    private fun bindData(itemView: View) {
+    private fun bindData() {
         leftImageView.setImageResource(leftImageRes)
         centerTextView.text = centerText
         rightImageView.setImageResource(rightImageRes)
-        itemView.setOnClickListener(itemClicker)
+    }
+
+    fun setItemClicker(clicker: OnClickListener) {
+        this.itemClicker = clicker
+        root.setOnClickListener(itemClicker)
+    }
+
+    fun getClicker(): OnClickListener? {
+        return itemClicker
     }
 
 }

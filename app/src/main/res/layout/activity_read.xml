@@ -93,7 +93,8 @@
             android:clickable="true"
             android:orientation="vertical"
             android:visibility="gone"
-            tools:visibility="visible">
+            tools:visibility="visible"
+            android:focusable="true">
 
             <!--页面进度栏,暂做隐藏处理-->
             <LinearLayout
@@ -135,26 +136,55 @@
             <!--菜单栏-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="@dimen/DP48"
+                android:baselineAligned="false"
                 android:orientation="horizontal">
 
-                <ImageView
+                <FrameLayout
                     android:id="@+id/read_tv_category"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="1">
 
-                <ImageView
+                    <ImageView
+                        android:layout_width="@dimen/DP16"
+                        android:layout_height="@dimen/DP15"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/caidan" />
+
+                </FrameLayout>
+
+                <FrameLayout
                     android:id="@+id/read_tv_night_mode"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="1">
 
-                <ImageView
+                    <ImageView
+                        android:layout_width="@dimen/DP16"
+                        android:layout_height="@dimen/DP15"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/yueliang" />
+
+                </FrameLayout>
+
+                <FrameLayout
                     android:id="@+id/read_tv_setting"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="@dimen/DP16"
+                        android:layout_height="@dimen/DP15"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/shezhi" />
+
+                </FrameLayout>
+
 
             </LinearLayout>
         </LinearLayout>

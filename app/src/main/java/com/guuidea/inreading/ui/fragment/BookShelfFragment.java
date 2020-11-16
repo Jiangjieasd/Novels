@@ -4,21 +4,17 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.guuidea.inreading.R;;
+import com.guuidea.inreading.R;
 import com.guuidea.inreading.RxBus;
 import com.guuidea.inreading.event.DeleteResponseEvent;
 import com.guuidea.inreading.event.DeleteTaskEvent;
@@ -45,23 +41,19 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-import butterknife.BindView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 
-/**
- * Created by guuidea on 17-4-15.
- */
+;
 
+/**
+ *
+ * @author guuidea
+ */
 public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Presenter>
         implements BookShelfContract.View {
     private static final String TAG = "BookShelfFragment";
-
-//    @BindView(R.id.book_shelf_rv_content)
-//    ScrollRefreshRecyclerView mRvContent;
-
     private ScrollRefreshRecyclerView mRvContent;
 
     /************************************/
@@ -175,13 +167,17 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
                             ReadActivity.startActivity(getContext(),
                                     mCollBookAdapter.getItem(pos), true);
                         } else {
-                            String tip = getContext().getString(R.string.nb_bookshelf_book_not_exist);
+                            String tip = getContext()
+                                    .getString(R.string.nb_bookshelf_book_not_exist);
                             //提示(从目录中移除这个文件)
                             new AlertDialog.Builder(getContext())
                                     .setTitle(getResources().getString(R.string.nb_common_tip))
                                     .setMessage(tip)
-                                    .setPositiveButton(getResources().getString(R.string.nb_common_sure), (dialog, which) -> deleteBook(collBook))
-                                    .setNegativeButton(getResources().getString(R.string.nb_common_cancel), null)
+                                    .setPositiveButton(getResources()
+                                            .getString(R.string.nb_common_sure),
+                                            (dialog, which) -> deleteBook(collBook))
+                                    .setNegativeButton(getResources()
+                                            .getString(R.string.nb_common_cancel), null)
                                     .show();
                         }
                     } else {
@@ -212,8 +208,6 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
 
     /**
      * 显示底部弹窗操作
-     *
-     * @param collBook
      */
     private void showBookOperateDialog(CollBookBean collBook) {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getContext());
@@ -221,10 +215,13 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
         bottomSheetDialog.setContentView(R.layout.dialog_book_operate);
         RecyclerView rvOperates = bottomSheetDialog.getDelegate().findViewById(R.id.rv_operates);
         assert rvOperates != null;
-        rvOperates.setAdapter(new UniversalBaseAdapter<BookOperateDescBean>(getContext(), productData()) {
+        rvOperates.setAdapter(new UniversalBaseAdapter<BookOperateDescBean>(getContext(),
+                productData()) {
 
             @Override
-            public void bindData(@NotNull UniversalViewHolder holder, BookOperateDescBean item, int position) {
+            public void bindData(@NotNull UniversalViewHolder holder,
+                                 BookOperateDescBean item,
+                                 int position) {
                 holder.setText(R.id.tv_operate_desc, item.getOperateDesc());
                 holder.setImageRes(R.id.img_operate, item.getOperateImgId());
                 holder.itemView.setOnClickListener(v -> {
@@ -252,8 +249,6 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
 
     /**
      * 创建底部弹窗显示数据集
-     *
-     * @return
      */
     private ArrayList<BookOperateDescBean> productData() {
         ArrayList<BookOperateDescBean> datas = new ArrayList<>();
@@ -286,11 +281,12 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
         if (collBook.isLocal()) {
             View view = LayoutInflater.from(getContext())
                     .inflate(R.layout.dialog_delete, null);
-            CheckBox cb = (CheckBox) view.findViewById(R.id.delete_cb_select);
+            CheckBox cb = view.findViewById(R.id.delete_cb_select);
             new AlertDialog.Builder(getContext())
                     .setTitle("删除文件")
                     .setView(view)
-                    .setPositiveButton(getResources().getString(R.string.nb_common_sure), new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getResources().getString(R.string.nb_common_sure),
+                            new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             boolean isSelected = cb.isSelected();
