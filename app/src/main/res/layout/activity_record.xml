@@ -12,6 +12,7 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
+        app:tabIndicatorFullWidth="false"
         app:tabTextColor="@color/color_323649"
         app:tabIndicatorColor="@color/color_333333"
         android:layout_width="match_parent"

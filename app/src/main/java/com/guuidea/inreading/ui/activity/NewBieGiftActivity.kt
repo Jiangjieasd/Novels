@@ -2,7 +2,13 @@ package com.guuidea.inreading.ui.activity
 
 import android.view.View
 import com.guuidea.inreading.R
+import com.guuidea.inreading.model.bean.BaseResponseBean
+import com.guuidea.inreading.model.remote.RemoteRepository
 import com.guuidea.inreading.ui.base.BaseActivity
+import com.guuidea.inreading.utils.LogUtils
+import com.guuidea.inreading.utils.RxUtils
+import com.guuidea.inreading.utils.ToastUtils
+import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_newbie_gift.*
 import kotlinx.android.synthetic.main.include_vip_detail.*
 
@@ -33,6 +39,14 @@ class NewBieGiftActivity : BaseActivity() {
     }
 
     private fun payForVIP() {
-        TODO("待实现")
+        val buyVipDisposable = RemoteRepository.getInstance().buyVIP("", 0)
+                .compose(RxUtils::toSimpleSingle)
+                .subscribe({
+                    if (0 == it.code) {
+                        ToastUtils.show("Success")
+                    }
+                },
+                        { t -> LogUtils.e(t) })
+
     }
 }

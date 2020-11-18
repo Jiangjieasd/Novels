@@ -7,12 +7,8 @@ package com.guuidea.inreading.model.bean
  * @createDate     2020/11/5 15:33
  */
 data class NovelPreferenceBean(
-        val preference: String,
-        val count: String,
-        val backgroundRes:Int,
+        val backgroundRes: Int,
+        val tag: Int,
         var checked: Boolean
 ) {
-    override fun toString(): String {
-        return "Novel Preference Bean:[name:$preference,count:$count]"
-    }
 }

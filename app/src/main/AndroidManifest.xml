@@ -57,6 +57,8 @@
         <activity android:name=".ui.activity.ChooseNovelPreferenceActivity" />
         <activity android:name=".ui.activity.FeedbackActivity" />
         <activity android:name=".ui.activity.SettingActivity" />
+        <activity android:name=".ui.activity.VIPPurchaseActivity" />
+        <!--        <activity android:name=".ui.activity.MainPageActivity" />-->
 
         <service android:name=".service.DownloadService" />
     </application>

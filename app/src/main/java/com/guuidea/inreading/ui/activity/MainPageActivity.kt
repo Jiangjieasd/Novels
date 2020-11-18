@@ -11,7 +11,7 @@ class MainPageActivity : BaseActivity() {
     /**
      * 书架
      */
-    var bookShelf: Fragment = BookShelfFragment()
+    var bookShelf: Fragment = ShelfFragment()
 
     /**
      * 发现
@@ -37,6 +37,7 @@ class MainPageActivity : BaseActivity() {
                 .replace(R.id.fragment_content, discover)
                 .show(discover)
                 .commit()
+       nav.selectedItemId=R.id.discover
         nav.setOnNavigationItemSelectedListener {
             return@setOnNavigationItemSelectedListener when (it.itemId) {
                 R.id.book_shelf -> {

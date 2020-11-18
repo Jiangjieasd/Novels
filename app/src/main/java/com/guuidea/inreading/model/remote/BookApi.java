@@ -1,16 +1,27 @@
 package com.guuidea.inreading.model.remote;
 
+import com.guuidea.inreading.model.bean.AllVIPResource;
 import com.guuidea.inreading.model.bean.BaseResponseBean;
 import com.guuidea.inreading.model.bean.BookDetailBean;
 import com.guuidea.inreading.model.bean.BookDto;
+import com.guuidea.inreading.model.bean.BookPurchaseRecord;
+import com.guuidea.inreading.model.bean.BookShelfBody;
 import com.guuidea.inreading.model.bean.BookTagDto;
+import com.guuidea.inreading.model.bean.ChapterBody;
 import com.guuidea.inreading.model.bean.ChapterDto;
+import com.guuidea.inreading.model.bean.DeleteUserBookListDto;
 import com.guuidea.inreading.model.bean.Feedback;
 import com.guuidea.inreading.model.bean.LoginDTO;
 import com.guuidea.inreading.model.bean.PurchaseListDto;
+import com.guuidea.inreading.model.bean.SingleBookInfo;
 import com.guuidea.inreading.model.bean.UserBookDto;
+import com.guuidea.inreading.model.bean.UserBuyVipDto;
 import com.guuidea.inreading.model.bean.UserPreferenceDto;
 import com.guuidea.inreading.model.bean.UserPurchaseDto;
+import com.guuidea.inreading.model.bean.UserRecommendBooks;
+import com.guuidea.inreading.model.bean.VIPInfo;
+import com.guuidea.inreading.model.bean.VIPPurchaseList;
+import com.guuidea.inreading.model.bean.VIPPurchaseRecord;
 import com.guuidea.inreading.model.bean.packages.BillBookPackage;
 import com.guuidea.inreading.model.bean.packages.BillboardPackage;
 import com.guuidea.inreading.model.bean.packages.BookChapterPackage;
@@ -324,7 +335,7 @@ public interface BookApi {
     Single<BaseResponseBean> savePreference(@Body UserPreferenceDto userPreferenceDto);
 
     /**
-     * 用户购买服务
+     * 用户购买书籍
      */
     @POST("/user/purchase/book")
     Single<BaseResponseBean> purchaseBook(@Body UserBookDto userBookDto);
@@ -333,7 +344,7 @@ public interface BookApi {
      * 购买记录
      */
     @POST("/user/purchase/list")
-    Single<PurchaseListDto> purchaseList(@Body UserPurchaseDto userPurchaseDto);
+    Single<BookPurchaseRecord> purchaseList(@Body UserPurchaseDto userPurchaseDto);
 
     /**
      * 获取书籍购买价格
@@ -351,19 +362,19 @@ public interface BookApi {
      * 获取书籍购买价格
      */
     @POST("/content/book/info")
-    Single<BaseResponseBean> getBookInfo(@Body UserBookDto bookDto);
+    Single<SingleBookInfo> fetchBookInfo(@Body UserBookDto bookDto);
 
     /**
      * 书籍章节
      */
     @POST("/content/chapter/list")
-    Single<BaseResponseBean> getChapterList(@Body ChapterDto chapterDto);
+    Single<ChapterBody> fetchChapterList(@Body ChapterDto chapterDto);
 
     /**
      * 用户推荐书籍
      */
     @POST("/content/recommend")
-    Single<BaseResponseBean> getRecommendBook();
+    Single<UserRecommendBooks> getRecommendBook();
 
     /**
      * 根据书名搜索书籍
@@ -381,13 +392,13 @@ public interface BookApi {
      * 购买vip
      */
     @POST("/user/vip/buy")
-    Single<BaseResponseBean> buyVip();
+    Single<BaseResponseBean> buyVip(@Body UserBuyVipDto userBuyVipDto);
 
     /**
      * 获取当前用户vip信息
      */
     @POST("/user/vip/info")
-    Single<BaseResponseBean> getVipInfo();
+    Single<VIPInfo> getVipInfo();
 
     /**
      * 获取用户折扣VIP
@@ -399,19 +410,19 @@ public interface BookApi {
      * 获取用户购买vip记录
      */
     @POST("/user/vip/purchase/list")
-    Single<BaseResponseBean> getVipPurchaseList();
+    Single<VIPPurchaseRecord> getVipPurchaseList(@Body UserPurchaseDto userPurchaseDto);
 
     /**
      * 用户添加书籍
      */
     @POST("/user/reading/add/book")
-    Single<BaseResponseBean> addReadingBook();
+    Single<BaseResponseBean> addReadingBook(@Body UserBookDto saveUserBookListDto);
 
     /**
      * 用户删除书籍
      */
     @POST("/user/reading/delete/book")
-    Single<BaseResponseBean> deleteReadingBook();
+    Single<BaseResponseBean> deleteReadingBook(@Body DeleteUserBookListDto deleteUserBookListDto);
 
     /**
      * 用户获取书本阅读进度
@@ -429,18 +440,21 @@ public interface BookApi {
      * 用户获取书架书籍列表
      */
     @POST("/user/reading/get/list")
-    Single<BaseResponseBean> getReadingList();
+    Single<BookShelfBody> fetchReadingList(@Body UserPurchaseDto userBookListDto);
 
     /**
      * 用户阅读书籍增加views阅读量
      */
     @POST("/user/reading/read/book")
-    Single<BaseResponseBean> getReadingReadBook();
+    Single<BaseResponseBean> addReadingReadBook(@Body UserBookDto saveUserBookListDto);
 
     /**
      * 用户更新书籍已读章节
      */
     @POST("/user/reading/update/book")
     Single<BaseResponseBean> getReadingUpdateBook();
+
+    @POST("/vip/all-vip-resources")
+    Single<AllVIPResource> getAllVIPResources();
 
 }

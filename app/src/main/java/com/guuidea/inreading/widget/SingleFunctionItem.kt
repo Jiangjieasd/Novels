@@ -67,4 +67,9 @@ class SingleFunctionItem : FrameLayout {
         return itemClicker
     }
 
+    fun setCenterText(str: String) {
+        centerTextView.text = str
+    }
+
+
 }

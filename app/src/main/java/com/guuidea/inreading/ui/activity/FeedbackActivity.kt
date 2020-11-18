@@ -55,12 +55,16 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
     private fun submit() {
         val feedback = RemoteRepository.getInstance().feedback(descEd.getContentText())
                 .compose(RxUtils::toSimpleSingle)
-                .subscribe(Consumer<BaseResponseBean> { ToastUtils.show("Success") })
+                .subscribe(Consumer<BaseResponseBean> {
+                    if (0 == it.code) {
+                        ToastUtils.show("Submit Success!")
+                    }
+                })
         addDisposable(feedback)
     }
 
-    private fun checkDesc(desc: String?): Boolean = desc.isNullOrBlank()
+    private fun checkDesc(desc: String?): Boolean = !desc.isNullOrBlank()
 
-    private fun checkEmail(email: String?): Boolean = email.isNullOrBlank() && RegexUtil.checkEmail(email!!)
+    private fun checkEmail(email: String?): Boolean = !email.isNullOrBlank() && RegexUtil.checkEmail(email!!)
 
 }

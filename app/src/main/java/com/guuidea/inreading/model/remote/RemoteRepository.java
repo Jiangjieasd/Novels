@@ -1,5 +1,6 @@
 package com.guuidea.inreading.model.remote;
 
+import com.guuidea.inreading.model.bean.AllVIPResource;
 import com.guuidea.inreading.model.bean.BaseResponseBean;
 import com.guuidea.inreading.model.bean.BillBookBean;
 import com.guuidea.inreading.model.bean.BookChapterBean;
@@ -8,22 +9,39 @@ import com.guuidea.inreading.model.bean.BookDetailBean;
 import com.guuidea.inreading.model.bean.BookHelpsBean;
 import com.guuidea.inreading.model.bean.BookListBean;
 import com.guuidea.inreading.model.bean.BookListDetailBean;
+import com.guuidea.inreading.model.bean.BookPurchaseList;
+import com.guuidea.inreading.model.bean.BookPurchaseRecord;
 import com.guuidea.inreading.model.bean.BookReviewBean;
+import com.guuidea.inreading.model.bean.BookShelfBean;
+import com.guuidea.inreading.model.bean.BookShelfBody;
+import com.guuidea.inreading.model.bean.BookShelfList;
 import com.guuidea.inreading.model.bean.BookTagBean;
+import com.guuidea.inreading.model.bean.Chapter;
+import com.guuidea.inreading.model.bean.ChapterDto;
 import com.guuidea.inreading.model.bean.ChapterInfoBean;
 import com.guuidea.inreading.model.bean.CollBookBean;
 import com.guuidea.inreading.model.bean.CommentBean;
 import com.guuidea.inreading.model.bean.CommentDetailBean;
+import com.guuidea.inreading.model.bean.DeleteUserBookListDto;
 import com.guuidea.inreading.model.bean.Feedback;
 import com.guuidea.inreading.model.bean.HelpsDetailBean;
 import com.guuidea.inreading.model.bean.HotCommentBean;
 import com.guuidea.inreading.model.bean.PurchaseList;
 import com.guuidea.inreading.model.bean.PurchaseListDto;
+import com.guuidea.inreading.model.bean.RecommendBook;
 import com.guuidea.inreading.model.bean.ReviewDetailBean;
+import com.guuidea.inreading.model.bean.SingleBookInfo;
 import com.guuidea.inreading.model.bean.SortBookBean;
 import com.guuidea.inreading.model.bean.UserBookDto;
+import com.guuidea.inreading.model.bean.UserBuyVipDto;
 import com.guuidea.inreading.model.bean.UserPreferenceDto;
 import com.guuidea.inreading.model.bean.UserPurchaseDto;
+import com.guuidea.inreading.model.bean.UserRecommendBooks;
+import com.guuidea.inreading.model.bean.VIPInfo;
+import com.guuidea.inreading.model.bean.VIPInfoBean;
+import com.guuidea.inreading.model.bean.VIPPurchaseList;
+import com.guuidea.inreading.model.bean.VIPPurchaseRecord;
+import com.guuidea.inreading.model.bean.VIPResource;
 import com.guuidea.inreading.model.bean.packages.BillboardPackage;
 import com.guuidea.inreading.model.bean.packages.BookCommentPackage;
 import com.guuidea.inreading.model.bean.packages.BookHelpsPackage;
@@ -292,8 +310,126 @@ public class RemoteRepository {
         return mBookApi.purchaseBook(new UserBookDto(bookEnId));
     }
 
-    public Single<PurchaseList> purchaseList(int pageNum, int pageSize) {
+    public Single<BookPurchaseList> purchaseList(int pageNum, int pageSize) {
         return mBookApi.purchaseList(new UserPurchaseDto(pageNum, pageSize))
-                .map(PurchaseListDto::getData);
+                .map(BookPurchaseRecord::getData);
     }
+
+    public Single<VIPPurchaseList> purchaseVIPList(int pageNum, int pageSize) {
+        return mBookApi.getVipPurchaseList(new UserPurchaseDto(pageNum, pageSize))
+                .map(VIPPurchaseRecord::getData);
+    }
+
+    /**
+     * 获取当前所有VIP信息和折扣信息
+     *
+     * @return
+     */
+    public Single<List<VIPResource>> getAllVIPResource() {
+        return mBookApi.getAllVIPResources()
+                .map(AllVIPResource::getData);
+    }
+
+    /**
+     * 购买VIP
+     *
+     * @param onSaleId
+     * @param vipId
+     * @return
+     */
+    public Single<BaseResponseBean> buyVIP(String onSaleId, int vipId) {
+        return mBookApi.buyVip(new UserBuyVipDto(onSaleId, vipId));
+    }
+
+    /**
+     * 获取VIP信息
+     *
+     * @return
+     */
+    public Single<VIPInfoBean> getVIPInfo() {
+        return mBookApi.getVipInfo()
+                .map(VIPInfo::getData)
+                .compose(RxUtils::toSimpleSingle);
+    }
+
+    /**
+     * 获取用户推荐书籍
+     *
+     * @return
+     */
+    public Single<UserRecommendBooks> fetchRecommendBookInReading() {
+        return mBookApi.getRecommendBook();
+    }
+
+    /**
+     * 获取单本书籍信息
+     *
+     * @param bookEnId
+     * @return
+     */
+    public Single<RecommendBook> fetchSingleBookInfo(int bookEnId) {
+        return mBookApi.fetchBookInfo(new UserBookDto(bookEnId))
+                .map(SingleBookInfo::getData)
+                .compose(RxUtils::toSimpleSingle);
+    }
+
+    /**
+     * 获取章节列表
+     *
+     * @param bookEnId
+     * @param pageNumber
+     * @param pageSize
+     * @return
+     */
+    public Single<List<Chapter>> fetchChapterList(int bookEnId,
+                                                  int pageNumber,
+                                                  int pageSize) {
+        return mBookApi.fetchChapterList(new ChapterDto(bookEnId, pageNumber, pageSize))
+                .map(bean -> bean.getData().getData());
+
+    }
+
+    /**
+     * 添加书籍至书架
+     *
+     * @param bookEnId
+     * @return
+     */
+    public Single<BaseResponseBean> addReadingBook(int bookEnId) {
+        return mBookApi.addReadingBook(new UserBookDto(bookEnId))
+                .compose(RxUtils::toSimpleSingle);
+    }
+
+    /**
+     * 删除书籍
+     *
+     * @param listId
+     * @return
+     */
+    public Single<BaseResponseBean> deleteReadingBook(int listId) {
+        return mBookApi.deleteReadingBook(new DeleteUserBookListDto(listId))
+                .compose(RxUtils::toSimpleSingle);
+    }
+
+    /**
+     * 获取用户书架列表
+     * @param pageNumber
+     * @param pageSize
+     * @return
+     */
+    public Single<BookShelfList> fetchReadingList(int pageNumber, int pageSize) {
+        return mBookApi.fetchReadingList(new UserPurchaseDto(pageNumber, pageSize))
+                .map(BookShelfBody::getData);
+    }
+
+    /**
+     * 增加用户阅读数
+     *
+     * @param bookEnId
+     * @return
+     */
+    public Single<BaseResponseBean> addReadingReadBook(int bookEnId) {
+        return mBookApi.addReadingReadBook(new UserBookDto(bookEnId));
+    }
+
 }

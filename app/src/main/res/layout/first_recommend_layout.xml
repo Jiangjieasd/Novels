@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <com.guuidea.inreading.widget.CustomActionbar
         android:id="@+id/action_bar"
-        app:titile="Recommended books"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/DP48" />
+        android:layout_height="@dimen/DP48"
+        app:titile="Recommended books" />
 
     <com.guuidea.inreading.widget.banner.IndicatorBanner
         android:id="@+id/book__banners"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:indicator_img="@drawable/banner_indicator_select"
+        app:indicator_selected_img="@drawable/banner_indicator_selected" />
 
     <include layout="@layout/include_book_info_layout" />
 

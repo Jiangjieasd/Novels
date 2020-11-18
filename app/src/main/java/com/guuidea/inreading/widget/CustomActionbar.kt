@@ -26,8 +26,20 @@ class CustomActionbar : FrameLayout {
     private lateinit var rightTv: TextView
     private lateinit var moreOop: ImageView
     var imgClicker: OnClickListener? = null
+        set(value) {
+            field = value
+            imgBack.setOnClickListener(field)
+        }
     var rightClicker: OnClickListener? = null
+        set(value) {
+            field = value
+            rightTv.setOnClickListener(field)
+        }
     var moreClicker: OnClickListener? = null
+        set(value) {
+            field = value
+            moreOop.setOnClickListener(field)
+        }
     private var isShowMoreOop = false
     private var rightVisibility = true
 
@@ -64,13 +76,10 @@ class CustomActionbar : FrameLayout {
                 LayoutInflater.from(context).inflate(R.layout.custom_action_bar, null)
         tvTitle = view.findViewById(R.id.tv_center_title)
         imgBack = view.findViewById(R.id.img_back)
-        imgBack.setOnClickListener(imgClicker)
         rightTv = view.findViewById(R.id.right_tv)
-        rightTv.setOnClickListener(rightClicker)
         rightTv.visibility = if (rightVisibility && !isShowMoreOop) View.VISIBLE else View.GONE
         moreOop = view.findViewById(R.id.more_op)
         moreOop.visibility = if (rightVisibility && isShowMoreOop) View.VISIBLE else View.GONE
-        moreOop.setOnClickListener(moreClicker)
         addView(view)
     }
 

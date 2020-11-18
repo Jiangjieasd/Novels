@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.guuidea.inreading.utils.Constant;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -29,10 +31,15 @@ public class RemoteHelper {
                             Request request = chain.request();
                             //在这里获取到request后就可以做任何事情了
                             Response response = chain.proceed(request);
+                            Log.d(TAG, "intercept: " + request.method());
                             Log.d(TAG, "intercept: " + request.url().toString());
+                            Log.d(TAG, "intercept: " + request.headers().toString());
+                            Log.d(TAG, "intercept: " + request.body().toString());
                             return response;
                         }
-                ).build();
+                )
+                .connectTimeout(2, TimeUnit.SECONDS)
+                .build();
 
         mRetrofit = new Retrofit.Builder()
                 .client(mOkHttpClient)

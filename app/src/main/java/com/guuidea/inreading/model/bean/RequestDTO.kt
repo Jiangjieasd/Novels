@@ -47,3 +47,12 @@ data class BookTagDto(
         val pageSize: Int,
         val tagId: Int
 )
+
+data class UserBuyVipDto(
+        val onSaleId: String,
+        val vipId: Int
+)
+
+data class DeleteUserBookListDto(
+        val listId: Int
+)

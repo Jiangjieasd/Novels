@@ -45,7 +45,6 @@ import java.util.List;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 
-;
 
 /**
  *
@@ -87,7 +86,6 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
         mCollBookAdapter = new CollBookAdapter();
         mRvContent.setLayoutManager(new GridLayoutManager(this.getContext(),
                 3, RecyclerView.HORIZONTAL, false));
-        mRvContent.addItemDecoration(new DividerItemDecoration(getContext()));
         mRvContent.setAdapter(mCollBookAdapter);
     }
 
@@ -95,15 +93,15 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
     protected void initClick() {
         super.initClick();
         //推荐书籍
-        Disposable recommendDisp = RxBus.getInstance()
-                .toObservable(RecommendBookEvent.class)
-                .subscribe(
-                        event -> {
-                            mRvContent.startRefresh();
-                            mPresenter.loadRecommendBooks(event.sex);
-                        }
-                );
-        addDisposable(recommendDisp);
+//        Disposable recommendDisp = RxBus.getInstance()
+//                .toObservable(RecommendBookEvent.class)
+//                .subscribe(
+//                        event -> {
+//                            mRvContent.startRefresh();
+//                            mPresenter.loadRecommendBooks(event.sex);
+//                        }
+//                );
+//        addDisposable(recommendDisp);
 
         Disposable donwloadDisp = RxBus.getInstance()
                 .toObservable(DownloadMessage.class)

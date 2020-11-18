@@ -20,7 +20,7 @@ import com.guuidea.inreading.widget.page.PageLoader
 
 /**
  * @file      IndicatorBanner
- * @description    TODO
+ * @description    带指示器banner
  * @author         江 杰
  * @createDate     2020/11/3 14:32
  */
@@ -92,7 +92,6 @@ class IndicatorBanner : FrameLayout {
     private fun bindEvent() {
         vg.adapter = adapter
         vg.currentItem = 0
-        vg.offscreenPageLimit = 3
         vg.pageMargin = 40
         productIndicator(vg.adapter?.count!!)
         vg.setPageTransformer(false, ScalePageTransform())
@@ -107,12 +106,13 @@ class IndicatorBanner : FrameLayout {
 
             override fun onPageSelected(position: Int) {
                 //切换指示器列表中指定index位置的显示
-                indicatorsList.forEach {
-                    it.setImageResource(indicatorImg)
+                if (indicatorsList.isNotEmpty()) {
+                    indicatorsList.forEach {
+                        it.setImageResource(indicatorImg)
+                    }
+                    indicatorsList[position].setImageResource(indicatorSelectedImg)
+                    onPageChange?.onPageChange(position)
                 }
-                indicatorsList[position].setImageResource(indicatorSelectedImg)
-                onPageChange?.onPageChange(position)
-
             }
 
         })
@@ -137,7 +137,7 @@ class IndicatorBanner : FrameLayout {
     }
 
     fun haveScrollToLast(): Boolean {
-        return vg.currentItem == vg.adapter?.count
+        return vg.currentItem == vg.adapter?.count!!.minus(1)
     }
 
     interface OnPageChange {

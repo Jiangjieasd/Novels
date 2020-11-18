@@ -7,6 +7,7 @@ import com.guuidea.inreading.utils.LogUtils;
 import com.guuidea.inreading.utils.RxUtils;
 
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by guuidea on 17-6-2.
@@ -40,8 +41,11 @@ public class SearchPresenter extends RxPresenter<SearchContract.View>
                         bean -> {
                             mView.finishKeyWords(bean);
                         },
-                        e -> {
-                            LogUtils.e(e);
+                        new Consumer<Throwable>() {
+                            @Override
+                            public void accept(Throwable e) throws Exception {
+                                LogUtils.e(e);
+                            }
                         }
                 );
         addDisposable(disp);
