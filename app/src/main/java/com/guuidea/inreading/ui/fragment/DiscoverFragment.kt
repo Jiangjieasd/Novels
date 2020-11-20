@@ -3,12 +3,12 @@ package com.guuidea.inreading.ui.fragment
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.guuidea.inreading.R
-import com.guuidea.inreading.model.bean.MainPageDataBean
-import com.guuidea.inreading.model.bean.MainType
+import com.guuidea.inreading.model.bean.*
 import com.guuidea.inreading.ui.adapter.MainAdapter
 import com.guuidea.inreading.ui.base.BaseFragment
 import com.squareup.haha.perflib.Main
 import kotlinx.android.synthetic.main.fragment_discover_layout.*
+import java.util.concurrent.CountDownLatch
 
 /**
  * @file      DiscoverFragment
@@ -18,13 +18,38 @@ import kotlinx.android.synthetic.main.fragment_discover_layout.*
  */
 class DiscoverFragment : BaseFragment() {
 
+    private val countDownLatch: CountDownLatch = CountDownLatch(3)
+
     override fun getContentId(): Int {
         return R.layout.fragment_discover_layout
     }
 
-    override fun initWidget(savedInstanceState: Bundle?) {
-        super.initWidget(savedInstanceState)
+    override fun initData(savedInstanceState: Bundle?) {
+        super.initData(savedInstanceState)
+        loadRecommendBook()
+        loadLatestRelease()
+        loadMostViewed()
+        countDownLatch.await()
+        //待上述三个请求完成后进行数据填充操作
         setupAdapter()
+    }
+
+    private fun loadRecommendBook() {
+        Thread(Runnable {
+            Thread.sleep(1000)
+        countDownLatch.countDown()}).start()
+    }
+
+    private fun loadLatestRelease() {
+        Thread(Runnable {
+            Thread.sleep(1000)
+            countDownLatch.countDown()}).start()
+    }
+
+    private fun loadMostViewed() {
+        Thread(Runnable {
+            Thread.sleep(1000)
+            countDownLatch.countDown()}).start()
     }
 
     private fun setupAdapter() {
@@ -34,11 +59,14 @@ class DiscoverFragment : BaseFragment() {
 
     private fun test(): ArrayList<MainPageDataBean> {
         val result = ArrayList<MainPageDataBean>()
-        val one: MainPageDataBean = MainPageDataBean(MainType.RECOMMNED, "")
-        val two: MainPageDataBean = MainPageDataBean(MainType.NEWBIE, "")
-        val three: MainPageDataBean = MainPageDataBean(MainType.LATESTRELEASE, "")
-        val four: MainPageDataBean = MainPageDataBean(MainType.MOSTVIEWED, "")
-        val five: MainPageDataBean = MainPageDataBean(MainType.FEEDBACK, "")
+        //推荐书籍待传入
+        val one = MainPageRecommendBook(MainType.RECOMMNED, ArrayList())
+        //静态数据，无需修改
+        val two = MainPageNewbie(MainType.NEWBIE, "")
+        val three = MainPageLatestRelease(MainType.LATESTRELEASE, ArrayList())
+        val four = MainPageMostReviewed(MainType.MOSTVIEWED, ArrayList())
+        //静态数据，无需修改
+        val five = MainPageDataBean(MainType.FEEDBACK)
         result.add(one)
         result.add(two)
         result.add(three)

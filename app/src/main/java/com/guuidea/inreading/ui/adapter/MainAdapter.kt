@@ -1,5 +1,6 @@
 package com.guuidea.inreading.ui.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Outline
@@ -311,6 +312,7 @@ class MainAdapter(val ctx: Context, private val dataList: ArrayList<MainPageData
         })
     }
 
+    @SuppressLint("CheckResult")
     private fun submit(feed: String) {
         RemoteRepository.getInstance().feedback(feed)
                 .compose(RxUtils::toSimpleSingle)
