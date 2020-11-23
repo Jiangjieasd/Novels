@@ -1,7 +1,10 @@
 package com.guuidea.inreading.ui.base;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.widget.FrameLayout;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
@@ -12,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.guuidea.inreading.R;
 import com.guuidea.inreading.utils.StatusBarCompatKt;
+import com.guuidea.inreading.utils.StatusUtil;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -79,6 +83,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentId());
+        setStatusColor();
+        setSystemInvadeBlack();
         initData(savedInstanceState);
         unbinder = ButterKnife.bind(this);
         initToolbar();
@@ -86,6 +92,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         initClick();
         processLogic();
 
+    }
+
+    protected void setStatusColor() {
+
+        StatusUtil.INSTANCE.setUseStatusBarColor(this, Color.parseColor("#EDEDED"));
+    }
+
+    protected void setSystemInvadeBlack() {
+        // 第二个参数是是否沉浸,第三个参数是状态栏字体是否为黑色。
+        StatusUtil.INSTANCE.setSystemStatus(this, true, true);
     }
 
     private void initToolbar() {

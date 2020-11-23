@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/DP16"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/img_rank_cover"
+        android:layout_width="65dp"
+        android:layout_height="86dp"
+        android:background="@android:color/black"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_rank_bookName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/DP12"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/SP12"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/tv_rank_class"
+        app:layout_constraintStart_toEndOf="@id/img_rank_cover"
+        app:layout_constraintTop_toTopOf="@id/img_rank_cover"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Fight to break the sky break the sky" />
+
+    <TextView
+        android:id="@+id/tv_rank_class"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DP12"
+        android:textColor="#898989"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_rank_viewed"
+        app:layout_constraintStart_toStartOf="@id/tv_rank_bookName"
+        app:layout_constraintTop_toBottomOf="@id/tv_rank_bookName"
+        tools:text="Fantasy" />
+
+    <TextView
+        android:id="@+id/tv_rank_viewed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DP12"
+        android:drawableStart="@drawable/yanjing_kai"
+        android:drawablePadding="@dimen/DP5"
+        android:textAlignment="textEnd"
+        android:textColor="@color/color_333333"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toBottomOf="@id/img_rank_cover"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_rank_class"
+        tools:text="5.1K viewed" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

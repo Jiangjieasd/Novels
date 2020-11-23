@@ -2,13 +2,16 @@ package com.guuidea.inreading.model.remote;
 
 import com.guuidea.inreading.model.bean.AllVIPResource;
 import com.guuidea.inreading.model.bean.BaseResponseBean;
+import com.guuidea.inreading.model.bean.BaseResponseModel;
 import com.guuidea.inreading.model.bean.BillBookBean;
 import com.guuidea.inreading.model.bean.BookChapterBean;
 import com.guuidea.inreading.model.bean.BookCommentBean;
 import com.guuidea.inreading.model.bean.BookDetailBean;
+import com.guuidea.inreading.model.bean.BookDto;
 import com.guuidea.inreading.model.bean.BookHelpsBean;
 import com.guuidea.inreading.model.bean.BookListBean;
 import com.guuidea.inreading.model.bean.BookListDetailBean;
+import com.guuidea.inreading.model.bean.BookNameResultTag;
 import com.guuidea.inreading.model.bean.BookPurchaseList;
 import com.guuidea.inreading.model.bean.BookPurchaseRecord;
 import com.guuidea.inreading.model.bean.BookReviewBean;
@@ -16,6 +19,8 @@ import com.guuidea.inreading.model.bean.BookShelfBean;
 import com.guuidea.inreading.model.bean.BookShelfBody;
 import com.guuidea.inreading.model.bean.BookShelfList;
 import com.guuidea.inreading.model.bean.BookTagBean;
+import com.guuidea.inreading.model.bean.BookTagDto;
+import com.guuidea.inreading.model.bean.BookTagResultDTO;
 import com.guuidea.inreading.model.bean.Chapter;
 import com.guuidea.inreading.model.bean.ChapterDto;
 import com.guuidea.inreading.model.bean.ChapterInfoBean;
@@ -66,7 +71,9 @@ import com.guuidea.inreading.model.bean.packages.SortBookPackage;
 import com.guuidea.inreading.utils.RxUtils;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import io.reactivex.Single;
 import retrofit2.Retrofit;
@@ -413,6 +420,7 @@ public class RemoteRepository {
 
     /**
      * 获取用户书架列表
+     *
      * @param pageNumber
      * @param pageSize
      * @return
@@ -432,4 +440,29 @@ public class RemoteRepository {
         return mBookApi.addReadingReadBook(new UserBookDto(bookEnId));
     }
 
+    /**
+     * 根据标签搜索
+     *
+     * @param order “views desc”
+     */
+    public Single<BookTagResultDTO> searchBookByTag(String order,
+                                                    int pageNum,
+                                                    int pageSize,
+                                                    int tagId) {
+        return mBookApi.searchBookByTag(new BookTagDto(order, pageNum, pageSize, tagId))
+                .map(BaseResponseModel::getData)
+                .compose(RxUtils::toSimpleSingle);
+    }
+
+    /**
+     * 根据书名进行搜索
+     */
+    public Single<BookNameResultTag> searchBookByName(String bookName,
+                                                      String order,
+                                                      int pageNum,
+                                                      int pageSize) {
+        return mBookApi.searchBookByName(new BookDto(bookName, order, pageNum, pageSize))
+                .map(BaseResponseModel::getData)
+                .compose(RxUtils::toSimpleSingle);
+    }
 }

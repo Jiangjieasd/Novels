@@ -47,9 +47,10 @@ class RankingActivity : BaseActivity() {
      * 书籍类别
      */
     private val bookClass: Array<String> = arrayOf(
-            "Fantasy", "WuXia", "Modern",
+            "All", "WuXia", "Modern", "Fantasy",
             "Sci-fi", "Romance"
     )
+    private val bookClassType = arrayOf<Int>(0, 4, 7, 1, 6, 9)
     private val titles: Array<String> = arrayOf(
             "Most Viewed", "Last release"
     )
@@ -90,7 +91,7 @@ class RankingActivity : BaseActivity() {
      */
     private fun onBookClassClickEvent(positon: Int) {
         fragments.forEach {
-            it.refreshData(positon)
+            it.refreshData(bookClassType[positon])
         }
     }
 

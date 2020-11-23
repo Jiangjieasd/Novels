@@ -28,7 +28,7 @@
         <activity
             android:name=".ui.activity.SplashActivity"
             android:theme="@style/SplashTheme" />
-        <activity android:name=".ui.activity.MainPageActivity">
+        <activity android:name=".ui.activity.SearchBookActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

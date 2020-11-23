@@ -2,11 +2,14 @@ package com.guuidea.inreading.model.remote;
 
 import com.guuidea.inreading.model.bean.AllVIPResource;
 import com.guuidea.inreading.model.bean.BaseResponseBean;
+import com.guuidea.inreading.model.bean.BaseResponseModel;
 import com.guuidea.inreading.model.bean.BookDetailBean;
 import com.guuidea.inreading.model.bean.BookDto;
+import com.guuidea.inreading.model.bean.BookNameResultTag;
 import com.guuidea.inreading.model.bean.BookPurchaseRecord;
 import com.guuidea.inreading.model.bean.BookShelfBody;
 import com.guuidea.inreading.model.bean.BookTagDto;
+import com.guuidea.inreading.model.bean.BookTagResultDTO;
 import com.guuidea.inreading.model.bean.ChapterBody;
 import com.guuidea.inreading.model.bean.ChapterDto;
 import com.guuidea.inreading.model.bean.DeleteUserBookListDto;
@@ -380,13 +383,13 @@ public interface BookApi {
      * 根据书名搜索书籍
      */
     @POST("/content/search/book/name")
-    Single<BaseResponseBean> searchBookByName(@Body BookDto bookDto);
+    Single<BaseResponseModel<BookNameResultTag>> searchBookByName(@Body BookDto bookDto);
 
     /**
      * 根据标签搜索书籍
      */
     @POST("/content/search/book/tag")
-    Single<BaseResponseBean> searchBookByTag(@Body BookTagDto bookTagDto);
+    Single<BaseResponseModel<BookTagResultDTO>> searchBookByTag(@Body BookTagDto bookTagDto);
 
     /**
      * 购买vip

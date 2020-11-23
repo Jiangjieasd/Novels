@@ -41,6 +41,9 @@ data class BookDto(
         val pageSize: Int
 )
 
+/**
+ * 根据标签进行搜索model
+ */
 data class BookTagDto(
         val order: String,
         val pageNum: Int,

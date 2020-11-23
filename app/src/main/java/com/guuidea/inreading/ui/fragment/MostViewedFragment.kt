@@ -3,6 +3,7 @@ package com.guuidea.inreading.ui.fragment
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.guuidea.inreading.R
+import com.guuidea.inreading.model.remote.RemoteRepository
 import com.guuidea.inreading.ui.adapter.BookItem
 import com.guuidea.inreading.ui.adapter.BookItemAdapter
 import com.guuidea.inreading.ui.base.BaseFragment
@@ -39,5 +40,6 @@ class MostViewedFragment : BaseFragment() {
      */
     override fun refreshData(type: Int) {
         super.refreshData(type)
+        val disposal=RemoteRepository.getInstance()
     }
 }

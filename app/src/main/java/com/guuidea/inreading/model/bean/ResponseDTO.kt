@@ -117,7 +117,9 @@ data class RecommendBook(
         val views: Int,
         val createTime: String,
         val updateTime: String,
-        val id: Int
+        val id: Int,
+        val tagId: Int,
+        val tagName: String
 )
 
 data class SingleBookInfo(
@@ -174,4 +176,26 @@ data class BookShelfBean(
         val readChapter: Int,
         val allChapter: Int,
         val wordIndex: Int
+)
+
+data class BaseResponseModel<T>(
+        val code: Int,
+        val msg: String,
+        val data: T
+)
+
+data class BookTagResultDTO(
+        val pageNumber: Int,
+        val pageSize: Int,
+        val data: ArrayList<RecommendBook>,
+        val totalPage: Int,
+        val totalCount: Int
+)
+
+data class BookNameResultTag(
+        val pageNumber: Int,
+        val pageSize: Int,
+        val data: ArrayList<RecommendBook>,
+        val totalPage: Int,
+        val totalCount: Int
 )

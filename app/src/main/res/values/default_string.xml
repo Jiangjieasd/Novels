@@ -35,4 +35,6 @@
     <string name="what_you_want">What you want</string>
     <string name="be_vip_Uppercase">Be VIP</string>
     <string name="more">more</string>
+    <string name="search_hint">Search by book title</string>
+    <string name="cancel">Cancel</string>
 </resources>

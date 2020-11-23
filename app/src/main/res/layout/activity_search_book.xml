@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <!--搜索框-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/DP16"
+        android:elevation="@dimen/DP5"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/DP10"
+        android:paddingBottom="@dimen/DP10">
+
+        <ImageView
+            android:id="@+id/search_iv_back"
+            android:layout_width="@dimen/DP40"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/DP6"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_search_back_normal"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/DP40"
+            android:layout_weight="1"
+            android:background="@drawable/shape_common_gray_corner"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/search_iv_search"
+                android:layout_width="@dimen/DP40"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/DP8"
+                android:contentDescription="@string/app_name"
+                android:padding="@dimen/DP6"
+                android:scaleType="centerInside"
+                android:src="@drawable/sousuo" />
+
+            <EditText
+                android:id="@+id/search_et_input"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#fff5f5f5"
+                android:hint="@string/search_hint"
+                android:imeOptions="actionSearch"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textCursorDrawable="@color/red"
+                android:textSize="@dimen/SP14" />
+
+            <ImageView
+                android:id="@+id/search_iv_delete"
+                android:layout_width="@dimen/DP20"
+                android:layout_height="@dimen/DP20"
+                android:layout_marginStart="@dimen/DP6"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_delete"
+                android:visibility="invisible"
+                tools:visibility="visible" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/DP16"
+            android:text="@string/cancel"
+            android:textColor="@color/color_252525"
+            android:textSize="@dimen/SP16" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DP32"
+              android:layout_marginStart="@dimen/DP24"
+                android:text="Popular Searches"
+                android:textColor="#ff252525"
+                android:textSize="@dimen/SP16" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_popular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/DP24"
+                android:layout_marginTop="@dimen/DP12"
+                android:layout_marginEnd="@dimen/DP24" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="27dp"
+                android:paddingStart="@dimen/DP24"
+                android:paddingEnd="@dimen/DP24">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Recommended novel"
+                    android:textColor="#ff252525"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/little_arrow_right"
+                    android:drawablePadding="@dimen/DP5"
+                    android:text="@string/more" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_recommend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/DP24"
+                android:layout_marginEnd="@dimen/DP24" />
+
+        </LinearLayout>
+
+        <!--搜索无结果页面-->
+        <ImageView
+            android:id="@+id/img_no_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/wusousuo"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_result"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </FrameLayout>
+
+
+</LinearLayout>

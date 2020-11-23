@@ -7,10 +7,16 @@
     android:orientation="vertical">
 
     <com.guuidea.inreading.widget.CustomActionbar
+        app:right_visibility="false"
         android:id="@+id/action_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/DP48"
         app:titile="Ranking" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/nb.divider.narrow"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/flex_box"
