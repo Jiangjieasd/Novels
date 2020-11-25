@@ -17,7 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by guuidea on 17-5-29.
+ * @author guuidea
+ * @date 17-5-29
  * 网络页面加载器
  */
 
@@ -42,7 +43,9 @@ public class NetPageLoader extends PageLoader {
 
     @Override
     public void refreshChapterList() {
-        if (mCollBook.getBookChapters() == null) return;
+        if (mCollBook.getBookChapters() == null) {
+            return;
+        }
 
         // 将 BookChapter 转换成当前可用的 Chapter
         mChapterList = convertTxtChapter(mCollBook.getBookChapters());
@@ -64,7 +67,9 @@ public class NetPageLoader extends PageLoader {
     protected BufferedReader getChapterReader(TxtChapter chapter) throws Exception {
         File file = new File(Constant.BOOK_CACHE_PATH + mCollBook.get_id()
                 + File.separator + chapter.title + FileUtils.SUFFIX_NB);
-        if (!file.exists()) return null;
+        if (!file.exists()) {
+            return null;
+        }
 
         Reader reader = new FileReader(file);
         BufferedReader br = new BufferedReader(reader);

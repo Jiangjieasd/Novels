@@ -201,9 +201,6 @@
         <item>香港繁體到簡體</item>
     </string-array>
     <string name="title_activity_main_page">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
 
     <string name="nav_shelf">Shelf</string>
     <string name="nav_discover">Discover</string>

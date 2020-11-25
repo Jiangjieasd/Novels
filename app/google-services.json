@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "558984841560",
+    "firebase_url": "https://inreading-fb138.firebaseio.com",
+    "project_id": "inreading-fb138",
+    "storage_bucket": "inreading-fb138.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558984841560:android:6fbf4c6fcedd1f001dfd2d",
+        "android_client_info": {
+          "package_name": "com.guuidea.inreadingtt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "558984841560-kj9vugo6aqqek69062kuu0qkj2qlad3d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9yX2FwlQrCQl4pDaDpHE2gWcllN7EEgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "558984841560-kj9vugo6aqqek69062kuu0qkj2qlad3d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

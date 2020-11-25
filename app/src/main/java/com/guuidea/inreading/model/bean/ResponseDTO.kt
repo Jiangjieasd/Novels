@@ -146,7 +146,7 @@ data class ChapterListBean(
 )
 
 data class Chapter(
-        val id: Int,
+        val id: String,
         val chapterName: String,
         val needPay: Boolean
 )
@@ -198,4 +198,17 @@ data class BookNameResultTag(
         val data: ArrayList<RecommendBook>,
         val totalPage: Int,
         val totalCount: Int
+)
+
+/**
+ * 书本单章节内容
+ */
+data class BookChapterContent(
+        val id: String,
+        val bookEnId: Int,
+        val wordIndex: Int,
+        val chapterName: String,
+        val chapterContent: String,
+        val nextChapterEnId: String,
+        val previousChapterEnId: String
 )

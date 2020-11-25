@@ -5,7 +5,9 @@ import com.guuidea.inreading.model.bean.BaseResponseBean;
 import com.guuidea.inreading.model.bean.BaseResponseModel;
 import com.guuidea.inreading.model.bean.BillBookBean;
 import com.guuidea.inreading.model.bean.BookChapterBean;
+import com.guuidea.inreading.model.bean.BookChapterContent;
 import com.guuidea.inreading.model.bean.BookCommentBean;
+import com.guuidea.inreading.model.bean.BookContentRequestDto;
 import com.guuidea.inreading.model.bean.BookDetailBean;
 import com.guuidea.inreading.model.bean.BookDto;
 import com.guuidea.inreading.model.bean.BookHelpsBean;
@@ -388,7 +390,7 @@ public class RemoteRepository {
      * @param pageSize
      * @return
      */
-    public Single<List<Chapter>> fetchChapterList(int bookEnId,
+    public Single<List<Chapter>> fetchChapterList(String bookEnId,
                                                   int pageNumber,
                                                   int pageSize) {
         return mBookApi.fetchChapterList(new ChapterDto(bookEnId, pageNumber, pageSize))
@@ -464,5 +466,13 @@ public class RemoteRepository {
         return mBookApi.searchBookByName(new BookDto(bookName, order, pageNum, pageSize))
                 .map(BaseResponseModel::getData)
                 .compose(RxUtils::toSimpleSingle);
+    }
+
+    /**
+     * 请求章节内容
+     */
+    public Single<BookChapterContent> fetchReadingChapter(String bookId, String chapterId) {
+        return mBookApi.fetchReadingChapter(new BookContentRequestDto(bookId, chapterId))
+                .map(BaseResponseModel::getData);
     }
 }

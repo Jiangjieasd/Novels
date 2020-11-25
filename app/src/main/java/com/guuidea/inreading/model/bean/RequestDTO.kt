@@ -29,7 +29,7 @@ data class UserPurchaseDto(
 )
 
 data class ChapterDto(
-        val bookEnId: Int,
+        val bookEnId: String,
         val pageNum: Int,
         val pageSize: Int
 )
@@ -58,4 +58,9 @@ data class UserBuyVipDto(
 
 data class DeleteUserBookListDto(
         val listId: Int
+)
+
+data class BookContentRequestDto(
+        val bookEnId: String,
+        val chapterEnId: String
 )

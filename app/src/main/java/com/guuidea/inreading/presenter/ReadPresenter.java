@@ -37,6 +37,7 @@ public class ReadPresenter extends RxPresenter<ReadContract.View>
 
     @Override
     public void loadCategory(String bookId) {
+        //加载章节列表
         Disposable disposable = RemoteRepository.getInstance()
                 .getBookChapters(bookId)
                 .doOnSuccess(bookChapterBeen -> {
@@ -50,12 +51,8 @@ public class ReadPresenter extends RxPresenter<ReadContract.View>
                 .subscribe(
                         beans -> {
                             mView.showCategory(beans);
-                        }
-                        ,
-                        e -> {
-                            //TODO: Haven't grate conversation method.
-                            LogUtils.e(e);
-                        }
+                        },
+                        LogUtils::e
                 );
         addDisposable(disposable);
     }

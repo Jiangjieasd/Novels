@@ -152,5 +152,13 @@
         <item name="android:thumb">@drawable/seek_thumb</item>
     </style>
 
+    <style name="OverFlowMenuTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!-- 设置Menu窗口不覆盖Toolbar视图 -->
+        <item name="overlapAnchor">false</item>
+    </style>
 
+    <style name="MenuTextStyle">
+        <item name="android:textColor">@color/color_252525</item>
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>

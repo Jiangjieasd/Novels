@@ -35,6 +35,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.guuidea.inreading.R;
 import com.guuidea.inreading.model.bean.BookChapterBean;
 import com.guuidea.inreading.model.bean.CollBookBean;
+import com.guuidea.inreading.model.bean.RecommendBook;
 import com.guuidea.inreading.model.local.BookRepository;
 import com.guuidea.inreading.model.local.ReadSettingManager;
 import com.guuidea.inreading.presenter.ReadPresenter;
@@ -53,6 +54,7 @@ import com.guuidea.inreading.widget.page.PageLoader;
 import com.guuidea.inreading.widget.page.PageView;
 import com.guuidea.inreading.widget.page.TxtChapter;
 
+import java.util.Collection;
 import java.util.List;
 
 import butterknife.BindView;
@@ -215,6 +217,27 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
         context.startActivity(new Intent(context, ReadActivity.class)
                 .putExtra(EXTRA_IS_COLLECTED, isCollected)
                 .putExtra(EXTRA_COLL_BOOK, collBook));
+    }
+
+    public static void startActivity(Context context, RecommendBook book, boolean isCollected) {
+        context.startActivity(new Intent(context, ReadActivity.class)
+                .putExtra(EXTRA_IS_COLLECTED, isCollected)
+                .putExtra(EXTRA_COLL_BOOK, ReadActivity.covert2CollBookBean(book)));
+    }
+
+    /**
+     * 数据bean转换
+     * @param book
+     * @return
+     */
+    private static CollBookBean covert2CollBookBean(RecommendBook book) {
+        CollBookBean collBookBean = new CollBookBean();
+        collBookBean.set_id(String.valueOf(book.getId()));
+        collBookBean.setTitle(book.getName());
+        collBookBean.setShortIntro(book.getBrief());
+        collBookBean.setCover(book.getBookIconUrl());
+        collBookBean.setUpdated(book.getUpdateTime());
+        return collBookBean;
     }
 
     @Override

@@ -3,6 +3,8 @@ package com.guuidea.inreading.model.remote;
 import com.guuidea.inreading.model.bean.AllVIPResource;
 import com.guuidea.inreading.model.bean.BaseResponseBean;
 import com.guuidea.inreading.model.bean.BaseResponseModel;
+import com.guuidea.inreading.model.bean.BookChapterContent;
+import com.guuidea.inreading.model.bean.BookContentRequestDto;
 import com.guuidea.inreading.model.bean.BookDetailBean;
 import com.guuidea.inreading.model.bean.BookDto;
 import com.guuidea.inreading.model.bean.BookNameResultTag;
@@ -316,9 +318,10 @@ public interface BookApi {
     Single<SearchBookPackage> getSearchBookPackage(@Query("query") String query);
 
 
-    /**
-     * 登录
-     */
+    /****************************InReading********************************/
+
+
+
     @POST("/admin/auth/login")
     Single<BaseResponseBean> login(@Body LoginDTO loginDTO);
 
@@ -437,7 +440,7 @@ public interface BookApi {
      * 用户获取书籍章节
      */
     @POST("/user/reading/get/chapter")
-    Single<BaseResponseBean> getReadingChapter();
+    Single<BaseResponseModel<BookChapterContent>> fetchReadingChapter(@Body BookContentRequestDto getChapterDto );
 
     /**
      * 用户获取书架书籍列表
