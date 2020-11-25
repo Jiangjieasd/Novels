@@ -35,7 +35,9 @@ public abstract class Effect {
         mTouchSlop = configuration.getScaledPagingTouchSlop();
     }
 
-    void config(int effectWidth, int effectHeight, Bitmap currPageBitmap, Bitmap nextPageBitmap) {
+    void config(int effectWidth, int effectHeight,
+                Bitmap currPageBitmap,
+                Bitmap nextPageBitmap) {
         this.mEffectWidth = effectWidth;
         this.mEffectHeight = effectHeight;
         this.mCurrPageBitmap = currPageBitmap;

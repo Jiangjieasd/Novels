@@ -1,13 +1,18 @@
 package com.guuidea.inreading.ui.login
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint
+import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.text.style.ForegroundColorSpan
 import android.view.View
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -17,6 +22,7 @@ import com.facebook.login.widget.LoginButton
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
@@ -27,6 +33,7 @@ import com.guuidea.inreading.R
 import com.guuidea.inreading.ui.activity.AgreementAndPolicyActivity
 import com.guuidea.inreading.ui.base.BaseActivity
 import com.guuidea.inreading.utils.ToastUtils
+import kotlinx.android.synthetic.main.layout_login.*
 
 
 /**
@@ -53,16 +60,26 @@ class Login : BaseActivity(), View.OnClickListener {
     override fun initData(savedInstanceState: Bundle?) {
         super.initData(savedInstanceState)
         //Google init
-        val gso: GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("")
-                .requestEmail()
-                .build()
+        initGoogle()
+        //Facebook init
+        initFacebook()
+        login_facebook.setOnClickListener(this)
+    }
+
+    private fun initGoogle() {
+        btn_login_google.setOnClickListener(this)
+        val gso: GoogleSignInOptions =
+                GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        .requestIdToken("408972286348-nor5vb0qrc0em3373rq0k99gnifqmh9j.apps.googleusercontent.com")
+                        .requestEmail()
+                        .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
         mAuth = Firebase.auth
+    }
 
-        //Facebook init
+    private fun initFacebook() {
         callbackManager = CallbackManager.Factory.create()
-        btnLoginFacebook = findViewById(R.id.btn_login_facebook)
+        btnLoginFacebook = LoginButton(this)
         btnLoginFacebook.setReadPermissions("email", "public_profile")
         btnLoginFacebook.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult) {
@@ -96,7 +113,7 @@ class Login : BaseActivity(), View.OnClickListener {
                 AgreementAndPolicyActivity.startAgreementOrPrivacy(this@Login, 0)
             }
 
-        }, 31, 48, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+        }, 30, 47, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
         spannableDesc.setSpan(object : ClickableSpan() {
 
             override fun updateDrawState(ds: TextPaint) {
@@ -109,7 +126,15 @@ class Login : BaseActivity(), View.OnClickListener {
                 AgreementAndPolicyActivity.startAgreementOrPrivacy(this@Login, 1)
             }
 
-        }, 52, 65, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+        }, 51, 64, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+
+        spannableDesc.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.color_999999)),
+                30, 47, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+        spannableDesc.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.color_999999)),
+                51, 64, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+        agreement_privacy.movementMethod = LinkMovementMethod.getInstance()
+        agreement_privacy.text = spannableDesc
+
     }
 
     override fun onStart() {
@@ -164,18 +189,17 @@ class Login : BaseActivity(), View.OnClickListener {
 
     private fun updateUI(user: FirebaseUser?) = if (null != user) {
         //登录成功后页面ui变化
-        ToastUtils.show("111")
+        ToastUtils.show("Login Success")
     } else {
         //登陆失败后页面ui变化
-        ToastUtils.show("1331")
+        ToastUtils.show("Login Fail")
     }
 
-    override fun onClick(v: View?) = when (v?.id) {
-        R.id.btn_login_google -> {
+    override fun onClick(v: View?) {
+        if (R.id.btn_login_google == v?.id) {
             signIn()
-        }
-        else -> {
-            ToastUtils.show("111")
+        } else if (R.id.login_facebook == v?.id) {
+            btnLoginFacebook.performClick()
         }
     }
 

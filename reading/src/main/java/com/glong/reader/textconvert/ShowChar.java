@@ -30,9 +30,5 @@ public class ShowChar {
      * 当前字符 上下左右四个位置
      */
     public RectF rectF;
-//    public Point topLeftPosition = null;
-//    public Point topRightPosition = null;
-//    public Point bottomLeftPosition = null;
-//    public Point bottomRightPosition = null;
 
 }

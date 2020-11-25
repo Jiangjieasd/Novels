@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Html
+import android.view.View
 import com.guuidea.inreading.R
 import com.guuidea.inreading.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_agreement_policy.*
@@ -38,6 +39,7 @@ class AgreementAndPolicyActivity : BaseActivity() {
                 action_bar.title = "Privacy"
             }
         }
+        action_bar.setOnClickListener { finish() }
     }
 
 
@@ -49,7 +51,7 @@ class AgreementAndPolicyActivity : BaseActivity() {
          */
         fun startAgreementOrPrivacy(context: Context, type: Int) {
             val startIntent = Intent(context, AgreementAndPolicyActivity::class.java)
-            startIntent.extras?.putInt(TYPE, type)
+            startIntent.putExtra(TYPE, type)
             context.startActivity(startIntent)
         }
     }

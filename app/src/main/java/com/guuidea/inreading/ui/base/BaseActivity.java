@@ -2,16 +2,14 @@ package com.guuidea.inreading.ui.base;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.widget.FrameLayout;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import com.guuidea.inreading.R;
 import com.guuidea.inreading.utils.StatusBarCompatKt;

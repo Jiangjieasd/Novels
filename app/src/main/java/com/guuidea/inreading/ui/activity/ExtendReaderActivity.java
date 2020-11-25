@@ -1,8 +1,9 @@
 package com.guuidea.inreading.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,7 +32,7 @@ import com.guuidea.inreading.model.bean.Chapter;
 import com.guuidea.inreading.model.remote.RemoteRepository;
 import com.guuidea.inreading.ui.SimpleOnSeekBarChangeListener;
 import com.guuidea.inreading.ui.adapter.CatalogueAdapter;
-import com.guuidea.inreading.ui.adapter.MyReaderAdapter;
+import com.guuidea.inreading.ui.adapter.InReadingReaderAdapter;
 import com.guuidea.inreading.ui.base.BaseActivity;
 import com.guuidea.inreading.utils.LogUtils;
 import com.guuidea.inreading.utils.RxUtils;
@@ -39,20 +40,15 @@ import com.guuidea.inreading.utils.ScreenUtils;
 import com.guuidea.inreading.widget.MenuView;
 import com.guuidea.inreading.widget.SettingView;
 
-import java.util.List;
-
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 /**
- * @author Lenovo
+ * @author 江杰
  */
 public class ExtendReaderActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = ExtendReaderActivity.class.getSimpleName();
+    private static final String BOOK_ID = "book_id";
 
     private ReaderView mReaderView;
     private ReaderView.ReaderManager mReaderManager;
@@ -83,9 +79,18 @@ public class ExtendReaderActivity extends BaseActivity implements View.OnClickLi
     private RecyclerView mRecyclerView;
     private CatalogueAdapter mCatalogueAdapter;
     private String mBookId = "15";
+    private long mDownTime;
+    private float mDownX;
 
-    public static void startRead(String bookId) {
-
+    /**
+     * 供外部调起唯一方式，不要使用Intent直接显示启动，否则bookId会为空
+     *
+     * @param bookId 书籍id
+     */
+    public static void startRead(Context ctx, String bookId) {
+        Intent startReadIntent = new Intent(ctx, ExtendReaderActivity.class);
+        startReadIntent.putExtra(BOOK_ID, bookId);
+        ctx.startActivity(startReadIntent);
     }
 
     @Override
@@ -96,9 +101,12 @@ public class ExtendReaderActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getIntent() != null) {
+            mBookId = getIntent().getStringExtra(BOOK_ID);
+        }
         initReader();
         initView();
-        initToolbar();
+        prepareToolbar();
         loadChapter();
     }
 
@@ -140,7 +148,8 @@ public class ExtendReaderActivity extends BaseActivity implements View.OnClickLi
         mChapterSeekBar.setOnSeekBarChangeListener(new SimpleOnSeekBarChangeListener() {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                TurnStatus turnStatus = mReaderManager.toSpecifiedChapter(seekBar.getProgress(), 0);
+                TurnStatus turnStatus =
+                        mReaderManager.toSpecifiedChapter(seekBar.getProgress(), 0);
                 if (turnStatus == TurnStatus.LOAD_SUCCESS) {
                     mReaderView.invalidateBothPage();
                 }
@@ -215,13 +224,14 @@ public class ExtendReaderActivity extends BaseActivity implements View.OnClickLi
         });
     }
 
-    private void initToolbar() {
+    private void prepareToolbar() {
         final Toolbar toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> finish());
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -242,7 +252,7 @@ public class ExtendReaderActivity extends BaseActivity implements View.OnClickLi
     private void initReader() {
         mReaderView = findViewById(R.id.extend_reader);
         mReaderManager = new ReaderView.ReaderManager();
-        mAdapter = new MyReaderAdapter(mBookId);
+        mAdapter = new InReadingReaderAdapter(mBookId);
 
         mReaderView.setReaderManager(mReaderManager);
         mReaderView.setAdapter(mAdapter);
@@ -253,7 +263,7 @@ public class ExtendReaderActivity extends BaseActivity implements View.OnClickLi
                 TurnStatus turnStatus = mReaderManager.toPrevPage();
                 if (turnStatus == TurnStatus.NO_PREV_CHAPTER) {
                     Toast.makeText(ExtendReaderActivity.this,
-                            "没有上一页啦", Toast.LENGTH_SHORT).show();
+                            "There is no previous page", Toast.LENGTH_SHORT).show();
                 }
                 return turnStatus;
             }
@@ -263,58 +273,37 @@ public class ExtendReaderActivity extends BaseActivity implements View.OnClickLi
                 TurnStatus turnStatus = mReaderManager.toNextPage();
                 if (turnStatus == TurnStatus.NO_NEXT_CHAPTER) {
                     Toast.makeText(ExtendReaderActivity.this,
-                            "没有下一页啦", Toast.LENGTH_SHORT).show();
+                            "There is no next page", Toast.LENGTH_SHORT).show();
                 }
                 return turnStatus;
             }
         });
     }
 
-    private Disposable mDisposable;
-
     /**
      * 下载章节列表
      */
     private void loadChapter() {
-        mDisposable = RemoteRepository.getInstance().fetchChapterList(
+        Disposable mDisposable = RemoteRepository.getInstance().fetchChapterList(
                 mBookId,
                 1,
                 5000)
                 .compose(RxUtils::toSimpleSingle)
-                .subscribe(new Consumer<List<Chapter>>() {
-
-                               @Override
-                               public void accept(List<Chapter> chapters) throws Exception {
-                                   if (chapters != null) {
-                                       mAdapter.setChapterList(chapters);
-                                       mAdapter.notifyDataSetChanged();
-                                       mChapterSeekBar.setMax(chapters.size() - 1);
-                                       mCatalogueAdapter.setList(chapters);
-                                   }
-                               }
-                           },
-                        new Consumer<Throwable>() {
-                            @Override
-                            public void accept(Throwable throwable) throws Exception {
-                                LogUtils.e(throwable);
+                .subscribe(chapters -> {
+                            if (chapters != null) {
+                                mAdapter.setChapterList(chapters);
+                                mAdapter.notifyDataSetChanged();
+                                mChapterSeekBar.setMax(chapters.size() - 1);
+                                mCatalogueAdapter.setList(chapters);
                             }
-                        });
+                        },
+                        throwable -> LogUtils.e(throwable));
+        addDisposable(mDisposable);
     }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mDisposable != null && !mDisposable.isDisposed()) {
-            mDisposable.dispose();
-        }
-    }
-
-    private long mDownTime;
-    private float mDownX;
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        int longClickTime = ViewConfiguration.get(this).getLongPressTimeout();
+        int longClickTime = ViewConfiguration.getLongPressTimeout();
         int touchSlop = ViewConfiguration.get(this).getScaledPagingTouchSlop();
         int screenWidth = ScreenUtils.getScreenWidth(this);
         switch (ev.getAction()) {
@@ -329,12 +318,11 @@ public class ExtendReaderActivity extends BaseActivity implements View.OnClickLi
                 break;
             case MotionEvent.ACTION_UP:
                 if (System.currentTimeMillis() - mDownTime < longClickTime
-                        && (Math.abs(ev.getX() - mDownX) < touchSlop)) {
-                    if (!mMenuView.isShowing() && !mSettingView.isShowing()
-                            && !mDrawerLayout.isDrawerOpen(mNavigationView)) {
-                        mMenuView.show();
-                        return true;
-                    }
+                        && (Math.abs(ev.getX() - mDownX) < touchSlop)
+                        && !mMenuView.isShowing() && !mSettingView.isShowing()
+                        && !mDrawerLayout.isDrawerOpen(mNavigationView)) {
+                    mMenuView.show();
+                    return true;
                 }
                 break;
             default:
@@ -360,7 +348,8 @@ public class ExtendReaderActivity extends BaseActivity implements View.OnClickLi
                 } else if (turnStatus == TurnStatus.DOWNLOADING) {
                     mChapterSeekBar.setProgress(mChapterSeekBar.getProgress() - 1);
                 } else if (turnStatus == TurnStatus.NO_PREV_CHAPTER) {
-                    Toast.makeText(this, "没有上一章啦", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "There is no previous chapter",
+                            Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.text_next_chapter:
@@ -372,7 +361,8 @@ public class ExtendReaderActivity extends BaseActivity implements View.OnClickLi
                 } else if (turnStatus2 == TurnStatus.DOWNLOADING) {
                     mChapterSeekBar.setProgress(mChapterSeekBar.getProgress() + 1);
                 } else if (turnStatus2 == TurnStatus.NO_NEXT_CHAPTER) {
-                    Toast.makeText(this, "没有下一章啦", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "There is no next chapter",
+                            Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.reader_catalogue:

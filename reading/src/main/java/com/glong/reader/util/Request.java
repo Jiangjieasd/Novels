@@ -98,10 +98,15 @@ public class Request {
         }
 
         public Builder addHeader(String key, String value) {
-            if (key == null) throw new NullPointerException("key == null");
-            if (value == null) throw new NullPointerException("value == null");
-            if (mHeaders == null)
+            if (key == null) {
+                throw new NullPointerException("key == null");
+            }
+            if (value == null) {
+                throw new NullPointerException("value == null");
+            }
+            if (mHeaders == null) {
                 mHeaders = new HashMap<>();
+            }
             mHeaders.put(key, value);
             return this;
         }
@@ -117,7 +122,9 @@ public class Request {
         }
 
         public Request build() {
-            if (mBaseUrl == null) throw new NullPointerException("mBaseUrl == null");
+            if (mBaseUrl == null) {
+                throw new NullPointerException("mBaseUrl == null");
+            }
             return new Request(this);
         }
     }

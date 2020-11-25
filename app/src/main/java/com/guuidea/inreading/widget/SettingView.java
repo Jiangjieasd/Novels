@@ -16,15 +16,16 @@ import androidx.annotation.Nullable;
 
 import com.guuidea.inreading.R;
 
-
 /**
- * Created by Garrett on 2018/12/5.
+ *
+ * @author Garrett
+ * @date 2018/12/5
  * contact me krouky@outlook.com
  */
 public class SettingView extends FrameLayout {
 
     private boolean isShowing;
-    private LinearLayout mSettingContainer;
+    private final LinearLayout mSettingContainer;
 
     public SettingView(@NonNull Context context) {
         this(context, null);
@@ -34,30 +35,33 @@ public class SettingView extends FrameLayout {
         this(context, attrs, 0);
     }
 
-    public SettingView(@NonNull final Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public SettingView(@NonNull final Context context,
+                       @Nullable AttributeSet attrs,
+                       int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         LayoutInflater.from(context).inflate(R.layout.reader_setting_layout, this);
         mSettingContainer = findViewById(R.id.setting_container);
 
-        ((Activity) context).getWindow().getDecorView().addOnLayoutChangeListener(new OnLayoutChangeListener() {
+        ((Activity) context).getWindow().getDecorView()
+                .addOnLayoutChangeListener(new OnLayoutChangeListener() {
             @Override
-            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+            public void onLayoutChange(View v,
+                                       int left, int top, int right, int bottom,
+                                       int oldLeft, int oldTop, int oldRight, int oldBottom) {
                 ((Activity) context).getWindow().getDecorView().removeOnLayoutChangeListener(this);
                 mSettingContainer.setTranslationY(mSettingContainer.getHeight());
                 setVisibility(GONE);
             }
         });
 
-        setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
+        setOnClickListener(v -> dismiss());
     }
 
     public void dismiss() {
-        ObjectAnimator anim = ObjectAnimator.ofFloat(mSettingContainer, "translationY", mSettingContainer.getHeight());
+        ObjectAnimator anim = ObjectAnimator.ofFloat(
+                mSettingContainer,
+                "translationY",
+                mSettingContainer.getHeight());
         anim.setDuration(200).start();
         anim.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -71,13 +75,11 @@ public class SettingView extends FrameLayout {
     public void show() {
         setVisibility(View.VISIBLE);
         isShowing = true;
-        post(new Runnable() {
-            @Override
-            public void run() {
-                ObjectAnimator.ofFloat(mSettingContainer, "translationY", 0)
-                        .setDuration(200).start();
-            }
-        });
+        post(() -> ObjectAnimator.ofFloat(
+                mSettingContainer,
+                "translationY",
+                0)
+                .setDuration(200).start());
     }
 
     public boolean isShowing() {

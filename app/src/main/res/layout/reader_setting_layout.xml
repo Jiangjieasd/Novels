@@ -8,46 +8,43 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/qb_px_770"
         android:layout_gravity="bottom"
-        android:background="@color/bg_reader_setting"
+        android:background="@color/setting_color"
         android:clickable="true"
         android:orientation="vertical">
 
         <LinearLayout
+            android:paddingEnd="@dimen/DP10"
+            android:paddingStart="@dimen/DP10"
             android:layout_width="match_parent"
             android:layout_height="@dimen/qb_px_120"
             android:layout_marginTop="@dimen/qb_px_25"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="@dimen/qb_px_185"
+            <ImageView
+                android:layout_marginEnd="10dp"
+                android:layout_width="@dimen/qb_px_90"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="亮度"
-                android:textColor="@color/setting_color"
-                android:textSize="@dimen/qb_px_55" />
+                android:src="@drawable/ic_brightness_plus"
+                android:textColor="@color/color_333333" />
 
             <SeekBar
                 android:id="@+id/light_seek_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+                style="@style/CustomSeekBarStyle" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:paddingEnd="@dimen/DP10"
+            android:paddingStart="@dimen/DP10"
             android:layout_width="match_parent"
             android:layout_height="@dimen/qb_px_120"
             android:layout_marginTop="@dimen/qb_px_25"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="@dimen/qb_px_185"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="背景"
-                android:textColor="@color/setting_color"
-                android:textSize="@dimen/qb_px_55" />
 
             <TextView
                 android:id="@+id/reader_bg_0"
@@ -92,8 +89,9 @@
                 android:layout_width="@dimen/qb_px_185"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="字号"
-                android:textColor="@color/setting_color"
+                android:text="A"
+                android:layout_marginEnd="@dimen/DP10"
+                android:textColor="@color/color_333333"
                 android:textSize="@dimen/qb_px_55" />
 
             <SeekBar
@@ -101,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+                style="@style/CustomSeekBarStyle" />
         </LinearLayout>
 
         <LinearLayout
@@ -114,8 +112,9 @@
                 android:layout_width="@dimen/qb_px_185"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="间距"
-                android:textColor="@color/setting_color"
+                android:text="L"
+                android:layout_marginEnd="@dimen/DP10"
+                android:textColor="@color/color_333333"
                 android:textSize="@dimen/qb_px_55" />
 
             <SeekBar
@@ -123,22 +122,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+                style="@style/CustomSeekBarStyle" />
         </LinearLayout>
 
         <LinearLayout
+            android:paddingStart="@dimen/DP10"
+            android:paddingEnd="@dimen/DP10"
             android:layout_width="match_parent"
             android:layout_height="@dimen/qb_px_120"
             android:layout_marginTop="@dimen/qb_px_25"
             android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="@dimen/qb_px_185"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="翻页"
-                android:textColor="@color/setting_color"
-                android:textSize="@dimen/qb_px_55" />
 
             <TextView
                 android:id="@+id/effect_real_one_way"
@@ -148,7 +141,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/text_background"
                 android:gravity="center"
-                android:text="仿真1" />
+                android:text="Simu 1" />
 
             <TextView
                 android:id="@+id/effect_real_both_way"
@@ -158,7 +151,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/text_background"
                 android:gravity="center"
-                android:text="仿真2" />
+                android:text="Simu 2" />
 
             <TextView
                 android:id="@+id/effect_cover"
@@ -168,7 +161,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/text_background"
                 android:gravity="center"
-                android:text="覆盖" />
+                android:text="Cover" />
 
             <TextView
                 android:id="@+id/effect_slide"
@@ -178,7 +171,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/text_background"
                 android:gravity="center"
-                android:text="滑动" />
+                android:text="Scroll" />
 
             <TextView
                 android:id="@+id/effect_non"
@@ -188,7 +181,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/text_background"
                 android:gravity="center"
-                android:text="无" />
+                android:text="No" />
         </LinearLayout>
 
     </LinearLayout>

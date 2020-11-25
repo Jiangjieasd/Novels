@@ -47,6 +47,4 @@ public class DLog {
             return -1;
         }
     }
-
-
 }

@@ -15,6 +15,7 @@ package com.glong.reader.cache;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -54,7 +55,7 @@ public class ACache {
     public static final int TIME_DAY = TIME_HOUR * 24;
     private static final int MAX_SIZE = 1000 * 1000 * 50; // 50 mb
     private static final int MAX_COUNT = Integer.MAX_VALUE; // 不限制存放数据的数量
-    private static Map<String, ACache> mInstanceMap = new HashMap<String, ACache>();
+    private static final Map<String, ACache> mInstanceMap = new HashMap<>();
     private ACacheManager mCache;
 
     public static ACache get(Context ctx) {
@@ -70,15 +71,15 @@ public class ACache {
         return get(cacheDir, MAX_SIZE, MAX_COUNT);
     }
 
-    public static ACache get(Context ctx, long max_zise, int max_count) {
+    public static ACache get(Context ctx, long maxSize, int maxCount) {
         File f = new File(ctx.getCacheDir(), "ACache");
-        return get(f, max_zise, max_count);
+        return get(f, maxSize, maxCount);
     }
 
-    public static ACache get(File cacheDir, long max_zise, int max_count) {
+    public static ACache get(File cacheDir, long maxSize, int maxCount) {
         ACache manager = mInstanceMap.get(cacheDir.getAbsoluteFile() + myPid());
         if (manager == null) {
-            manager = new ACache(cacheDir, max_zise, max_count);
+            manager = new ACache(cacheDir, maxSize, maxCount);
             mInstanceMap.put(cacheDir.getAbsolutePath() + myPid(), manager);
         }
         return manager;
@@ -88,12 +89,12 @@ public class ACache {
         return "_" + android.os.Process.myPid();
     }
 
-    private ACache(File cacheDir, long max_size, int max_count) {
+    private ACache(File cacheDir, long maxSize, int maxCount) {
         if (!cacheDir.exists() && !cacheDir.mkdirs()) {
             throw new RuntimeException("can't make dirs in "
                     + cacheDir.getAbsolutePath());
         }
-        mCache = new ACacheManager(cacheDir, max_size, max_count);
+        mCache = new ACacheManager(cacheDir, maxSize, maxCount);
     }
 
     // =======================================
@@ -146,8 +147,9 @@ public class ACache {
      */
     public String getAsString(String key) {
         File file = mCache.get(key);
-        if (!file.exists())
+        if (!file.exists()) {
             return null;
+        }
         boolean removeFile = false;
         BufferedReader in = null;
         try {
@@ -174,8 +176,9 @@ public class ACache {
                     e.printStackTrace();
                 }
             }
-            if (removeFile)
+            if (removeFile) {
                 remove(key);
+            }
         }
     }
 
@@ -253,9 +256,9 @@ public class ACache {
      * @return JSONArray数据
      */
     public JSONArray getAsJSONArray(String key) {
-        String JSONString = getAsString(key);
+        String jsonString = getAsString(key);
         try {
-            JSONArray obj = new JSONArray(JSONString);
+            JSONArray obj = new JSONArray(jsonString);
             return obj;
         } catch (Exception e) {
             e.printStackTrace();
@@ -316,8 +319,9 @@ public class ACache {
         boolean removeFile = false;
         try {
             File file = mCache.get(key);
-            if (!file.exists())
+            if (!file.exists()) {
                 return null;
+            }
             RAFile = new RandomAccessFile(file, "r");
             byte[] byteArray = new byte[(int) RAFile.length()];
             RAFile.read(byteArray);
@@ -338,8 +342,9 @@ public class ACache {
                     e.printStackTrace();
                 }
             }
-            if (removeFile)
+            if (removeFile) {
                 remove(key);
+            }
         }
     }
 
@@ -408,14 +413,16 @@ public class ACache {
                 return null;
             } finally {
                 try {
-                    if (bais != null)
+                    if (bais != null) {
                         bais.close();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 try {
-                    if (ois != null)
+                    if (ois != null) {
                         ois.close();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -509,8 +516,9 @@ public class ACache {
      */
     public File file(String key) {
         File f = mCache.newFile(key);
-        if (f.exists())
+        if (f.exists()) {
             return f;
+        }
         return null;
     }
 
@@ -764,8 +772,9 @@ public class ACache {
 
         private static byte[] copyOfRange(byte[] original, int from, int to) {
             int newLength = to - from;
-            if (newLength < 0)
+            if (newLength < 0) {
                 throw new IllegalArgumentException(from + " > " + to);
+            }
             byte[] copy = new byte[newLength];
             System.arraycopy(original, from, copy, 0,
                     Math.min(original.length - from, newLength));

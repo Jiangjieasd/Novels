@@ -69,7 +69,8 @@ public class NetUtil {
         return "";
     }
 
-    private static InputStream wrapStream(String contentEncoding, InputStream inputStream)
+    private static InputStream wrapStream(String contentEncoding,
+                                          InputStream inputStream)
             throws IOException {
         if (contentEncoding == null || "identity".equalsIgnoreCase(contentEncoding)) {
             return inputStream;
@@ -83,7 +84,8 @@ public class NetUtil {
         throw new RuntimeException("unsupported content-encoding: " + contentEncoding);
     }
 
-    private static String buildGetUrl(String urlPath, Map<String, Object> params) {
+    private static String buildGetUrl(String urlPath,
+                                      Map<String, Object> params) {
         if (TextUtils.isEmpty(urlPath) || params == null || params.size() == 0) {
             return urlPath;
         }
@@ -113,7 +115,10 @@ public class NetUtil {
         return paramsStr;
     }
 
-    private static void normalSetting(HttpURLConnection urlConnection, String method, Map<String, String> mHeaders) throws ProtocolException {
+    private static void normalSetting(HttpURLConnection urlConnection,
+                                      String method,
+                                      Map<String, String> mHeaders)
+            throws ProtocolException {
 
         urlConnection.setConnectTimeout(connectionTimeOut);
         urlConnection.setReadTimeout(readSocketTimeOut);
@@ -169,12 +174,6 @@ public class NetUtil {
             url = new URL(request.getBaseUrl());
             httpURLConnection = openUrlConnection(url);
             normalSetting(httpURLConnection, "POST", request.getHeaders());
-//            if (req.mMimeType != null) {// stats cache log request
-//                String data = (String) bodyPair.get("data");
-//                httpURLConnection.setRequestProperty("Content-Type", req.mMimeType.toString());
-//                outputStream = httpURLConnection.getOutputStream();
-//                outputStream.write(data.getBytes());
-//            } else
             if (request.getParam() != null && request.getParam().size() > 0) {
                 httpURLConnection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
                 outputStream = httpURLConnection.getOutputStream();
@@ -205,7 +204,8 @@ public class NetUtil {
         return "";
     }
 
-    private static HttpURLConnection openUrlConnection(URL url) throws IOException {
+    private static HttpURLConnection openUrlConnection(URL url)
+            throws IOException {
         HttpURLConnection httpURLConnection;
         String scheme = url.getProtocol();
         boolean isHttpsRequest = false;
@@ -222,7 +222,10 @@ public class NetUtil {
         return httpURLConnection;
     }
 
-    private static void addBodyParams(Map<String, Object> map, Map<String, FilePair> filePair, OutputStream outputStream, String boundary) throws IOException {
+    private static void addBodyParams(Map<String, Object> map,
+                                      Map<String, FilePair> filePair,
+                                      OutputStream outputStream, String boundary)
+            throws IOException {
         boolean didWriteData = false;
         StringBuilder stringBuilder = new StringBuilder();
         Map<String, Object> bodyPair = map;
@@ -259,7 +262,10 @@ public class NetUtil {
         }
     }
 
-    private static void addFormField(StringBuilder writer, final String name, final String value, String boundary) {
+    private static void addFormField(StringBuilder writer,
+                                     final String name,
+                                     final String value,
+                                     String boundary) {
         writer.append("--").append(boundary).append(END)
                 .append("Content-Disposition: form-data; name=\"").append(name)
                 .append("\"").append(END)
@@ -268,7 +274,10 @@ public class NetUtil {
     }
 
 
-    private static void addFilePart(final String fieldName, byte[] data, String boundary, OutputStream outputStream)
+    private static void addFilePart(final String fieldName,
+                                    byte[] data,
+                                    String boundary,
+                                    OutputStream outputStream)
             throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("--").append(boundary).append(END)
@@ -283,7 +292,9 @@ public class NetUtil {
         outputStream.write(END.getBytes());
     }
 
-    private static void finishWrite(OutputStream outputStream, String boundary) throws IOException {
+    private static void finishWrite(OutputStream outputStream,
+                                    String boundary)
+            throws IOException {
         outputStream.write(END.getBytes());
         outputStream.write(("--" + boundary + "--").getBytes());
         outputStream.write(END.getBytes());

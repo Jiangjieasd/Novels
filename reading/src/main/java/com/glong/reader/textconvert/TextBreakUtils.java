@@ -11,26 +11,28 @@ import java.util.Set;
  * 测量工具
  */
 public class TextBreakUtils {
-
-    public static Set<String> sParagraph = new HashSet<>();//换行符
-    public static Set<String> sRetract = new HashSet<>();// 缩进符
+    /**
+     * 换行符
+     */
+    public static Set<String> sParagraph = new HashSet<>();
+    /**
+     * 缩进符
+     */
+    public static Set<String> sRetract = new HashSet<>();
 
     static {
         sParagraph.add("<br><br>");
         sParagraph.add("<br>");
         sParagraph.add("</p>");
         sParagraph.add("\n");
-
-        sRetract.add("　");// 这个类似空格但并不是空格的缩进符，长度刚好是一个汉字的长度（推荐使用这个作为缩进符）
-        sRetract.add(" ");// 以空格为段开头
+        // 这个类似空格但并不是空格的缩进符，长度刚好是一个汉字的长度（推荐使用这个作为缩进符）
+        sRetract.add("　");
+        // 以空格为段开头
+        sRetract.add(" ");
     }
 
     public static boolean isStartWithRetract(String src) {
-        if (src == null) {
-            return false;
-        } else {
-            return true;
-        }
+        return src != null;
     }
 
     /**
@@ -42,13 +44,13 @@ public class TextBreakUtils {
      * @param paint        测量的画笔
      * @return 如果cs为空或者长度为0，返回null
      * --------------------
-     * TODO
      * --------------------
      */
-    public static BreakResult breakText(int fromIndex, char[] cs, float measureWidth, float textPadding, Paint paint) {
-//        if (cs == null || cs.length == 0) {
-//            return null;
-//        }
+    public static BreakResult breakText(int fromIndex,
+                                        char[] cs,
+                                        float measureWidth,
+                                        float textPadding,
+                                        Paint paint) {
         BreakResult breakResult = new BreakResult();
         breakResult.showChars = new ArrayList<>();
         float width = 0;
@@ -58,7 +60,8 @@ public class TextBreakUtils {
             float charWidth = paint.measureText(measureStr);
 
             for (String paragraph : sParagraph) {
-                if (paragraph != null && paragraph.length() > 0 && size - i >= paragraph.length()) {
+                if (paragraph != null && paragraph.length() > 0
+                        && size - i >= paragraph.length()) {
                     char[] paragraphArray = paragraph.toCharArray();
                     int length = paragraphArray.length;
                     boolean isLineFeed = true;
@@ -95,7 +98,11 @@ public class TextBreakUtils {
         return breakResult;
     }
 
-    public static BreakResult breakText(int fromIndex, String text, float measureWidth, float textPadding, Paint paint) {
+    public static BreakResult breakText(int fromIndex,
+                                        String text,
+                                        float measureWidth,
+                                        float textPadding,
+                                        Paint paint) {
         return breakText(fromIndex, text.toCharArray(), measureWidth, textPadding, paint);
     }
 
@@ -107,7 +114,9 @@ public class TextBreakUtils {
      * @param paint         画笔
      * @return 行数
      */
-    public static int measureLines(float measureHeight, float lineSpace, Paint paint) {
+    public static int measureLines(float measureHeight,
+                                   float lineSpace,
+                                   Paint paint) {
         Paint.FontMetrics fm = paint.getFontMetrics();
         float textHeight = fm.bottom - fm.top;
         float heightEveryLine = textHeight + lineSpace;
@@ -121,15 +130,18 @@ public class TextBreakUtils {
      * @param measureWidth 文字展示长度
      * @param textPadding  文字padding
      * @param paint        Paint
-     * @return
      */
-    public static List<ShowLine> breakToLineList(String src, float measureWidth, float textPadding, Paint paint) {
+    public static List<ShowLine> breakToLineList(String src,
+                                                 float measureWidth,
+                                                 float textPadding,
+                                                 Paint paint) {
         String textData = src;
         List<ShowLine> showLines = new ArrayList<>();
 
         int lineIndex = 0;
         while (textData.length() > 0) {
-            BreakResult breakResult = breakText(src.length() - textData.length(), textData, measureWidth, textPadding, paint);
+            BreakResult breakResult = breakText(src.length() - textData.length(),
+                    textData, measureWidth, textPadding, paint);
             ShowLine showLine = new ShowLine();
             showLine.charsData = breakResult.showChars;
             showLine.isFullLine = breakResult.isFullLine;
@@ -142,19 +154,6 @@ public class TextBreakUtils {
             }
             textData = textData.substring(breakResult.chartNums);
         }
-
-        //给每个字符添加当前章节中的索引（即所有字符串中的索引）
-        // 11.28 将添加索引的计算放在了BreakResult的获取时。
-//        int indexCharInChapter = 0;
-//        int indexLineInChapter = 0;
-//        for (ShowLine everyLine : showLines) {
-//            everyLine.indexInChapter = indexLineInChapter;
-//            indexLineInChapter++;
-//            for (ShowChar everyChar : everyLine.charsData) {
-//                everyChar.indexInChapter = indexCharInChapter;
-//                indexCharInChapter++;
-//            }
-//        }
         return showLines;
     }
 }

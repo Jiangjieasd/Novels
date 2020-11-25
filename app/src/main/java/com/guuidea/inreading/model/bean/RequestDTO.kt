@@ -7,8 +7,8 @@ package com.guuidea.inreading.model.bean
  * @createDate     2020/11/11 11:18
  */
 data class LoginDTO(
-        val email: String,
-        val password: String
+        val token: String,
+        val type: Int
 )
 
 data class Feedback(

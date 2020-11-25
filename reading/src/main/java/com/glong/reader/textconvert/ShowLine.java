@@ -26,7 +26,9 @@ public class ShowLine {
 
     public String getLineData() {
         String lineData = "";
-        if (charsData == null || charsData.size() == 0) return lineData;
+        if (charsData == null || charsData.isEmpty()) {
+            return lineData;
+        }
         for (ShowChar c : charsData) {
             lineData = lineData + c.charData;
         }
@@ -34,14 +36,14 @@ public class ShowLine {
     }
 
     public int getLineFirstIndexInChapter() {
-        if (charsData == null || charsData.size() <= 0) {
+        if (charsData == null || charsData.isEmpty()) {
             return -1;
         }
         return charsData.get(0).indexInChapter;
     }
 
     public int getLineLastIndexInChapter() {
-        if (charsData == null || charsData.size() <= 0) {
+        if (charsData == null || charsData.isEmpty()) {
             return -1;
         }
         return charsData.get(charsData.size() - 1).indexInChapter;

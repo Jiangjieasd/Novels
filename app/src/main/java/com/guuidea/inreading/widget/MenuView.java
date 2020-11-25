@@ -18,18 +18,19 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.guuidea.inreading.R;
 
-
 /**
- * Created by Garrett on 2018/11/29.
+ * @author Garrett
+ * @date 2018/11/29
  * contact me krouky@outlook.com
  */
 public class MenuView extends FrameLayout {
 
     private boolean isShowing;
     private static final int ANIMATION_DURATION = 200;
+    private static final String TRANSLATION_Y = "translationY";
 
-    private Toolbar mToolbar;
-    private FrameLayout mBottomMenu;
+    private final Toolbar mToolbar;
+    private final FrameLayout mBottomMenu;
 
     public MenuView(@NonNull Context context) {
         this(context, null);
@@ -39,7 +40,9 @@ public class MenuView extends FrameLayout {
         this(context, attrs, 0);
     }
 
-    public MenuView(@NonNull final Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public MenuView(@NonNull final Context context,
+                    @Nullable AttributeSet attrs,
+                    int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         LayoutInflater.from(context).inflate(R.layout.reader_menu_layout, this);
         mToolbar = findViewById(R.id.tool_bar);
@@ -47,16 +50,17 @@ public class MenuView extends FrameLayout {
 
         ((Activity) context).getWindow().getDecorView()
                 .addOnLayoutChangeListener(new OnLayoutChangeListener() {
-            @Override
-            public void onLayoutChange(View v, int left, int top, int right,
-                                       int bottom, int oldLeft, int oldTop,
-                                       int oldRight, int oldBottom) {
-                ((Activity) context).getWindow().getDecorView().removeOnLayoutChangeListener(this);
-                mToolbar.setTranslationY(-mToolbar.getHeight());
-                mBottomMenu.setTranslationY(mBottomMenu.getHeight());
-                setVisibility(GONE);
-            }
-        });
+                    @Override
+                    public void onLayoutChange(View v, int left, int top, int right,
+                                               int bottom, int oldLeft, int oldTop,
+                                               int oldRight, int oldBottom) {
+                        ((Activity) context).getWindow().getDecorView()
+                                .removeOnLayoutChangeListener(this);
+                        mToolbar.setTranslationY(-mToolbar.getHeight());
+                        mBottomMenu.setTranslationY(mBottomMenu.getHeight());
+                        setVisibility(GONE);
+                    }
+                });
         setClickable(true);
     }
 
@@ -64,15 +68,15 @@ public class MenuView extends FrameLayout {
 
     public void show() {
         setVisibility(View.VISIBLE);
-        post(() -> showAnim());
+        post(this::showAnim);
     }
 
     private void showAnim() {
         if (mShowAnim == null) {
             ObjectAnimator toolbarAnim = ObjectAnimator.ofFloat(mToolbar,
-                    "translationY", -mToolbar.getHeight(), 0);
+                    TRANSLATION_Y, -mToolbar.getHeight(), 0);
             ObjectAnimator bottomMenuAnim = ObjectAnimator.ofFloat(mBottomMenu,
-                    "translationY", mBottomMenu.getHeight(), 0);
+                    TRANSLATION_Y, mBottomMenu.getHeight(), 0);
             mShowAnim = new AnimatorSet();
             mShowAnim.play(toolbarAnim).with(bottomMenuAnim);
             mShowAnim.setDuration(ANIMATION_DURATION);
@@ -93,9 +97,9 @@ public class MenuView extends FrameLayout {
     public void dismiss() {
         if (mDismissAnim == null) {
             ObjectAnimator toolbarAnim = ObjectAnimator.ofFloat(mToolbar,
-                    "translationY", -mToolbar.getHeight());
+                    TRANSLATION_Y, -mToolbar.getHeight());
             ObjectAnimator bottomMenuAnim = ObjectAnimator.ofFloat(mBottomMenu,
-                    "translationY", mBottomMenu.getHeight());
+                    TRANSLATION_Y, mBottomMenu.getHeight());
             mDismissAnim = new AnimatorSet();
             mDismissAnim.play(toolbarAnim).with(bottomMenuAnim);
             mDismissAnim.setDuration(ANIMATION_DURATION);
