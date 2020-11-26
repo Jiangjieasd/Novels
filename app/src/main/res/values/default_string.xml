@@ -48,4 +48,6 @@
     <string name="catalogue">目录</string>
     <string name="day_night">日/夜</string>
     <string name="comment">评论</string>
+    <string name="sign_google">Sign in with Google</string>
+    <string name="sign_facebook">Sign in with Facebook</string>
 </resources>

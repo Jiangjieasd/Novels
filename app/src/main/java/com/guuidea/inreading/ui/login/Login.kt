@@ -72,7 +72,7 @@ class Login : BaseActivity(), View.OnClickListener {
         modifyShowText()
         val gso: GoogleSignInOptions =
                 GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestIdToken("558984841560-kj9vugo6aqqek69062kuu0qkj2qlad3d.apps.googleusercontent.com")
+                        .requestIdToken(getString(R.string.google_oauth_client_id))
                         .requestEmail()
                         .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
@@ -83,16 +83,17 @@ class Login : BaseActivity(), View.OnClickListener {
         for (index in 0 until btn_login_google.childCount) {
             val view = btn_login_google.getChildAt(index)
             if (view is TextView) {
-                view.text = "Sign in with Google"
+                view.text = getString(R.string.sign_google)
             }
         }
     }
 
     private fun initFacebook() {
         callbackManager = CallbackManager.Factory.create()
-        btn_login_facebook.setLoginText("Sign in with Facebook")
+        btn_login_facebook.setLoginText(getString(R.string.sign_facebook))
         btn_login_facebook.setReadPermissions("email", "public_profile")
-        btn_login_facebook.setPadding(ScreenUtils.dpToPx(16), ScreenUtils.dpToPx(13), 0, ScreenUtils.dpToPx(13))
+        btn_login_facebook.setPadding(ScreenUtils.dpToPx(16), ScreenUtils.dpToPx(13),
+                0, ScreenUtils.dpToPx(13))
         btn_login_facebook.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult) {
                 handleFacebookAccessToken(result.accessToken)

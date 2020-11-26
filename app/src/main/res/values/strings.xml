@@ -207,7 +207,6 @@
     <string name="nav_find">Find</string>
     <string name="rating">Rating</string>
 
-    <string name="facebook_app_id">181499033608289</string>
-    <string name="fb_login_protocol_scheme">fb181499033608289</string>
+
 
 </resources>
