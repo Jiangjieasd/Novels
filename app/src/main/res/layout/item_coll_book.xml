@@ -15,7 +15,7 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_book_loading"
+        android:src="@drawable/default_book_cover"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

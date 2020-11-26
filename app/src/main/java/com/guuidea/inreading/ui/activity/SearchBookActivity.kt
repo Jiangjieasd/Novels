@@ -69,8 +69,10 @@ class SearchBookActivity : BaseActivity() {
 
         }
 
-        mRecommendAdapter = SearchBookRecommendAdapter(this, datas, View.OnClickListener {
-            jumpToDetail()
+        mRecommendAdapter = SearchBookRecommendAdapter(this, datas, object : OnItemClickListener {
+            override fun onItemClick(book: RecommendBook) {
+                jumpToDetail(book)
+            }
         })
         rv_recommend.layoutManager = LinearLayoutManager(this)
         rv_recommend.adapter = mRecommendAdapter
@@ -109,8 +111,8 @@ class SearchBookActivity : BaseActivity() {
     /**
      * 点击结果item跳转方法
      */
-    private fun jumpToDetail() {
-
+    private fun jumpToDetail(book: RecommendBook) {
+        ExtendReaderActivity.startRead(this, book.id.toString())
     }
 
 
@@ -132,7 +134,7 @@ class SearchBookActivity : BaseActivity() {
 
     class SearchBookRecommendAdapter(private val ctx: Context,
                                      private val data: ArrayList<RecommendBook>,
-                                     private val itemClick: View.OnClickListener) :
+                                     private val itemClick: OnItemClickListener) :
             RecyclerView.Adapter<SearchBookRecommendAdapter.SearchBookRecommendVH>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchBookRecommendVH {
@@ -145,11 +147,37 @@ class SearchBookActivity : BaseActivity() {
         }
 
         override fun onBindViewHolder(holder: SearchBookRecommendVH, position: Int) {
-            Glide.with(ctx).load(data[position].bookIconUrl)
-                    .into(holder.imgRankCover)
+//            Glide.with(ctx).load(data[position].bookIconUrl)
+//                    .into(holder.imgRankCover)
             holder.tvRankBookName.text = data[position].name
             holder.tvRankViewed.text = "${data[position].views} viewed"
-            holder.itemView.setOnClickListener(itemClick)
+            holder.tvRankClass.text = when (data[position].tagId) {
+                1 -> {
+                    "Fantasy"
+                }
+                2 -> {
+                    "XianXia"
+                }
+                4 -> {
+                    "WuXia"
+                }
+                6 -> {
+                    "Science"
+                }
+                7 -> {
+                    "Modern"
+                }
+                8 -> {
+                    "Mystery"
+                }
+                9 -> {
+                    "Romance"
+                }
+                else -> "Fantasy"
+            }
+            holder.itemView.setOnClickListener {
+                itemClick.onItemClick(data[position])
+            }
         }
 
         inner class SearchBookRecommendVH(private val root: View) : RecyclerView.ViewHolder(root) {
@@ -160,7 +188,8 @@ class SearchBookActivity : BaseActivity() {
         }
     }
 
-    class SearchBookResultAdapter(private val data: ArrayList<RecommendBook>) : RecyclerView.Adapter<SearchBookResultAdapter.SearchBookResultVH>() {
+    class SearchBookResultAdapter(private val data: ArrayList<RecommendBook>) :
+            RecyclerView.Adapter<SearchBookResultAdapter.SearchBookResultVH>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchBookResultVH {
             return SearchBookResultVH(LayoutInflater.from(parent.context).inflate(
@@ -175,7 +204,7 @@ class SearchBookActivity : BaseActivity() {
         }
 
         override fun onBindViewHolder(holder: SearchBookResultVH, position: Int) {
-            holder.tvClassify.visibility=View.GONE
+            holder.tvClassify.visibility = View.GONE
         }
 
         inner class SearchBookResultVH(private val root: View) : RecyclerView.ViewHolder(root) {
@@ -185,5 +214,9 @@ class SearchBookActivity : BaseActivity() {
             val tv_book_desc: TextView = root.findViewById(R.id.tv_book_desc)
         }
 
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(book: RecommendBook)
     }
 }

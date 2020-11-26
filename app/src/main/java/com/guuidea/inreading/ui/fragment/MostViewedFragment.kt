@@ -4,15 +4,13 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.guuidea.inreading.R
 import com.guuidea.inreading.model.remote.RemoteRepository
-import com.guuidea.inreading.ui.adapter.BookItem
 import com.guuidea.inreading.ui.adapter.BookItemAdapter
 import com.guuidea.inreading.ui.base.BaseFragment
-import com.guuidea.inreading.ui.base.adapter.UniversalBaseAdapter
 import kotlinx.android.synthetic.main.book_list.*
 
 /**
  * @file      MostViewedFragment
- * @description    TODO
+ * @description    数据排行页面
  * @author         江 杰
  * @createDate     2020/11/3 13:47
  */

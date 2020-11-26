@@ -8,7 +8,7 @@ android {
     compileSdkVersion build_versions.target_sdk
     buildToolsVersion build_versions.tools_version
     defaultConfig {
-        applicationId "com.guuidea.inreading"
+        applicationId "com.guuidea.inreadingtt"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
         versionCode 1

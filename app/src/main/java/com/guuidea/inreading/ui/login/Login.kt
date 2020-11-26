@@ -1,6 +1,5 @@
 package com.guuidea.inreading.ui.login
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -22,7 +21,6 @@ import com.facebook.login.widget.LoginButton
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
@@ -32,8 +30,10 @@ import com.google.firebase.ktx.Firebase
 import com.guuidea.inreading.R
 import com.guuidea.inreading.ui.activity.AgreementAndPolicyActivity
 import com.guuidea.inreading.ui.base.BaseActivity
+import com.guuidea.inreading.utils.ScreenUtils
 import com.guuidea.inreading.utils.ToastUtils
 import kotlinx.android.synthetic.main.layout_login.*
+import kotlinx.android.synthetic.main.view_indicator_banner.*
 
 
 /**
@@ -44,6 +44,9 @@ import kotlinx.android.synthetic.main.layout_login.*
  */
 class Login : BaseActivity(), View.OnClickListener {
 
+    companion object {
+        private const val RC_SIGN_IN = 123
+    }
 
     private lateinit var mAuth: FirebaseAuth
 
@@ -53,9 +56,7 @@ class Login : BaseActivity(), View.OnClickListener {
 
     private lateinit var btnLoginFacebook: LoginButton
 
-    override fun getContentId(): Int {
-        return R.layout.layout_login
-    }
+    override fun getContentId(): Int = R.layout.layout_login
 
     override fun initData(savedInstanceState: Bundle?) {
         super.initData(savedInstanceState)
@@ -68,20 +69,31 @@ class Login : BaseActivity(), View.OnClickListener {
 
     private fun initGoogle() {
         btn_login_google.setOnClickListener(this)
+        modifyShowText()
         val gso: GoogleSignInOptions =
                 GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestIdToken("408972286348-nor5vb0qrc0em3373rq0k99gnifqmh9j.apps.googleusercontent.com")
+                        .requestIdToken("558984841560-kj9vugo6aqqek69062kuu0qkj2qlad3d.apps.googleusercontent.com")
                         .requestEmail()
                         .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
         mAuth = Firebase.auth
     }
 
+    private fun modifyShowText() {
+        for (index in 0 until btn_login_google.childCount) {
+            val view = btn_login_google.getChildAt(index)
+            if (view is TextView) {
+                view.text = "Sign in with Google"
+            }
+        }
+    }
+
     private fun initFacebook() {
         callbackManager = CallbackManager.Factory.create()
-        btnLoginFacebook = LoginButton(this)
-        btnLoginFacebook.setReadPermissions("email", "public_profile")
-        btnLoginFacebook.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+        btn_login_facebook.setLoginText("Sign in with Facebook")
+        btn_login_facebook.setReadPermissions("email", "public_profile")
+        btn_login_facebook.setPadding(ScreenUtils.dpToPx(16), ScreenUtils.dpToPx(13), 0, ScreenUtils.dpToPx(13))
+        btn_login_facebook.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult) {
                 handleFacebookAccessToken(result.accessToken)
             }
@@ -99,6 +111,14 @@ class Login : BaseActivity(), View.OnClickListener {
 
     override fun initWidget() {
         super.initWidget()
+
+        prepareBottomTip()
+    }
+
+    /**
+     * 页面底部提示文案加粗及点击绑定
+     */
+    private fun prepareBottomTip() {
         val desc = "If you continue,you agree the Services Agreement & Privacy Policy"
         val spannableDesc = SpannableString(desc)
         spannableDesc.setSpan(object : ClickableSpan() {
@@ -134,7 +154,6 @@ class Login : BaseActivity(), View.OnClickListener {
                 51, 64, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
         agreement_privacy.movementMethod = LinkMovementMethod.getInstance()
         agreement_privacy.text = spannableDesc
-
     }
 
     override fun onStart() {
@@ -203,7 +222,4 @@ class Login : BaseActivity(), View.OnClickListener {
         }
     }
 
-    companion object {
-        private const val RC_SIGN_IN = 123
-    }
 }

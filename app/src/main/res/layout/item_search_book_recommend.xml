@@ -7,10 +7,10 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:src="@drawable/default_book_cover"
         android:id="@+id/img_rank_cover"
         android:layout_width="65dp"
         android:layout_height="86dp"
-        android:background="@android:color/black"
         android:contentDescription="@string/app_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -1,13 +1,17 @@
 package com.guuidea.inreading.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.guuidea.inreading.R
 import com.guuidea.inreading.model.bean.*
+import com.guuidea.inreading.ui.activity.RankingActivity
+import com.guuidea.inreading.ui.activity.SearchBookActivity
 import com.guuidea.inreading.ui.adapter.MainAdapter
 import com.guuidea.inreading.ui.base.BaseFragment
 import com.squareup.haha.perflib.Main
 import kotlinx.android.synthetic.main.fragment_discover_layout.*
+import kotlinx.android.synthetic.main.include_head_search.*
 import java.util.concurrent.CountDownLatch
 
 /**
@@ -37,24 +41,38 @@ class DiscoverFragment : BaseFragment() {
     private fun loadRecommendBook() {
         Thread(Runnable {
             Thread.sleep(1000)
-        countDownLatch.countDown()}).start()
+            countDownLatch.countDown()
+        }).start()
     }
 
     private fun loadLatestRelease() {
         Thread(Runnable {
             Thread.sleep(1000)
-            countDownLatch.countDown()}).start()
+            countDownLatch.countDown()
+        }).start()
     }
 
     private fun loadMostViewed() {
         Thread(Runnable {
             Thread.sleep(1000)
-            countDownLatch.countDown()}).start()
+            countDownLatch.countDown()
+        }).start()
     }
 
     private fun setupAdapter() {
         rv_content.layoutManager = LinearLayoutManager(context)
         rv_content.adapter = context?.let { MainAdapter(it, test()) }
+    }
+
+    override fun initClick() {
+        super.initClick()
+        edit_search.setOnClickListener {
+            startActivity(Intent(context, SearchBookActivity::class.java))
+        }
+
+        img_class.setOnClickListener {
+            startActivity(Intent(context,RankingActivity::class.java))
+        }
     }
 
     private fun test(): ArrayList<MainPageDataBean> {

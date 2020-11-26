@@ -96,10 +96,13 @@ class RankingActivity : BaseActivity() {
     }
 
     class BookClassAdapter(private val datas: Array<String>,
-                           private val itemClick: OnItemClick) : RecyclerView.Adapter<BookClassAdapter.BookClassViewHolder>() {
+                           private val itemClick: OnItemClick) :
+            RecyclerView.Adapter<BookClassAdapter.BookClassViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookClassViewHolder {
-            return BookClassViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_book_item, parent, false))
+            return BookClassViewHolder(LayoutInflater
+                    .from(parent.context)
+                    .inflate(R.layout.item_book_item, parent, false))
         }
 
         override fun getItemCount(): Int {

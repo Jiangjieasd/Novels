@@ -3,6 +3,7 @@ package com.guuidea.inreading.ui.activity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.glong.reader.TurnStatus;
+import com.glong.reader.config.ColorsConfig;
 import com.glong.reader.widget.EffectOfCover;
 import com.glong.reader.widget.EffectOfNon;
 import com.glong.reader.widget.EffectOfRealBothWay;
@@ -81,6 +83,7 @@ public class ExtendReaderActivity extends BaseActivity implements View.OnClickLi
     private String mBookId = "15";
     private long mDownTime;
     private float mDownX;
+    private boolean isNightMode = false;
 
     /**
      * 供外部调起唯一方式，不要使用Intent直接显示启动，否则bookId会为空
@@ -144,6 +147,7 @@ public class ExtendReaderActivity extends BaseActivity implements View.OnClickLi
         findViewById(R.id.effect_cover).setOnClickListener(this);
         findViewById(R.id.effect_slide).setOnClickListener(this);
         findViewById(R.id.effect_non).setOnClickListener(this);
+        findViewById(R.id.switch_night).setOnClickListener(this);
 
         mChapterSeekBar.setOnSeekBarChangeListener(new SimpleOnSeekBarChangeListener() {
             @Override
@@ -372,16 +376,24 @@ public class ExtendReaderActivity extends BaseActivity implements View.OnClickLi
                 break;
             // 切换背景
             case R.id.reader_bg_0:
-                mReaderView.setBackgroundColor(getResources().getColor(R.color.reader_bg_0));
+                if(!isNightMode){
+                    mReaderView.setBackgroundColor(getResources().getColor(R.color.reader_bg_0));
+                }
                 break;
             case R.id.reader_bg_1:
-                mReaderView.setBackgroundColor(getResources().getColor(R.color.reader_bg_1));
+                if(!isNightMode){
+                    mReaderView.setBackgroundColor(getResources().getColor(R.color.reader_bg_1));
+                }
                 break;
             case R.id.reader_bg_2:
-                mReaderView.setBackgroundColor(getResources().getColor(R.color.reader_bg_2));
+                if (!isNightMode){
+                    mReaderView.setBackgroundColor(getResources().getColor(R.color.reader_bg_2));
+                }
                 break;
             case R.id.reader_bg_3:
-                mReaderView.setBackgroundColor(getResources().getColor(R.color.reader_bg_3));
+                if (!isNightMode){
+                    mReaderView.setBackgroundColor(getResources().getColor(R.color.reader_bg_3));
+                }
                 break;
             //切换翻页效果
             case R.id.effect_real_one_way:
@@ -400,6 +412,18 @@ public class ExtendReaderActivity extends BaseActivity implements View.OnClickLi
                 mReaderView.setEffect(new EffectOfNon(this));
                 break;
             case R.id.switch_night:
+                if (!isNightMode) {
+                    mReaderView.setBackgroundColor(Color.BLACK);
+                    mReaderView.setColorsConfig(new ColorsConfig(Color.parseColor("#ffffff"),
+                            Color.parseColor("#ffffff")));
+                    isNightMode = true;
+                } else {
+                    isNightMode = false;
+                    mReaderView.setBackgroundColor(Color.WHITE);
+                    mReaderView.setColorsConfig(new ColorsConfig(Color.parseColor("#333333"),
+                            Color.parseColor("#333333")));
+                }
+
                 break;
             default:
                 break;

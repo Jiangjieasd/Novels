@@ -1,6 +1,5 @@
 package com.guuidea.inreading.ui.fragment
 
-import android.media.Image
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,11 +14,14 @@ import com.guuidea.inreading.R
 import com.guuidea.inreading.model.bean.BookOperateDescBean
 import com.guuidea.inreading.model.bean.BookShelfBean
 import com.guuidea.inreading.model.remote.RemoteRepository
+import com.guuidea.inreading.ui.activity.ExtendReaderActivity
 import com.guuidea.inreading.ui.base.BaseFragment
 import com.guuidea.inreading.ui.base.adapter.UniversalBaseAdapter
 import com.guuidea.inreading.ui.base.adapter.UniversalViewHolder
 import com.guuidea.inreading.utils.LogUtils
 import com.guuidea.inreading.utils.RxUtils
+import com.guuidea.inreading.utils.ToastUtils
+import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.fragment_shelf.*
 
 /**
@@ -65,11 +67,11 @@ class ShelfFragment : BaseFragment() {
                 data,
                 object : OnItemClickListener {
                     override fun onItemClick(bean: BookShelfBean) {
-                        onItemClick()
+                        onBookItemClick(bean)
                     }
 
                     override fun onItemLongClick(bean: BookShelfBean) {
-                        onItemLongClick()
+                        onBookItemLongClick(bean)
                     }
                 })
         rvBooks.adapter = adapter
@@ -112,22 +114,22 @@ class ShelfFragment : BaseFragment() {
         addDisposable(disposable)
     }
 
-    private fun onItemClick() {
-
+    private fun onBookItemClick(bean: BookShelfBean) {
+        ExtendReaderActivity.startRead(context, bean.bookEnId.toString())
     }
 
-    private fun onItemLongClick() {
-        openItemDialog()
+    private fun onBookItemLongClick(bean: BookShelfBean) {
+        openItemDialog(bean)
     }
 
-    private fun openItemDialog() {
-        showBookOperateDialog()
+    private fun openItemDialog(bean: BookShelfBean) {
+        showBookOperateDialog(bean)
     }
 
     /**
      * 显示底部弹窗操作
      */
-    private fun showBookOperateDialog() {
+    private fun showBookOperateDialog(bean: BookShelfBean) {
         val bottomSheetDialog = context?.let { BottomSheetDialog(it) }
         bottomSheetDialog?.setCanceledOnTouchOutside(true)
         bottomSheetDialog?.setContentView(R.layout.dialog_book_operate)
@@ -144,15 +146,15 @@ class ShelfFragment : BaseFragment() {
                     when (item.type) {
                         BookOperateDescBean.VIEW_DETAIL -> {
                             bottomSheetDialog.dismiss()
-                            viewDetail()
+                            viewDetail(bean)
                         }
                         BookOperateDescBean.SHARE_NOVEL -> {
                             bottomSheetDialog.dismiss()
-                            shareNovel()
+                            shareNovel(bean)
                         }
                         BookOperateDescBean.REMOVE_NOVEL -> {
                             bottomSheetDialog.dismiss()
-                            deleteBook()
+                            deleteBook(bean)
                         }
                     }
                 }
@@ -185,21 +187,27 @@ class ShelfFragment : BaseFragment() {
     /**
      * 删除书籍
      */
-    private fun deleteBook() {
-
+    private fun deleteBook(bean: BookShelfBean) {
+        val delete = RemoteRepository.getInstance().deleteReadingBook(bean.bookEnId)
+                .subscribe(Consumer {
+                    if (0 == it.code)
+                        ToastUtils.show("Delete Success!")
+                    loadBookList(pageNumber)
+                })
+        addDisposable(delete)
     }
 
     /**
      * 查看书籍详情
      */
-    private fun viewDetail() {
+    private fun viewDetail(bean: BookShelfBean) {
 
     }
 
     /**
      * 分享书籍
      */
-    private fun shareNovel() {
+    private fun shareNovel(bean: BookShelfBean) {
 
     }
 
@@ -221,6 +229,7 @@ class ShelfFragment : BaseFragment() {
             } else {
                 if (position == itemCount - 1) {
                     holder.coolBookCover.setImageResource(R.drawable.add_img)
+                    holder.coolBookCover.scaleType = ImageView.ScaleType.CENTER_INSIDE
                 } else {
                     holder.collBookTvName.text = data[position].bookEnName
                     holder.tvReadRate.text = "${(data[position].readChapter % (data[position].allChapter)).toString()}%"

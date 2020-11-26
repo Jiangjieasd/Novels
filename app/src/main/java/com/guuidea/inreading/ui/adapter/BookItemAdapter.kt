@@ -4,6 +4,7 @@ import android.content.Context
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.guuidea.inreading.R
+import com.guuidea.inreading.model.bean.RecommendBook
 import com.guuidea.inreading.ui.base.adapter.UniversalBaseAdapter
 import com.guuidea.inreading.ui.base.adapter.UniversalViewHolder
 
@@ -13,19 +14,19 @@ import com.guuidea.inreading.ui.base.adapter.UniversalViewHolder
  * @author         江 杰
  * @createDate     2020/11/12 13:49
  */
-class BookItemAdapter(val context: Context, val datas: ArrayList<BookItem>) :
-        UniversalBaseAdapter<BookItem>(context, datas) {
+class BookItemAdapter(val context: Context, val datas: ArrayList<RecommendBook>) :
+        UniversalBaseAdapter<RecommendBook>(context, datas) {
     override fun getItemLayoutId(): Int {
         return R.layout.item_book
     }
 
-    override fun bindData(holder: UniversalViewHolder, item: BookItem, position: Int) {
-        holder.setText(R.id.tv_book_name, item.bookName)
-        holder.setText(R.id.tvClassify, item.bookClassify)
-        holder.setText(R.id.tv_book_desc, item.bookDesc)
-        Glide.with(context).load(item.coverLink)
-                .into(holder.getView<ImageView>(R.id.img_book_cover))
-        holder.setText(R.id.tv_book_rank, item.bookRank.toString())
+    override fun bindData(holder: UniversalViewHolder, item: RecommendBook, position: Int) {
+        holder.setText(R.id.tv_book_name, item.name)
+        holder.setText(R.id.tvClassify, item.tagName)
+        holder.setText(R.id.tv_book_desc, item.brief)
+        Glide.with(context).load(item.bookIconUrl)
+                .into(holder.getView(R.id.img_book_cover))
+        holder.setText(R.id.tv_book_rank, position.toString())
     }
 
 }
