@@ -13,7 +13,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:titile="Terms of use" />
 
-    <TextView
+    <WebView
         android:paddingTop="24dp"
         android:paddingStart="30dp"
         android:paddingEnd="30dp"

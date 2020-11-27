@@ -33,10 +33,11 @@ class AgreementAndPolicyActivity : BaseActivity() {
         when (type) {
             0 -> {
                 action_bar.title = "Terms of use"
-                tvTips.text = Html.fromHtml("<b>Tips:</b>Single novel costs <b>\$6 </b>in other Reading apps")
+                tvTips.loadUrl("file:///android_asset/Terms_of_use.html")
             }
             1 -> {
                 action_bar.title = "Privacy"
+                tvTips.loadUrl("file:///android_asset/Privacy.html")
             }
         }
         action_bar.setOnClickListener { finish() }

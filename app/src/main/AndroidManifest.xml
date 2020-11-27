@@ -52,7 +52,7 @@
             android:name=".ui.activity.SplashActivity"
             android:theme="@style/SplashTheme" />
         <activity
-            android:name=".ui.activity.MainPageActivity">
+            android:name=".ui.login.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
